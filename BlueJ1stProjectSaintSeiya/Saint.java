@@ -1,5 +1,5 @@
 public class Saint {
-    private String name = "Seiya";
+    private String name;
     private Armor armor;
     private boolean suited;
     /* */
@@ -10,5 +10,9 @@ public class Saint {
     
     public void suitUpArmor(){
         this.suited = true;
+    }    
+    
+    public boolean getSuited(){
+        return this.suited;
     }    
 }
