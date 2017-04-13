@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Saint
-comment1.params=name\ armor
-comment1.target=Saint(java.lang.String,\ Armor)
-comment2.params=
-comment2.target=void\ suitUpArmor()
-numComments=3
