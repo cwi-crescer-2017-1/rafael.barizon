@@ -40,8 +40,8 @@ public class Saint {
         return this.vida;
     }
     
-    public void perdeVida(Double damage){
-        this.vida = this.vida - damage;
+    public void perdeVida(Double dano){
+        this.vida = this.vida - dano;
         //tem necessidade de colocar o "THIS" nesse momento? eu acredito que nao mas gostaria de ter certeza.
     }
     
