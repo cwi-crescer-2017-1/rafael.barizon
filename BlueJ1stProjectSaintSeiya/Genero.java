@@ -5,7 +5,7 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum Gender
+public enum Genero
 {
-    FEMALE,MALE,NOT_INFORMED;
+    MASCULINO,FEMININO,NAO_INFORMADO;
 }

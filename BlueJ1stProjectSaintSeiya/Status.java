@@ -7,5 +7,5 @@
  */
 public enum Status
 {
-    ALIVE,DEAD,SLEEPING;
+    VIVO,MORTO,DORMINDO;
 }

@@ -1,47 +1,47 @@
 public class Saint {
-    private String name;
-    private Armor armor;
-    private boolean suited;
-    private Gender gender= Gender.NOT_INFORMED;
-    private Status status = Status.ALIVE;
-    private Double life = 100.0;
+    private String nome;
+    private Armadura armadura;
+    private boolean armaduraVestida;
+    private Genero genero= Genero.NAO_INFORMADO;
+    private Status status = Status.VIVO;
+    private Double vida = 100.0;
 
     /* */
-    public Saint(String name, Armor armor) {
-        this.name = name;
-        this.armor = armor;
+    public Saint(String nome, Armadura armadura) {
+        this.nome = nome;
+        this.armadura = armadura;
     }   
     
-    public String getName(){
-        return this.name;
+    public String getNome(){
+        return this.nome;
     }
     
-    public void suitUpArmor(){
-        this.suited = true;
+    public void vestirArmadura(){
+        this.armaduraVestida = true;
     }    
     
-    public boolean getSuited(){
-        return this.suited;
+    public boolean getArmaduraVestida(){
+        return this.armaduraVestida;
     }    
     
-    public Gender getGender(){
-        return this.gender;
+    public Genero getGenero(){
+        return this.genero;
     }
     
-    public void setGender(Gender gender){
-        this.gender = gender;
+    public void setGenero(Genero genero){
+        this.genero = genero;
     }
     
-    public Armor getArmor(){
-        return this.armor;
+    public Armadura getArmadura(){
+        return this.armadura;
     }
     
-    public Double getLife(){
-        return this.life;
+    public Double getVida(){
+        return this.vida;
     }
     
-    public void loseLifePoints(Double damage){
-        this.life = this.life - damage;
+    public void perdeVida(Double damage){
+        this.vida = this.vida - damage;
         //tem necessidade de colocar o "THIS" nesse momento? eu acredito que nao mas gostaria de ter certeza.
     }
     

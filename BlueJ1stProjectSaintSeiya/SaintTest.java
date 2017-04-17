@@ -22,23 +22,23 @@ public class SaintTest{
         */
        
        //1
-       Armor scorpion = new Armor("Scorpion", Category.GOLDEN);
+       Armadura scorpion = new Armadura("Scorpion", Categoria.OURO);
        Saint milo = new Saint("Milo", scorpion);
        //2
-       milo.suitUpArmor();
+       milo.vestirArmadura();
        //3
-       boolean result = milo.getSuited();
+       boolean result = milo.getArmaduraVestida();
        assertEquals(true, result); 
    }
    
    @Test
-   public void dontSuitUp(){
-       Saint hyoga = new Saint("Hyoga", new Armor("Sawn", Category.SILVER));
-       assertEquals(false, hyoga.getSuited());
+   public void naoVistaArmadura(){
+       Saint hyoga = new Saint("Hyoga", new Armadura("Sawn", Categoria.PRATA));
+       assertEquals(false, hyoga.getArmaduraVestida());
    }
    
    @Test
    public void creatingSaintWithoutGender(){
-       Saint shaka = new Saint("Shaka", new Armor("Virgo", Category.GOLDEN));
+       Saint shaka = new Saint("Shaka", new Armadura("Virgo", Categoria.OURO));
     }
 }

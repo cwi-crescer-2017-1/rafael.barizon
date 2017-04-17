@@ -5,11 +5,11 @@
  * @author (your name here)
  * @version (version number or date here)
  */
-public enum Category{
-    GOLDEN(3), SILVER(2), BRONZE(1);
+public enum Categoria{
+    OURO(3), PRATA(2), BRONZE(1);
     
     private int valor;
-    private Category(int valor){
+    private Categoria(int valor){
         this.valor = valor;
     }    
     

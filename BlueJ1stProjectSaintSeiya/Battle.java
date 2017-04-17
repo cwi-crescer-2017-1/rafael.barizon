@@ -10,8 +10,8 @@ public class Battle
     private Double damage = 10.0;
     private Saint saintOne;
     private Saint saintTwo;
-    private Armor armorSaintOne;
-    private Armor armorSaintTwo;
+    private Armadura armaduraSaintOne;
+    private Armadura armaduraSaintTwo;
     private int order;
     
     public Battle(Saint saintOne, Saint saintTwo){
@@ -20,48 +20,48 @@ public class Battle
     }
     
     public void Fight(){
-        this.armorSaintOne = saintOne.getArmor();
-        this.armorSaintTwo = saintTwo.getArmor();
+        this.armaduraSaintOne = saintOne.getArmadura();
+        this.armaduraSaintTwo = saintTwo.getArmadura();
         
-        System.out.println(saintOne.getName() + "(" + saintOne.getLife()+")"+ " vs. " + saintTwo.getName()+ "(" + saintTwo.getLife()+")" + "\n");
+        System.out.println(saintOne.getNome() + "(" + saintOne.getVida()+")"+ " vs. " + saintTwo.getNome()+ "(" + saintTwo.getVida()+")" + "\n");
         
         
-        //while(saintOne.getLife() > 0.0 && saintTwo.getLife() > 0.0){
-            if(armorSaintOne.getCategory().getValor() >= armorSaintTwo.getCategory().getValor()){
-                saintTwo.loseLifePoints(damage);
+        //while(saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
+            if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
+                saintTwo.perdeVida(damage);
                 order = 1;
-                System.out.println(saintOne.getName() + " Attack and " + saintTwo.getName() + " now has " + saintTwo.getLife() + " life Points\n");
+                System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
             }else {
-                saintOne.loseLifePoints(damage);
+                saintOne.perdeVida(damage);
                 order = 2;
-                System.out.println(saintTwo.getName() + " Attack and " + saintOne.getName() + " now has " + saintOne.getLife() + " life Points\n");
+                System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
             
             if(order == 1){
-                while (saintOne.getLife() > 0.0 && saintTwo.getLife() > 0.0){
-                    saintOne.loseLifePoints(damage);
-                    System.out.println(saintTwo.getName() + " Attack and " + saintOne.getName() + " now has " + saintOne.getLife() + " life Points\n");
-                    saintTwo.loseLifePoints(damage);
-                    System.out.println(saintOne.getName() + " Attack and " + saintTwo.getName() + " now has " + saintTwo.getLife() + " life Points\n");
+                while (saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
+                    saintOne.perdeVida(damage);
+                    System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
+                    saintTwo.perdeVida(damage);
+                    System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
                 }
                 
             } else if(order == 2){
-                 while (saintOne.getLife() > 0.0 && saintTwo.getLife() > 0.0){
-                    saintTwo.loseLifePoints(damage);
-                    System.out.println(saintOne.getName() + " Attack and " + saintTwo.getName() + " now has " + saintTwo.getLife() + " life Points\n");
-                    saintOne.loseLifePoints(damage);
-                    System.out.println(saintTwo.getName() + " Attack and " + saintOne.getName() + " now has " + saintOne.getLife() + " life Points\n");
+                 while (saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
+                    saintTwo.perdeVida(damage);
+                    System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
+                    saintOne.perdeVida(damage);
+                    System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
                 }
             }
             
             
             
-            if (saintOne.getLife() == 0.0) {
-                saintOne.setStatus(Status.DEAD);
-                System.out.println("Saint " + saintOne.getName() + " died\n");
+            if (saintOne.getVida() == 0.0) {
+                saintOne.setStatus(Status.MORTO);
+                System.out.println("Saint " + saintOne.getNome() + " morreu\n");
             }else{     
-                saintTwo.setStatus(Status.DEAD);
-                System.out.println("Saint " + saintTwo.getName() + " died\n");
+                saintTwo.setStatus(Status.MORTO);
+                System.out.println("Saint " + saintTwo.getNome() + " morreu\n");
             }
         //}
     }
