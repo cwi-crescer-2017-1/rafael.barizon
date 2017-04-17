@@ -38,7 +38,7 @@ public class SaintTest{
    }
    
    @Test
-   public void creatingSaintWithoutGender(){
+   public void CriandoSaintSemGenero(){
        Saint shaka = new Saint("Shaka", new Armadura("Virgo", Categoria.OURO));
     }
 }
