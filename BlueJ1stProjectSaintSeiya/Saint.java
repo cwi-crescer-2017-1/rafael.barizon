@@ -5,7 +5,7 @@ public class Saint {
     private Genero genero= Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private Double vida = 100.0;
-    private int qtsSentidosDespertados;
+    protected int qtsSentidosDespertados;
 
     /* */
     public Saint(String nome, Armadura armadura) {
