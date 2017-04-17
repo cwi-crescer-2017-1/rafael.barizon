@@ -1,10 +1,3 @@
-
-/**
- * Write a description of class BronzeSaint here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class BronzeSaint extends Saint{
     
     
