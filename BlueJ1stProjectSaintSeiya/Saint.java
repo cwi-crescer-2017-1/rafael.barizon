@@ -12,6 +12,10 @@ public class Saint {
         this.armor = armor;
     }   
     
+    public String getName(){
+        return this.name;
+    }
+    
     public void suitUpArmor(){
         this.suited = true;
     }    
@@ -31,9 +35,17 @@ public class Saint {
     public Armor getArmor(){
         return this.armor;
     }
-
+    
+    public Double getLife(){
+        return this.life;
+    }
+    
     public void loseLifePoints(Double damage){
         this.life = this.life - damage;
         //tem necessidade de colocar o "THIS" nesse momento? eu acredito que nao mas gostaria de ter certeza.
+    }
+    
+    public void setStatus(Status status){
+        this.status = status;
     }
 }
