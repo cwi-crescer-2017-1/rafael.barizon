@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class SaintTest{
    @Test
-   public void suitUpArmorSetSuited(){
+   public void vestirArmaduraDeixaArmaduraVestida(){
        /** 
         * AAA
         * 1 - Arrange  - Build up data test
