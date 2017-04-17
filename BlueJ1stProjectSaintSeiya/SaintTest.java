@@ -48,4 +48,15 @@ public class SaintTest{
     assertEquals(5,seiya.getQtsSentidosDespertados());
     }
     
+   @Test
+   public void criarSaintNasceCom6SentidosDespertados(){
+    Saint marin = new Saint("Marin", new Armadura("Aguia", Categoria.PRATA));
+    assertEquals(6,marin.getQtsSentidosDespertados());
+    }
+   
+   @Test
+   public void criarSaintNasceCom7SentidosDespertados(){
+    Saint afrodite = new Saint("Afrodite", new Armadura("Peixes", Categoria.OURO));
+    assertEquals(7,afrodite.getQtsSentidosDespertados());
+    }
 }
