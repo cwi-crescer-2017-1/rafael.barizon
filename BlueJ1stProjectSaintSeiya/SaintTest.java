@@ -41,4 +41,11 @@ public class SaintTest{
    public void CriandoSaintSemGenero(){
        Saint shaka = new Saint("Shaka", new Armadura("Virgo", Categoria.OURO));
     }
+   /** ADICIONAR OUTROS TESTES NESSA PARTE - Do que era o tema do modulo 1 */ 
+   @Test
+   public void criarSaintNasceCom5SentidosDespertados(){
+    Saint seiya = new Saint("Seiya", new Armadura("Pegaso", Categoria.BRONZE));
+    assertEquals(5,seiya.getQtsSentidosDespertados());
+    }
+    
 }
