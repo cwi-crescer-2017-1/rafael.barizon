@@ -6,7 +6,7 @@
  * @version (version number or date here)
  */
 public enum Category{
-    GOLD(3), SILVER(2), BRONZE(1);
+    GOLDEN(3), SILVER(2), BRONZE(1);
     
     private int valor;
     private Category(int valor){

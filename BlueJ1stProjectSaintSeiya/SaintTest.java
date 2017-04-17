@@ -22,7 +22,7 @@ public class SaintTest{
         */
        
        //1
-       Armor scorpion = new Armor("Scorpion", Category.GOLD);
+       Armor scorpion = new Armor("Scorpion", Category.GOLDEN);
        Saint milo = new Saint("Milo", scorpion);
        //2
        milo.suitUpArmor();
@@ -39,6 +39,6 @@ public class SaintTest{
    
    @Test
    public void creatingSaintWithoutGender(){
-       Saint shaka = new Saint("Shaka", new Armor("Virgo", Category.GOLD));
+       Saint shaka = new Saint("Shaka", new Armor("Virgo", Category.GOLDEN));
     }
 }

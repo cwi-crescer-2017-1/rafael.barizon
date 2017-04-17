@@ -7,5 +7,5 @@
  */
 public enum Gender
 {
-    FEMALE,MALE,NA;
+    FEMALE,MALE,NOT_INFORMED;
 }

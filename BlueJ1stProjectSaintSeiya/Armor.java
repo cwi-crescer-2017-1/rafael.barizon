@@ -7,4 +7,8 @@ public class Armor {
         this.category = category;
    }
     
+   public Category getCategory(){
+       return this.category;
+   }
+    
 }    
