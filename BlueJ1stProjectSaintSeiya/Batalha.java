@@ -19,7 +19,7 @@ public class Batalha
         this.saintTwo = saintTwo;
     }
     
-    public void iniciar(){
+    public void iniciar() throws Exception{
         this.armaduraSaintOne = saintOne.getArmadura();
         this.armaduraSaintTwo = saintTwo.getArmadura();
         
@@ -27,7 +27,7 @@ public class Batalha
         
         
         //while(saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
-            try{
+           // try{
             if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
                 saintTwo.perdeVida(this.dano);
                 order = 1;
@@ -37,8 +37,8 @@ public class Batalha
                 order = 2;
                // System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
-        } catch(Exception e){
-        }
+        //} catch(Exception e){
+      //  }
         
             /*
             if(order == 1){
