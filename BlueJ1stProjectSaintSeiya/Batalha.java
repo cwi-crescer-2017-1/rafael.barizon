@@ -12,7 +12,7 @@ public class Batalha
     private Saint saintTwo;
     private Armadura armaduraSaintOne;
     private Armadura armaduraSaintTwo;
-    private int order;
+    //private int order;
     
     public Batalha(Saint saintOne, Saint saintTwo){
         this.saintOne = saintOne;
@@ -30,11 +30,11 @@ public class Batalha
            // try{
             if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
                 saintTwo.perdeVida(this.dano);
-                order = 1;
+               // order = 1;
              //   System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
             }else {
                 saintOne.perdeVida(this.dano);
-                order = 2;
+                //order = 2;
                // System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
         //} catch(Exception e){

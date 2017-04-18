@@ -74,13 +74,9 @@ public class Saint {
     }
     
     public Golpe getProximoGolpe(){
-        
-        if(this.golpeNumero == 3)
-            this.golpeNumero = 0;
-        if(this.golpeNumero == 0){
-            this.golpes = getGolpes();
-        }
+        this.golpes = getGolpes();
+        int aux = this.golpeNumero % golpes.length;
         this.golpeNumero++;
-        return golpes[golpeNumero-1];
+        return golpes[aux];
     }
 }
