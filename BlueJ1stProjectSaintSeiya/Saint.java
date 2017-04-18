@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 public class Saint {
     private String nome;
     private Armadura armadura;
@@ -44,18 +45,17 @@ public class Saint {
     
     public void perdeVida(Double dano) throws Exception{
         if(dano < 0.0) {
-            throw new Exception("Parametro passado nao pode ser negativo");
+            throw new InvalidParameterException("Parametro passado nao pode ser negativo");
         }
         if(this.vida > 1.0){
-            this.vida = this.vida - dano;
-            if(this.vida<1.0) setStatus(Status.MORTO);
+            this.vida -= dano;
+            if(this.vida<1.0) status = Status.MORTO;
         }
-        //tem necessidade de colocar o "THIS" nesse momento? eu acredito que nao mas gostaria de ter certeza.
     }
     
-    public void setStatus(Status status){
-        this.status = status;
-    }
+   // public void setStatus(Status status){
+   //     this.status = status;
+   // }
     
     public Status getStatus(){
         return this.status;

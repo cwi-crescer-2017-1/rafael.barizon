@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.security.InvalidParameterException;
 public class SaintTest {
     @Test
     public void vestirArmaduraDeixaArmaduraVestida() throws Exception {
@@ -80,8 +80,8 @@ public class SaintTest {
         // Assert
         assertEquals(-900, shiryu.getVida(), 0.01);
     }
-/*
-    @Test
+
+    @Test (expected = InvalidParameterException.class)
     public void perderDanoComValorMenos1000() throws Exception {
         // Arrange
         Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragão"), Categoria.BRONZE));
@@ -89,7 +89,7 @@ public class SaintTest {
         shiryu.perdeVida(-1000.0);
         // Assert
         assertEquals(1100, shiryu.getVida(), 0.01);
-    }*/
+    }
 
     @Test
     public void criarSaintNasceCom5SentidosDespertados() throws Exception {
