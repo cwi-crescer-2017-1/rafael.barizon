@@ -40,8 +40,14 @@ public class Saint {
         return this.vida;
     }
     
-    public void perdeVida(Double dano){
-        this.vida = this.vida - dano;
+    public void perdeVida(Double dano) throws Exception{
+        if(dano < 0.0) {
+            throw new Exception("Parametro passado nao pode ser negativo");
+        }
+        if(this.vida > 1.0){
+            this.vida = this.vida - dano;
+            if(this.vida<1.0) setStatus(Status.MORTO);
+        }
         //tem necessidade de colocar o "THIS" nesse momento? eu acredito que nao mas gostaria de ter certeza.
     }
     
