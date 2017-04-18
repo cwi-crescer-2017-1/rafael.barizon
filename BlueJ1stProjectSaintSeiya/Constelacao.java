@@ -19,4 +19,11 @@ public class Constelacao
         return this.golpes;
     }
     
+    public String getNome(){
+        return this.nome;
+    }
+    
+    public int getUltimoGolpeNumero(){
+        return this.ultimoGolpe;
+    }
 }
