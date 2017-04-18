@@ -8,11 +8,11 @@ public class Constelacao
         this.nome = nome;
     }
     
-    public void adicionarGolpe(Golpe golpe) {
-        if(ultimoGolpe<10){
+    public void adicionarGolpe(Golpe golpe) throws Exception{
+        if(ultimoGolpe<3){
             this.golpes[ultimoGolpe] = golpe;
             this.ultimoGolpe++;
-        }else System.out.println("Numero maximo de golpes atingido\n");
+        }else throw new Exception("Numero maximo de golpes atingido\n");
     }
     
     public Golpe[] getGolpes(){
