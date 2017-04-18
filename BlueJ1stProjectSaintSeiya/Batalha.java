@@ -27,15 +27,19 @@ public class Batalha
         
         
         //while(saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
+            try{
             if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
-                saintTwo.perdeVida(dano);
+                saintTwo.perdeVida(this.dano);
                 order = 1;
                 System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
             }else {
-                saintOne.perdeVida(dano);
+                saintOne.perdeVida(this.dano);
                 order = 2;
                 System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
+        } catch(Exception e){
+        }
+        
             /*
             if(order == 1){
                 while (saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
