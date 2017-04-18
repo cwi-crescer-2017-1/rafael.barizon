@@ -23,7 +23,7 @@ public class Batalha
         this.armaduraSaintOne = saintOne.getArmadura();
         this.armaduraSaintTwo = saintTwo.getArmadura();
         
-        System.out.println(saintOne.getNome() + "(" + saintOne.getVida()+")"+ " vs. " + saintTwo.getNome()+ "(" + saintTwo.getVida()+")" + "\n");
+       // System.out.println(saintOne.getNome() + "(" + saintOne.getVida()+")"+ " vs. " + saintTwo.getNome()+ "(" + saintTwo.getVida()+")" + "\n");
         
         
         //while(saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
@@ -31,11 +31,11 @@ public class Batalha
             if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
                 saintTwo.perdeVida(this.dano);
                 order = 1;
-                System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
+             //   System.out.println(saintOne.getNome() + " Atacou e " + saintTwo.getNome() + " agora tem " + saintTwo.getVida() + " pontos de vida\n");
             }else {
                 saintOne.perdeVida(this.dano);
                 order = 2;
-                System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
+               // System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
         } catch(Exception e){
         }
