@@ -5,20 +5,11 @@ public class Saint {
     private Genero genero= Genero.NAO_INFORMADO;
     private Status status = Status.VIVO;
     private Double vida = 100.0;
-    protected int qtsSentidosDespertados;
+    protected int qtdSentidosDespertados;
 
-    /* */
     public Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
-        
-        if (this.armadura.getCategoria() == Categoria.BRONZE){
-            this.qtsSentidosDespertados = 5;
-        }else if (this.armadura.getCategoria() == Categoria.PRATA){
-            this.qtsSentidosDespertados = 6;
-        }else if(this.armadura.getCategoria() == Categoria.OURO){
-            this.qtsSentidosDespertados = 7;
-        }
     }   
     
     public String getNome(){
@@ -58,7 +49,11 @@ public class Saint {
         this.status = status;
     }
     
-    public int getQtsSentidosDespertados(){
-        return this.qtsSentidosDespertados;
+    public Status getStatus(){
+        return this.status;
+    }
+    
+    public int getQtdSentidosDespertados(){
+        return this.qtdSentidosDespertados;
     }
 }

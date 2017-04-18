@@ -1,11 +1,11 @@
 
 /**
- * Write a description of class Battle here.
+ * Write a description of class Batalha here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Battle
+public class Batalha
 {
     private Double dano = 10.0;
     private Saint saintOne;
@@ -14,12 +14,12 @@ public class Battle
     private Armadura armaduraSaintTwo;
     private int order;
     
-    public Battle(Saint saintOne, Saint saintTwo){
+    public Batalha(Saint saintOne, Saint saintTwo){
         this.saintOne = saintOne;
         this.saintTwo = saintTwo;
     }
     
-    public void Fight(){
+    public void iniciar(){
         this.armaduraSaintOne = saintOne.getArmadura();
         this.armaduraSaintTwo = saintTwo.getArmadura();
         
@@ -36,7 +36,7 @@ public class Battle
                 order = 2;
                 System.out.println(saintTwo.getNome() + " Atacou e " + saintOne.getNome() + " agora tem " + saintOne.getVida() + " pontos de vida\n");
             }
-            
+            /*
             if(order == 1){
                 while (saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){
                     saintOne.perdeVida(dano);
@@ -54,15 +54,7 @@ public class Battle
                 }
             }
             
-            
-            
-            if (saintOne.getVida() == 0.0) {
-                saintOne.setStatus(Status.MORTO);
-                System.out.println("Saint " + saintOne.getNome() + " morreu\n");
-            }else{     
-                saintTwo.setStatus(Status.MORTO);
-                System.out.println("Saint " + saintTwo.getNome() + " morreu\n");
-            }
+            */
         //}
     }
 }
