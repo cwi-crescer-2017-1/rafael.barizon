@@ -1,29 +1,23 @@
+import java.util.ArrayList;
 public class Constelacao
 {
     private String nome;
-    private Golpe[] golpes = new Golpe[3];
-    private int ultimoGolpe = 0;
+    private ArrayList<Golpe> golpesList = new ArrayList<>();
     
     public Constelacao(String nome){
         this.nome = nome;
     }
     
     public void adicionarGolpe(Golpe golpe) throws Exception{
-        if(ultimoGolpe<3){
-            this.golpes[ultimoGolpe] = golpe;
-            this.ultimoGolpe++;
-        }else throw new Exception("Numero maximo de golpes atingido\n");
+        golpesList.add(golpe);
     }
     
-    public Golpe[] getGolpes(){
-        return this.golpes;
+    public ArrayList<Golpe> getGolpes(){
+        return this.golpesList;
     }
     
     public String getNome(){
         return this.nome;
     }
     
-    public int getUltimoGolpeNumero(){
-        return this.ultimoGolpe;
-    }
 }

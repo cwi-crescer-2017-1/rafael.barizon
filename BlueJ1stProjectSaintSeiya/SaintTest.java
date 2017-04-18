@@ -1,4 +1,5 @@
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -119,8 +120,9 @@ public class SaintTest {
         Saint saga = new Saint("Saga", new Armadura(new Constelacao("Juvenil"), Categoria.OURO));
         Golpe outraDimensao = new Golpe("Outra dimensao", 10);
         saga.aprenderGolpe(outraDimensao);
-        Golpe[] golpes = saga.getGolpes();
-        assertEquals(outraDimensao, golpes[0]);
+        ArrayList<Golpe> golpesList= new ArrayList<>();
+        golpesList = saga.getGolpes();
+        assertEquals(outraDimensao, golpesList.get(golpesList.size()-1));
         
     }
 
