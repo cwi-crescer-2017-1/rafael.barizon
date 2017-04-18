@@ -113,5 +113,15 @@ public class SaintTest {
     public void constelacaoInvalidaDeOuroDeveLancarErro() throws Exception {
         new GoldSaint("Bernardo", new Armadura(new Constelacao("Café"), Categoria.OURO));
     }
+    
+    @Test
+    public void aprenderUmGolpe() throws Exception{
+        Saint saga = new Saint("Saga", new Armadura(new Constelacao("Juvenil"), Categoria.OURO));
+        Golpe outraDimensao = new Golpe("Outra dimensao", 10);
+        saga.aprenderGolpe(outraDimensao);
+        Golpe[] golpes = saga.getGolpes();
+        assertEquals(outraDimensao, golpes[0]);
+        
+    }
 
 }
