@@ -69,13 +69,13 @@ public class Saint {
         return this.armadura.getConstelacao().getGolpes();
     }
     
-    public void aprenderGolpe(Golpe golpe){
+    public void aprenderGolpe(Golpe golpe)throws Exception{
         this.armadura.getConstelacao().adicionarGolpe(golpe);
     }
     
     public Golpe getProximoGolpe(){
         
-        if(this.golpeNumero == 10)
+        if(this.golpeNumero == 3)
             this.golpeNumero = 0;
         if(this.golpeNumero == 0){
             this.golpes = getGolpes();
