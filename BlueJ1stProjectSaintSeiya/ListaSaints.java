@@ -8,7 +8,7 @@ public class ListaSaints
         this.dono = dono;
     }
     
-    public int getSize(){
+   public int getSize(){
         return listaSaints.size();
     }
     public void adicionar(Saint saint){
@@ -119,11 +119,23 @@ public class ListaSaints
             }
         } while (posicoesSendoTrocadas);  
     }
-/**
- Crie uma classe ListaSaints que será responsável por manter um cadastro atualizados dos Saints de Atena, 
- para que ela possa se organizar para a Guerra Santa. 
- Nesta classe, implemente as seguintes operações:
-ordenar(): ordena os Saints de acordo com sua vida (ascendente, do menor ao maior). 
-Importante: esta operação APENAS ordena a lista de Saints e não a retorna.
- */
+    
+    public void addAllList(ArrayList<Saint> outraLista){
+        this.listaSaints.addAll(outraLista);
+    }
+    
+    public ListaSaints unir(ArrayList<Saint> outraLista){
+        ListaSaints listaRetorno = new ListaSaints("Retorno");
+        
+        listaRetorno.addAllList(listaSaints);
+        listaRetorno.addAllList(outraLista);
+        
+        /*for(int i = 0; i<this.listaSaints.size(); i++){
+            listaRetorno.adicionar(this.listaSaints.get(i));
+        }
+        for(int i = 0; i<outraLista.size(); i++){
+            listaRetorno.adicionar(outraLista.get(i));    
+        } */
+        return listaRetorno;
+    }
 }
