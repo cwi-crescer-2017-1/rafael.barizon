@@ -74,7 +74,7 @@ public class ListaSaintsTest
         listaSaints.adicionar(seiya);
         //Saint seiya2 = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
         //listaSaints.adicionar(seiya2);
-        assertEquals(listaSaints.getIndice(1), seiya);
+        assertEquals(listaSaints.buscarPorNome("Seiya"), seiya);
        // this.listaSaints.get(listaSaints.indexOf(saint));
        // return;
     }

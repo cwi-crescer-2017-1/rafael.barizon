@@ -27,7 +27,11 @@ public class ListaSaints
     }
     
     public Saint buscarPorNome(String saint){
-        return this.listaSaints.get(listaSaints.indexOf(saint));
+        
+        for(int i = 0 ; i< listaSaints.size() ; i++)
+            if (listaSaints.get(i).getNome().equals(saint))
+                return listaSaints.get(i);
+        return null;
     }
     
     public ArrayList<Saint> buscarPorCategoria(Categoria categoria){
@@ -76,8 +80,8 @@ public class ListaSaints
             for(int j = 1; j < this.listaSaints.size(); j++){
                 if ( this.listaSaints.get(i).getVida() > this.listaSaints.get(j).getVida()){
                     saint = this.listaSaints.get(i);
-                    this.listaSaints.add(i, this.listaSaints.get(j));
-                    this.listaSaints.add(j, saint);
+                    this.listaSaints.set(i, this.listaSaints.get(j));
+                    this.listaSaints.set(j, saint);
                 }
             }        
         }        
