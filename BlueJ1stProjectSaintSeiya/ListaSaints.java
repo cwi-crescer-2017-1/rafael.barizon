@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 public class ListaSaints
 {
     private ArrayList<Saint> listaSaints = new ArrayList<>();
@@ -47,19 +48,24 @@ public class ListaSaints
         return  listaSaintCategoria;      
     }
     
-    public ArrayList<Saint> buscarPorStatus(Status status){
-        ArrayList<Saint> listaSaintStatus = new ArrayList<>();
-        for( int i = 0 ; i < this.listaSaints.size() ; i++)
-            if (this.listaSaints.get(i).getStatus() == status) 
-                listaSaintStatus.add(this.listaSaints.get(i));
-        return  listaSaintStatus;      
+    public ArrayList<Saint> buscarPorCategoriaUtilizandoStreams(Categoria categoria){
+        return (ArrayList<Saint>)this.listaSaints.stream()
+        .filter(s -> s.getArmadura().getCategoria().equals(categoria))
+        .collect(Collectors.toList());
     }
     
-    public Saint getSaintMaiorVida() throws Exception{
+    public ArrayList<Saint> buscarPorStatus(Status status){
+        
+        return  (ArrayList<Saint>)this.listaSaints.stream()
+        .filter(s -> s.getStatus().equals(status))
+        .collect(Collectors.toList());      
+    }
+    
+    public Saint getSaintMaiorVida(){
+        
+        
+        if(listaSaints.isEmpty()) return null;
         Saint saint = this.listaSaints.get(0);
-        
-        if(listaSaints.isEmpty()) throw new Exception ("Lista nao possui nenhum Saint");
-        
         //saint = this.listaSaints.get(0);
         for(int i = 1; i < this.listaSaints.size(); i++)
             if ( saint.getVida() < this.listaSaints.get(i).getVida())
@@ -81,7 +87,7 @@ public class ListaSaints
     /** BubbleSort */
     public void ordenar(){
         Saint saint = new Saint();
-        for(int i = 0; i < this.listaSaints.size(); i++){
+        for(int i = 0; i < this.listaSaints.size()-1; i++){
             for(int j = 1; j < this.listaSaints.size(); j++){
                 if ( this.listaSaints.get(i).getVida() > this.listaSaints.get(j).getVida()){
                     saint = this.listaSaints.get(i);
@@ -90,6 +96,28 @@ public class ListaSaints
                 }
             }        
         }        
+    }
+    
+    public void ordenar(TipoOrdenacao tipoOrdenacao){
+        boolean posicoesSendoTrocadas;
+        boolean tipoOrdem=false;
+        if(tipoOrdenacao== TipoOrdenacao.DESCENDENTE) tipoOrdem = true;
+        do {
+            posicoesSendoTrocadas = false;
+            for (int i = 0; i < this.listaSaints.size() - 1; i++) {
+                Saint atual = this.listaSaints.get(i);
+                Saint proximo = this.listaSaints.get(i + 1);
+                boolean precisaTrocar;
+                if(tipoOrdem)
+                    precisaTrocar = atual.getVida() < proximo.getVida();
+                else precisaTrocar = atual.getVida() > proximo.getVida();
+                if (precisaTrocar) {
+                    this.listaSaints.set(i, proximo);
+                    this.listaSaints.set(i + 1, atual);
+                    posicoesSendoTrocadas = true;
+                }
+            }
+        } while (posicoesSendoTrocadas);  
     }
 /**
  Crie uma classe ListaSaints que será responsável por manter um cadastro atualizados dos Saints de Atena, 
