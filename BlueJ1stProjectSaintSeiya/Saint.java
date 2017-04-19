@@ -14,7 +14,10 @@ public class Saint {
     public Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
-    }   
+    }
+    
+    public Saint(){
+    }
     
     public String getNome(){
         return this.nome;
