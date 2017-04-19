@@ -138,4 +138,38 @@ public class ListaSaints
         } */
         return listaRetorno;
     }
+    
+    public ListaSaints diff(ArrayList<Saint> listaRef){
+        ListaSaints listaRetorno = new ListaSaints("Retorno");
+        this.listaSaints.removeAll(listaRef);
+        listaRetorno.addAllList(listaSaints); 
+        return listaRetorno;
+    }
+    
+    public ListaSaints intersec(ArrayList<Saint> listaRef){
+        ListaSaints listaRetorno = new ListaSaints("Retorno");
+        this.listaSaints.retainAll(listaRef);
+        listaRetorno.addAllList(this.listaSaints);
+        return listaRetorno;
+    }
+    
+    public String getCSV(){
+        String csv="";
+        // PERCORRER O ARRAYLIST E ADICIONAR TUDO NO CSV
+        //csv += ;
+        
+        return csv;
+    /**
+    Crie uma operação na classe ListaSaints chamada getCSV() que retorna cada um dos Saint no formato CSV. 
+    Altere a modelagem caso desejado. Cada Saint será uma nova linha da String e cada linha será formada pelos seguintes valores:
+
+    Nome do Saint
+    Vida
+    Nome da constelação
+    Categoria armadura
+    Status
+    Gênero
+    Armadura está vestida?
+     */
+   }
 }

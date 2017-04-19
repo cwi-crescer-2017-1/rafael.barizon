@@ -88,4 +88,20 @@ public class ListaSaintsTest
         assertEquals(june, resultado.get(0));
     }
     
+    @Test
+    public void unirDuasListasComUmSaintCada(){
+        ListaSaints listaSaints = new ListaSaints("Retorno");
+        ListaSaints listaSaints2 = new ListaSaints("Lista2");
+        ListaSaints listaSaintsRetorno = new ListaSaints("Retorno");
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        Saint june2 = new Saint("June2", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        ArrayList<Saint> listUm = new ArrayList<>();
+        ArrayList<Saint> listDois = new ArrayList<>();
+        listaSaints.adicionar(june);
+        listaSaints2.adicionar(june2);
+        listaSaintsRetorno = listaSaints.unir(listaSaints2.getTodos());
+        listaSaints.adicionar(june2);
+        assertEquals(listaSaintsRetorno.getTodos(), listaSaints.getTodos() );
+    }
+    
 }
