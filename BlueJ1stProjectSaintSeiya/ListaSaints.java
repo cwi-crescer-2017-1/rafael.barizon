@@ -36,9 +36,14 @@ public class ListaSaints
     
     public ArrayList<Saint> buscarPorCategoria(Categoria categoria){
         ArrayList<Saint> listaSaintCategoria = new ArrayList<>();
-        for( int i = 0 ; i < this.listaSaints.size() ; i++)
-            if (this.listaSaints.get(i).getArmadura().getCategoria() == categoria) 
-                listaSaintCategoria.add(this.listaSaints.get(i));
+        
+        for( Saint saint : this.listaSaints){
+            if (saint.getArmadura().getCategoria() == categoria) 
+                listaSaintCategoria.add(saint);
+        }
+        //for( int i = 0 ; i < this.listaSaints.size() ; i++)
+        //    if (this.listaSaints.get(i).getArmadura().getCategoria() == categoria) 
+        //        listaSaintCategoria.add(this.listaSaints.get(i));
         return  listaSaintCategoria;      
     }
     

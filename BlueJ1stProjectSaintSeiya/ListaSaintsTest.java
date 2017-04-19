@@ -7,66 +7,56 @@ import org.junit.Test;
 
 
 public class ListaSaintsTest
-{
-    
+{   
     @Test
-    public void adicionarUmSaintERetornSaintDoIndiceInformado(){
-        Saint seiya = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
+    public void buscarSaintExistentePorNome() throws Exception{
         ListaSaints listaSaints = new ListaSaints("Atena");
-        listaSaints.adicionar(seiya);
-        assertEquals(seiya, listaSaints.getIndice(0)); 
-    }
-    @Test
-    public void adicionarDoisSaintsERetornSaintsDosIndicesInformados(){
         Saint seiya = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
-        ListaSaints listaSaints = new ListaSaints("Atena");
         listaSaints.adicionar(seiya);
-        Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragao"), Categoria.BRONZE));
-        listaSaints.adicionar(shiryu);
-        assertEquals(seiya, listaSaints.getIndice(0)); 
-        assertEquals(shiryu, listaSaints.getIndice(1));
-        
+        assertEquals(listaSaints.buscarPorNome("Seiya"), seiya);
+       // this.listaSaints.get(listaSaints.indexOf(saint));
     }
     
     @Test
-    public void retornarTodosSaints(){
-        Saint seiya = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
+    public void buscarSaintExistenteComRepeticaoDeNomes() throws Exception{
         ListaSaints listaSaints = new ListaSaints("Atena");
-        listaSaints.adicionar(seiya);
         Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragao"), Categoria.BRONZE));
         listaSaints.adicionar(shiryu);
-        ArrayList<Saint> listaRetorno = new ArrayList<>();
-        listaRetorno = listaSaints.getTodos();
-        assertEquals(listaRetorno,listaSaints.getTodos());
-    }
-    @Test
-    public void removerSaint(){
-        Saint seiya = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
-        ListaSaints listaSaints = new ListaSaints("Atena");
-        listaSaints.adicionar(seiya);
-        Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragao"), Categoria.BRONZE));
         listaSaints.adicionar(shiryu);
-        listaSaints.removerSaint(seiya);
-        assertEquals(listaSaints.getSize(),1);
-      //  return;
-//remover(Saint): retira o Saint informado da lista
+        listaSaints.adicionar(shiryu);
+        assertEquals(listaSaints.buscarPorNome("Shiryu"), shiryu);
     }
     
+    
     @Test
-    public void removerMaisDeUmSaint(){
-        Saint seiya = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
+    public void buscarSaintInexistente() throws Exception{
         ListaSaints listaSaints = new ListaSaints("Atena");
-        listaSaints.adicionar(seiya);
         Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragao"), Categoria.BRONZE));
         listaSaints.adicionar(shiryu);
-        listaSaints.removerSaint(seiya);
-        listaSaints.removerSaint(shiryu);
-        assertEquals(listaSaints.getSize(),0);
-      //  return;
-//remover(Saint): retira o Saint informado da lista
+        assertNull(listaSaints.buscarPorNome("Hallelujah"));
+    
     }
     @Test
-    public void buscarPorNome(){
+    public void buscarSaintComListaVazia(){
+        assertNull(new ListaSaints("Athena").buscarPorNome("Jou"));
+    }
+    
+    
+    @Test
+    public void buscarPorCategoriaListaVazia(){}
+    
+    @Test
+    public void buscarPorCategoriaInexistente(){}
+    
+    @Test
+    public void buscarPorCategoriaExistente(){}
+    
+    @Test
+    public void buscarPorCategoriaComMaisDeUmExistente(){}
+    
+    
+    /*@Test
+    public void buscarPorCategoria(){
         ListaSaints listaSaints = new ListaSaints("Atena");
         Saint shiryu = new Saint("Shiryu", new Armadura(new Constelacao("Dragao"), Categoria.BRONZE));
         listaSaints.adicionar(shiryu);
@@ -74,10 +64,11 @@ public class ListaSaintsTest
         listaSaints.adicionar(seiya);
         //Saint seiya2 = new Saint("Seiya", new Armadura(new Constelacao("Pegaso"), Categoria.BRONZE));
         //listaSaints.adicionar(seiya2);
-        assertEquals(listaSaints.buscarPorNome("Seiya"), seiya);
+        assertEquals(listaSaints.buscarPorCategoria(Categoria.BRONZE), listaSaints);
        // this.listaSaints.get(listaSaints.indexOf(saint));
        // return;
     }
+    
     /**@Test
     public void adicionarSaint(){
         return;
