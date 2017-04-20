@@ -87,19 +87,7 @@ public class ListaSaints
         
         return saint;
     }
-    /** BubbleSort */
-    public void ordenar(){
-        Saint saint = new Saint();
-        for(int i = 0; i < this.listaSaints.size()-1; i++){
-            for(int j = 1; j < this.listaSaints.size(); j++){
-                if ( this.listaSaints.get(i).getVida() > this.listaSaints.get(j).getVida()){
-                    saint = this.listaSaints.get(i);
-                    this.listaSaints.set(i, this.listaSaints.get(j));
-                    this.listaSaints.set(j, saint);
-                }
-            }        
-        }        
-    }
+    
     
     public void ordenar(TipoOrdenacao tipoOrdenacao){
         boolean posicoesSendoTrocadas;
@@ -110,6 +98,8 @@ public class ListaSaints
             for (int i = 0; i < this.listaSaints.size() - 1; i++) {
                 Saint atual = this.listaSaints.get(i);
                 Saint proximo = this.listaSaints.get(i + 1);
+                // Operador TERNARIO
+                //boolean precisaTrocarr = TipoOrdenacao.ASCENDENTE == tipoOrdenacao ? atual.getVida() < proximo.getVida() : atual.getVida() > proximo.getVida();
                 boolean precisaTrocar;
                 if(tipoOrdem)
                     precisaTrocar = atual.getVida() < proximo.getVida();
@@ -121,6 +111,11 @@ public class ListaSaints
                 }
             }
         } while (posicoesSendoTrocadas);  
+    }
+    
+    /** BubbleSort */
+    public void ordenar(){
+        ordenar(TipoOrdenacao.ASCENDENTE);
     }
     
     public void addAllList(ArrayList<Saint> outraLista){
@@ -170,6 +165,16 @@ public class ListaSaints
        
     }
     
+    public String getCSVComMetodoDoSaint(){
+        String csv="";
+        
+        for( Saint saint : this.listaSaints){
+            csv += saint.getCSV() + "\n";
+        }
+        
+        return csv;
+    }
+    
     public String getCSV(){
         String csv="";
         
@@ -180,7 +185,7 @@ public class ListaSaints
                     saint.getVida()                                 + "," + 
                     saint.getArmadura().getConstelacao().getNome()  + "," + 
                     saint.getArmadura().getCategoria()              + "," + 
-                    saint.getStatus()                               + "," + 
+                    saint.getStatus()                               + "," +     
                     saint.getGenero()                               + "," + 
                     saint.getArmaduraVestida()                      + "\n";
         }

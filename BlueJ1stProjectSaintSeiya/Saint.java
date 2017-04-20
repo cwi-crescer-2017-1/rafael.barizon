@@ -83,4 +83,17 @@ public class Saint {
         this.golpeNumero++;
         return golpesList.get(aux);
     }
+    
+    public String getCSV(){
+        String csv = "";
+        csv +=
+        this.nome                                 + "," + 
+        this.vida                                 + "," + 
+        this.armadura.getConstelacao().getNome()  + "," + 
+        this.armadura.getCategoria()              + "," + 
+        this.status                               + "," +     
+        this.genero                               + "," + 
+        this.armaduraVestida                      ; 
+        return csv;
+    }
 }
