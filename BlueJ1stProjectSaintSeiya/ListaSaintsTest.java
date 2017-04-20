@@ -95,13 +95,27 @@ public class ListaSaintsTest
         ListaSaints listaSaintsRetorno = new ListaSaints("Retorno");
         Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
         Saint june2 = new Saint("June2", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
-        ArrayList<Saint> listUm = new ArrayList<>();
-        ArrayList<Saint> listDois = new ArrayList<>();
         listaSaints.adicionar(june);
         listaSaints2.adicionar(june2);
         listaSaintsRetorno = listaSaints.unir(listaSaints2.getTodos());
         listaSaints.adicionar(june2);
         assertEquals(listaSaintsRetorno.getTodos(), listaSaints.getTodos() );
+    }
+    
+    @Test
+    public void intersecDuasListasComUmSaintIgual(){
+        ListaSaints listaSaints = new ListaSaints();
+        ListaSaints listaSaints2 = new ListaSaints();
+        ListaSaints listaSaintsRetorno = new ListaSaints();
+        Saint june = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        //Saint june2 = new Saint("June", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE)); nao criei novo equals entao vai da erro no teste se nao adicionar o june mesmo na lista 2...
+        Saint june3 = new Saint("June2", new Armadura(new Constelacao("Camaleão"), Categoria.BRONZE));
+        listaSaints.adicionar(june);
+        listaSaints.adicionar(june3);
+        listaSaints2.adicionar(june);
+        listaSaintsRetorno = listaSaints.intersec(listaSaints2.getTodos());
+        //listaSaints.adicionar(june2);
+        assertEquals(listaSaintsRetorno.getTodos(), listaSaints2.getTodos());
     }
     
 }
