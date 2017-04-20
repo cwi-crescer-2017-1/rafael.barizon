@@ -193,17 +193,6 @@ public class ListaSaints
         //csv += ;
         
         return csv;
-    /**
-    Crie uma operação na classe ListaSaints chamada getCSV() que retorna cada um dos Saint no formato CSV. 
-    Altere a modelagem caso desejado. Cada Saint será uma nova linha da String e cada linha será formada pelos seguintes valores:
-
-    Nome do Saint
-    Vida
-    Nome da constelação
-    Categoria armadura
-    Status
-    Gênero
-    Armadura está vestida?
-     */
+   
    }
 }
