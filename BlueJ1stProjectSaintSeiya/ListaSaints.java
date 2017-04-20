@@ -7,6 +7,9 @@ public class ListaSaints
     public ListaSaints(String dono){
         this.dono = dono;
     }
+    public ListaSaints(){
+        this.dono = "Sem dono";
+    }
     
    public int getSize(){
         return listaSaints.size();
@@ -141,20 +144,46 @@ public class ListaSaints
     
     public ListaSaints diff(ArrayList<Saint> listaRef){
         ListaSaints listaRetorno = new ListaSaints("Retorno");
+        /***
+         * criar sem os metodos prontos
+         */
         this.listaSaints.removeAll(listaRef);
         listaRetorno.addAllList(listaSaints); 
         return listaRetorno;
     }
     
     public ListaSaints intersec(ArrayList<Saint> listaRef){
-        ListaSaints listaRetorno = new ListaSaints("Retorno");
-        this.listaSaints.retainAll(listaRef);
-        listaRetorno.addAllList(this.listaSaints);
+        ListaSaints listaRetorno = new ListaSaints();
+        
+        for(Saint saint : this.listaSaints){
+            for(Saint saintRef : listaRef){
+                if(saint.equals(saintRef))
+                    listaRetorno.adicionar(saintRef);
+            }
+        }
         return listaRetorno;
+        /***
+         * criar sem os metodos prontos
+         */
+        //this.listaSaints.retainAll(listaRef);
+        //listaRetorno.addAllList(this.listaSaints);
+       
     }
     
     public String getCSV(){
         String csv="";
+        
+        if(this.listaSaints.isEmpty()) return null;
+        
+        for( Saint saint : this.listaSaints){
+            csv +=  saint.getNome()                                 + "," + 
+                    saint.getVida()                                 + "," + 
+                    saint.getArmadura().getConstelacao().getNome()  + "," + 
+                    saint.getArmadura().getCategoria()              + "," + 
+                    saint.getStatus()                               + "," + 
+                    saint.getGenero()                               + "," + 
+                    saint.getArmaduraVestida()                      + "\n";
+        }
         // PERCORRER O ARRAYLIST E ADICIONAR TUDO NO CSV
         //csv += ;
         
