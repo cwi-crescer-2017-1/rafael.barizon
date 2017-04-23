@@ -8,7 +8,7 @@ public class Constelacao
         this.nome = nome;
     }
     
-    public void adicionarGolpe(Golpe golpe) throws Exception{
+    public void adicionarGolpe(Golpe golpe){
         golpesList.add(golpe);
     }
     

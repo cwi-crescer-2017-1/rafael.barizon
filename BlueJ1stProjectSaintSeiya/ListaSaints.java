@@ -76,11 +76,11 @@ public class ListaSaints
         return saint;
     }
     
-    public Saint getSaintMenorVida() throws Exception{
+    public Saint getSaintMenorVida() {
+        
+        
+        if(listaSaints.isEmpty()) return null;
         Saint saint = this.listaSaints.get(0);
-        
-        if(listaSaints.isEmpty()) throw new Exception ("Lista nao possui nenhum Saint");
-        
         for(int i = 1; i < this.listaSaints.size(); i++)
             if ( saint.getVida() > this.listaSaints.get(i).getVida())
                 saint = this.listaSaints.get(i);
@@ -175,6 +175,26 @@ public class ListaSaints
         return csv;
     }
     
+     public String getCSV() {
+        if (this.listaSaints.isEmpty()) {
+            return "";
+        }
+
+        String separador = System.getProperty("line.separator");
+        StringBuilder builder = new StringBuilder(512);
+
+        builder.append(this.listaSaints.get(0).getCSV());
+        for (int i = 1; i < this.listaSaints.size(); i++) {
+            Saint saint = this.listaSaints.get(i);
+            //resultado += separador + saint.getCSV();
+            //builder.append(String.format("%s%s", separador, saint.getCSV()));
+            builder.append(separador);
+            builder.append(saint.getCSV());
+        }
+
+        return builder.toString();
+    }
+   /* 
     public String getCSV(){
         String csv="";
         
@@ -195,4 +215,5 @@ public class ListaSaints
         return csv;
    
    }
+   */
 }

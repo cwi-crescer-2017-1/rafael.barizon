@@ -69,6 +69,10 @@ public class Saint {
         return this.qtdSentidosDespertados;
     }
     
+    private Constelacao getConstelacao() {
+        return this.armadura.getConstelacao();
+    }
+    
     public ArrayList<Golpe> getGolpes(){
         return this.armadura.getConstelacao().getGolpes();
     }
@@ -85,15 +89,15 @@ public class Saint {
     }
     
     public String getCSV(){
-        String csv = "";
-        csv +=
-        this.nome                                 + "," + 
-        this.vida                                 + "," + 
-        this.armadura.getConstelacao().getNome()  + "," + 
-        this.armadura.getCategoria()              + "," + 
-        this.status                               + "," +     
-        this.genero                               + "," + 
-        this.armaduraVestida                      ; 
-        return csv;
+        return String.format(
+            "%s,%s,%s,%s,%s,%s,%s",
+            this.nome,
+            this.vida,
+            this.getConstelacao().getNome(),
+            this.armadura.getCategoria(),
+            this.status,
+            this.genero,
+            this.armaduraVestida
+        );
     }
 }
