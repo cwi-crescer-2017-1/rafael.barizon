@@ -10,6 +10,8 @@ public abstract class Saint {
     protected int qtdSentidosDespertados;
     private int golpeNumero = 0;
     private ArrayList<Golpe> golpesList = new ArrayList<>();
+    private ArrayList<Movimento> movimentos = new ArrayList<>();
+    private int movimentoNumero = 0;
 
     public Saint(String nome, Armadura armadura) {
         this.nome = nome;
@@ -57,10 +59,6 @@ public abstract class Saint {
         }
     }
     
-   // public void setStatus(Status status){
-   //     this.status = status;
-   // }
-    
     public Status getStatus(){
         return this.status;
     }
@@ -83,6 +81,7 @@ public abstract class Saint {
     
     public Golpe getProximoGolpe(){
         this.golpesList = getGolpes();
+        if(golpesList.isEmpty()) return null;
         int aux = this.golpeNumero % golpesList.size();
         this.golpeNumero++;
         return golpesList.get(aux);
@@ -99,5 +98,16 @@ public abstract class Saint {
             this.genero,
             this.armaduraVestida
         );
+    }
+    
+    public void adicionarMovimento(Movimento movimento){
+        this.movimentos.add(movimento);    
+    }
+    
+    public Movimento getProximoMovimento(){
+        if (this.movimentos.isEmpty()) return null;
+        int aux = this.movimentoNumero % this.movimentos.size(); 
+        this.movimentoNumero++;
+        return this.movimentos.get(aux);
     }
 }

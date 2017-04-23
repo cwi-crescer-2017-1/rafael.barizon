@@ -1,4 +1,4 @@
 public interface Movimento
 {
-    void executar();
+    void executar() throws Exception;
 }

@@ -6,7 +6,7 @@ public class VestirArmadura implements Movimento{
         this.saint = saint;
     }
         
-    public void executar(){
+    public void executar() throws Exception{
         this.saint.vestirArmadura();
     }
 }
