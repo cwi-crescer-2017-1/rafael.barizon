@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.security.InvalidParameterException;
-public class Saint {
+public abstract class Saint {
     private String nome;
     private Armadura armadura;
     private boolean armaduraVestida;
