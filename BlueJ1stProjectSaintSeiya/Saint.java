@@ -13,7 +13,7 @@ public abstract class Saint {
     private ArrayList<Movimento> movimentos = new ArrayList<>();
     private int movimentoNumero = 0;
 
-    public Saint(String nome, Armadura armadura) {
+    protected Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
     }
