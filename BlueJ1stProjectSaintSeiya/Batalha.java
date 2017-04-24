@@ -12,7 +12,7 @@ public class Batalha
     private Saint saintTwo;
     private Armadura armaduraSaintOne;
     private Armadura armaduraSaintTwo;
-    private boolean order = false;
+    private boolean ordemDeMovimentoDeSaints = false;
     
     public Batalha(Saint saintOne, Saint saintTwo){
         this.saintOne = saintOne;
@@ -20,26 +20,24 @@ public class Batalha
     }
     
     public void iniciar() throws Exception{
-        this.armaduraSaintOne = saintOne.getArmadura();
-        this.armaduraSaintTwo = saintTwo.getArmadura();
-        Golpear golpearSaintTwo = new Golpear(this.saintOne, this.saintTwo);
-        Golpear golpearSaintOne = new Golpear(this.saintTwo, this.saintOne);
-  
-        if(armaduraSaintOne.getCategoria().getValor() >= armaduraSaintTwo.getCategoria().getValor()){
+        int prioridadeAtaqueSaintOne = saintOne.getArmadura().getCategoria().getValor();
+        int prioridadeAtaqueSaintTwo = saintTwo.getArmadura().getCategoria().getValor();
+        
+        if(prioridadeAtaqueSaintOne >= prioridadeAtaqueSaintTwo){
             saintOne.getProximoMovimento().executar();
-            order = false;
+            ordemDeMovimentoDeSaints = false;
         }else {
             saintTwo.getProximoMovimento().executar();
-            order = true;
+            ordemDeMovimentoDeSaints = true;
         }
                
-        while (saintOne.getVida() > 0.0 && saintTwo.getVida() > 0.0){           
-            if(order){
+        while (saintOne.getStatus() == Status.VIVO && saintTwo.getStatus() == Status.VIVO){           
+            if(ordemDeMovimentoDeSaints){
                 saintOne.getProximoMovimento().executar();
-                order = false;
+                ordemDeMovimentoDeSaints = false;
             } else {
                 saintTwo.getProximoMovimento().executar();
-                order = true;
+                ordemDeMovimentoDeSaints = true;
             }
         }
     }
