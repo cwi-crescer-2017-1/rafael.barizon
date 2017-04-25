@@ -21,12 +21,14 @@ public class SaintTest {
     public void naoVestirArmaduraDeixaArmaduraNaoVestida() throws Exception {
         Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
         assertEquals(false, hyoga.getArmaduraVestida());
+        assertEquals(hyoga.getQtdSaints()-1, hyoga.getId());
     }
 
     @Test
     public void aoCriarSaintGeneroENaoInformado() throws Exception {
         Saint shaka = new GoldSaint("Shaka", "Virgem");
         assertEquals(Genero.NAO_INFORMADO, shaka.getGenero());
+        assertEquals(shaka.getQtdSaints()-1, shaka.getId());
     }
 
     @Test
@@ -36,18 +38,21 @@ public class SaintTest {
         assertEquals(Genero.MASCULINO, jabu.getGenero());
         jabu.setGenero(Genero.FEMININO);
         assertEquals(Genero.FEMININO, jabu.getGenero());
+        assertEquals(jabu.getQtdSaints()-1, jabu.getId());
     }
 
     @Test
     public void statusInicialDeveSerVivo() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(Status.VIVO, shiryu.getStatus());
+        assertEquals(shiryu.getQtdSaints()-1, shiryu.getId());
     }
 
     @Test
     public void vidaInicialDeveSer100() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(100.0, shiryu.getVida(), 0.01);
+        assertEquals(shiryu.getQtdSaints()-1, shiryu.getId());
     }
 
     @Test
@@ -244,5 +249,37 @@ public class SaintTest {
         String esperado = "null,84.5,Camaleão,BRONZE,VIVO,FEMININO,false";
         assertEquals(esperado, june.getCSV());
     }
+    
+    @Test(expected=ArithmeticException.class)
+    public void getProximoMovimentoComListaVazia() throws Exception {
+        Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
+        Movimento movimento = hyoga.getProximoMovimento();
+    }
 
+    @Test
+    public void getProximoMovimentoComUmMovimento() throws Exception {
+        Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
+        Movimento vestirArmadura = new VestirArmadura(hyoga);
+        hyoga.adicionarMovimento(vestirArmadura);
+        assertEquals(vestirArmadura, hyoga.getProximoMovimento());
+    }
+    
+    @Test
+    public void getProximoMovimentoDuasVezesComUmMovimento() throws Exception {
+        Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
+        Movimento vestirArmadura = new VestirArmadura(hyoga);
+        hyoga.adicionarMovimento(vestirArmadura);
+        hyoga.getProximoMovimento();
+        assertEquals(vestirArmadura, hyoga.getProximoMovimento());
+    }
+    
+    @Test
+    public void golpearDeveAdicionarMovimentoGolpear() throws Exception {
+        Saint saga = new GoldSaint("Saga", "Gêmeos");
+        saga.aprenderGolpe(new Golpe("Outra dimensão", 10));
+        Saint seiya = new BronzeSaint("Seiya", "Pégaso");
+        saga.golpear(seiya);
+        Golpear golpear = new Golpear(saga, seiya);
+        assertEquals(golpear, saga.getProximoMovimento());
+    }
 }

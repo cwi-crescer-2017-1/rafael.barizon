@@ -431,10 +431,7 @@ public class ListaSaintsTest
         lista.adicionar(dohko);
         String separador = System.getProperty("line.separator");
         String esperado = "June,84.5,Camaleão,BRONZE,VIVO,FEMININO,false"+separador+"Dohko,10.0,Touro,OURO,VIVO,NAO_INFORMADO,true";
-        System.out.println(esperado);
-        System.out.println(lista.getCSV());
         
-        System.out.println("deposi q printo o resto");
         assertEquals(esperado, lista.getCSV());
     }
     
