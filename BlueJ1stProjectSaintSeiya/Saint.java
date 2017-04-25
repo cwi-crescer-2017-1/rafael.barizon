@@ -13,15 +13,23 @@ public abstract class Saint {
     private ArrayList<Movimento> movimentos = new ArrayList<>();
     private int movimentoNumero = 0;
     private static int qtdSaints = 0;
+    private static int qtdSaintsCriados = 0;
     private int id;
 
     protected Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
         Saint.qtdSaints++;
-        this.id = getQtdSaints();
+        Saint.qtdSaintsCriados++;
+        this.id = Saint.getQtdSaintsCriados();
     }
     
+    protected void finalize() throws Exception{
+        Saint.qtdSaints--;
+    }
+    public static int getQtdSaintsCriados(){
+        return Saint.qtdSaintsCriados;
+    }
     public static int getQtdSaints(){
         return Saint.qtdSaints;
     }

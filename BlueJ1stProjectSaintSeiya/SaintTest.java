@@ -5,6 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 import java.security.InvalidParameterException;
 public class SaintTest {
+    
+    @After
+    public void tearDown(){
+        System.gc();
+    }
+    
     @Test
     public void vestirArmaduraDeixaArmaduraVestida() throws Exception {
         // AAA
@@ -21,14 +27,14 @@ public class SaintTest {
     public void naoVestirArmaduraDeixaArmaduraNaoVestida() throws Exception {
         Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
         assertEquals(false, hyoga.getArmaduraVestida());
-        assertEquals(hyoga.getQtdSaints(), hyoga.getId());
+        assertEquals(Saint.getQtdSaintsCriados(), hyoga.getId());
     }
 
     @Test
     public void aoCriarSaintGeneroENaoInformado() throws Exception {
         Saint shaka = new GoldSaint("Shaka", "Virgem");
         assertEquals(Genero.NAO_INFORMADO, shaka.getGenero());
-        assertEquals(shaka.getQtdSaints(), shaka.getId());
+        assertEquals(Saint.getQtdSaintsCriados(), shaka.getId());
     }
 
     @Test
@@ -38,21 +44,21 @@ public class SaintTest {
         assertEquals(Genero.MASCULINO, jabu.getGenero());
         jabu.setGenero(Genero.FEMININO);
         assertEquals(Genero.FEMININO, jabu.getGenero());
-        assertEquals(jabu.getQtdSaints(), jabu.getId());
+        assertEquals(Saint.getQtdSaintsCriados(), jabu.getId());
     }
 
     @Test
     public void statusInicialDeveSerVivo() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(Status.VIVO, shiryu.getStatus());
-        assertEquals(shiryu.getQtdSaints(), shiryu.getId());
+        assertEquals(Saint.getQtdSaintsCriados(), shiryu.getId());
     }
 
     @Test
     public void vidaInicialDeveSer100() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(100.0, shiryu.getVida(), 0.01);
-        assertEquals(shiryu.getQtdSaints(), shiryu.getId());
+        assertEquals(Saint.getQtdSaintsCriados(), shiryu.getId());
     }
 
     @Test
