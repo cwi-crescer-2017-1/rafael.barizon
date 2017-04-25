@@ -17,4 +17,11 @@ public class Golpear implements Movimento{
         dano = golpe.getFatorDano() * multiplicadorDano ;
         golpeado.perdeVida(dano);
     }
+    
+    public boolean equals(Object outro){
+        Golpear outroGolpear = (Golpear)outro;
+        return this.golpeador.equals(outroGolpear.golpeador)
+            && this.golpeado.equals(outroGolpear.golpeado);
+    
+    }
 }
