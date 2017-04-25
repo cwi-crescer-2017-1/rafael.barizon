@@ -21,14 +21,14 @@ public class SaintTest {
     public void naoVestirArmaduraDeixaArmaduraNaoVestida() throws Exception {
         Saint hyoga = new BronzeSaint("Hyoga", "Cisne");
         assertEquals(false, hyoga.getArmaduraVestida());
-        assertEquals(hyoga.getQtdSaints()-1, hyoga.getId());
+        assertEquals(hyoga.getQtdSaints(), hyoga.getId());
     }
 
     @Test
     public void aoCriarSaintGeneroENaoInformado() throws Exception {
         Saint shaka = new GoldSaint("Shaka", "Virgem");
         assertEquals(Genero.NAO_INFORMADO, shaka.getGenero());
-        assertEquals(shaka.getQtdSaints()-1, shaka.getId());
+        assertEquals(shaka.getQtdSaints(), shaka.getId());
     }
 
     @Test
@@ -38,21 +38,21 @@ public class SaintTest {
         assertEquals(Genero.MASCULINO, jabu.getGenero());
         jabu.setGenero(Genero.FEMININO);
         assertEquals(Genero.FEMININO, jabu.getGenero());
-        assertEquals(jabu.getQtdSaints()-1, jabu.getId());
+        assertEquals(jabu.getQtdSaints(), jabu.getId());
     }
 
     @Test
     public void statusInicialDeveSerVivo() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(Status.VIVO, shiryu.getStatus());
-        assertEquals(shiryu.getQtdSaints()-1, shiryu.getId());
+        assertEquals(shiryu.getQtdSaints(), shiryu.getId());
     }
 
     @Test
     public void vidaInicialDeveSer100() throws Exception {
         Saint shiryu = new BronzeSaint("Shiryu", "Dragão");
         assertEquals(100.0, shiryu.getVida(), 0.01);
-        assertEquals(shiryu.getQtdSaints()-1, shiryu.getId());
+        assertEquals(shiryu.getQtdSaints(), shiryu.getId());
     }
 
     @Test

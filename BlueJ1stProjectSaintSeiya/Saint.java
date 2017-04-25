@@ -18,8 +18,8 @@ public abstract class Saint {
     protected Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
-        this.id = getQtdSaints();
         Saint.qtdSaints++;
+        this.id = getQtdSaints();
     }
     
     public static int getQtdSaints(){
