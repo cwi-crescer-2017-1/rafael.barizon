@@ -12,17 +12,26 @@ public abstract class Saint {
     private ArrayList<Golpe> golpesList = new ArrayList<>();
     private ArrayList<Movimento> movimentos = new ArrayList<>();
     private int movimentoNumero = 0;
+    private static int qtdSaints = 0;
+    private int id;
 
     protected Saint(String nome, Armadura armadura) {
         this.nome = nome;
         this.armadura = armadura;
+        this.id = getQtdSaints();
+        Saint.qtdSaints++;
     }
     
-    public Saint(){
+    public static int getQtdSaints(){
+        return Saint.qtdSaints;
     }
     
     public String getNome(){
         return this.nome;
+    }
+    
+    public int getId(){
+        return this.id;
     }
     
     public void vestirArmadura(){
@@ -81,7 +90,6 @@ public abstract class Saint {
     
     public Golpe getProximoGolpe(){
         this.golpesList = getGolpes();
-        if(golpesList.isEmpty()) return null;
         int aux = this.golpeNumero % golpesList.size();
         this.golpeNumero++;
         return golpesList.get(aux);
@@ -105,9 +113,14 @@ public abstract class Saint {
     }
     
     public Movimento getProximoMovimento(){
-        if (this.movimentos.isEmpty()) return null;
         int aux = this.movimentoNumero % this.movimentos.size(); 
         this.movimentoNumero++;
         return this.movimentos.get(aux);
     }
+    
+    public void golpear(Saint golpeado) {
+         this.adicionarMovimento(new Golpear(this, golpeado));
+     }
+     
+     
 }
