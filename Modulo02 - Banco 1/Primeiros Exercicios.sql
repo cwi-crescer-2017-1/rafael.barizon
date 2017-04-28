@@ -53,3 +53,8 @@ insert into Produtos (NomeCurto,NomeDescritivo, LocalNoEstoque,Quantidade,Preco)
 values ('Jaqueta','Jaqueta com imagem de uma lontra tomando cafe','Setor 7 Lado A',50,65);
 
 select * from Produtos;
+
+
+delete from Produtos where IDProduto = 3;
+-- 013 = DD/MM/AAAA
+select CONVERT ( DATETIME, '13/05/2017', 103);
