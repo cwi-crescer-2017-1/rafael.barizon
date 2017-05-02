@@ -1,0 +1,10 @@
+select * from Licitacao;
+
+/*
+Datas
+
+Liste todos os projetos que tiveram atrasos no início da obra, exibir também o tempo previsto (em meses), e o tempo realizado (em meses) para a conclusão da obra.
+*/
+
+select Projeto, DATEDIFF(MONTH, Data_Inicio_Prev, Data_Fim_Prev) as TempoPrevistoMeses, DATEDIFF(MONTH, Data_Inicio_Real, Data_Fim_Real) as TempoRealizadoMeses from Licitacao
+where Data_Inicio_Real > Data_Inicio_Prev;
