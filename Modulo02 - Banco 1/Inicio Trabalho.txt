@@ -32,7 +32,7 @@ Cada categoria terá uma estrutura com vários solicitantes, colaboradores respons
 dos registros, que serão outros colaboradores (que realizaram a ação);
 ? Cada lançamento deve ter as seguintes informações:
 o Data do registro
-o Categoria
+o Categoria ID 
 o Descrição da ação realizada
 o Pontuação (conforme a categoria)
 o Descrição pública – que será exibido no extrato
@@ -59,6 +59,8 @@ valor não deve ser exibido para o usuário final no seu extrato.
 ? Solicitado ? aprovado ? realizado
 
 
+
+oracle sql developer data modeler
 
 
 
