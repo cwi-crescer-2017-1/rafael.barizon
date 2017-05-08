@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  * {
+    margin: 0;
+    font-size: 0;
+    box-sizing: border-box;
+  }
+  .cointainer{
+    width: 100%;
+    height: 100vh;
+  }
+  .interna{
+    width: 100%;
+    height:25vh;
+  }
+  .interna > div{
+    border: 2px solid black;
+    height: 100%;
+  }
+  .interna .div4{
+    display: inline-block;
+    width: 25%;
+    background-color: red;
+  }
+  .interna .div2{
+    display: inline-block;
+    width: 50%;
+    background-color: blue;
+  }
+  .interna .div1{
+    display: inline-block;
+    width: 100%;
+    background-color: purple;
+  }
+  .interna .div10{
+    display: inline-block;
+    width: 10%;
+      /*margin: 2px;*/
+    background-color: yellow;
+  }
+  div>div>div{
+    font-size: initial;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="interna">
+      <div class="div4">Div 1</div>
+      <div class="div4">Div 2</div>
+      <div class="div4">Div 3</div>
+      <div class="div4">Div 4</div>
+    </div>
+    <div class="interna">
+      <div class="div2">Div 1</div>
+      <div class="div2">Div 2</div>
+    </div>
+    <div class="interna">
+      <div class="div1">Div 1 HELLO</div>
+    </div>
+    <div class="interna">
+      <div class="div10">Div 1</div>
+      <div class="div10">Div 2</div>
+      <div class="div10">Div 3</div>
+      <div class="div10">Div 4</div>
+      <div class="div10">Div 5</div>
+      <div class="div10">Div 6</div>
+      <div class="div10">Div 7</div>
+      <div class="div10">Div 8</div>
+      <div class="div10">Div 9</div>
+      <div class="div10">Div 10</div>
+    </div>
+  </div>
+</body>
+</html>
