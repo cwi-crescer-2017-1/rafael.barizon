@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  /*height: 500vh;*/
+  margin: 0;
+  background-image: url("../images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.container {
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  top: 25%;
+  transform: translateX(-50%);
+}
+.container .header {
+  width: 40%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 0;
+}
+.container .header .menu {
+  margin-top: 10%;
+}
+.container .header .menu .menuItems {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: rgba(169,169,169,.5);
+  border: 2px solid rgba(169,169,169,.5);
+  border-radius: 5px;
+}
+.container .header .menu .menuItems .menuItem {
+  display: inline;
+}
+.container .header .menu .menuItems .menuItem .menuLink{
+  color: #fff;
+  padding:  10px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.container .conteudo{
+  width: 70%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #E3DEDC;
+  margin-left: 0;
+}
+.container .conteudo h1{
+  font-size: 20px;
+  background-color: #4D4948;
+  color: #E3DEDC;
+  padding: 20px;
+}
+.container .conteudo .conteudoInterno{
+  /*padding: 20px;*/
+  margin: 20px;
+  border-bottom: 2px solid grey;
+  /*border-bottom: */
+  border-bottom-width: thin;
+}
+
+.container .conteudo .conteudoInterno img {
+  float: left;
+  margin-right: 5px;
+  height: 100%;
+  text-align: right;
+}
+.container .conteudo .conteudoInterno .conteudoParagrafo {
+  line-height: 15px;
+  font-size: 15px;
+  /*margin-left: 5px;*/
+}
+.container .conteudo .conteudoInterno .imageConteudo + p {
+  margin-left:  52% ;
+  height: 500px;
+}
+.container .conteudo .conteudoInterno .imageConteudo {
+    display: inline-block;
+    width: 50%;
+    height: 500px;
+    background-image: url(../images/me.jpg);
+    background-position: center;
+    background-size: cover;
+    /*border-radius: 50%;*/
+    position: relative;
+    /*top: 13px;*/
+    float: left;
+}
