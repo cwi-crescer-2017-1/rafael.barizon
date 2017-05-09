@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+}
+
+.mah-oe{
+  /*margin: 20px;*/
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: rgba(0, 191, 255, 0.5);
+  color: white;
+}
+.mah-oe> h1{
+  margin: 20px;
+}
+.mah-oe> p{
+  margin: 20px;
+  display: none;
+}
+
+.mah-oe:hover > p{
+  display:block;
+}
