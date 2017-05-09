@@ -47,7 +47,7 @@ body {
 }
 
 .container .conteudo{
-  width: 70%;
+  width: 90%;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -81,13 +81,25 @@ body {
 }
 .container .conteudo .conteudoInterno .imageConteudo + p {
   margin-left:  52% ;
-  height: 500px;
+  height: 900px;
 }
 .container .conteudo .conteudoInterno .imageConteudo {
     display: inline-block;
     width: 50%;
-    height: 500px;
+    height: 300px;
     background-image: url(../images/me.jpg);
+    background-position: center;
+    background-size: cover;
+    /*border-radius: 50%;*/
+    position: relative;
+    /*top: 13px;*/
+    float: left;
+}
+.container .conteudo .conteudoInterno .imageConteudo.i2 {
+    display: inline-block;
+    width: 50%;
+    height: 300px;
+    background-image: url(../images/blanka.png);
     background-position: center;
     background-size: cover;
     /*border-radius: 50%;*/
