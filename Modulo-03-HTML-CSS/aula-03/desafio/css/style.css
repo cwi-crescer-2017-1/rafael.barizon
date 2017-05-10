@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: arial;
 }
 
 body {
@@ -16,14 +17,17 @@ body {
   left: 50%;
   top: 25%;
   transform: translateX(-50%);
+  margin-top: 15%;
+
 }
 .container .header {
-  width: 40%;
+  width: 70%;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
   padding: 0;
+  margin-bottom: 8%;
 }
 .container .header .menu {
   margin-top: 10%;
@@ -36,15 +40,20 @@ body {
   background-color: rgba(169,169,169,.5);
   border: 2px solid rgba(169,169,169,.5);
   border-radius: 5px;
+
 }
 .container .header .menu .menuItems .menuItem {
   display: inline;
+  margin: 25px;
 }
 .container .header .menu .menuItems .menuItem .menuLink{
+  font-weight: 700;
   color: #fff;
   padding:  10px;
   text-decoration: none;
   display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .container .conteudo{
