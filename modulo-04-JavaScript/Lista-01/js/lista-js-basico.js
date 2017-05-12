@@ -116,20 +116,20 @@ console.log("Soma Diferentona(5642)(8749)",somaDiferentona(5642)(8749));
 
 
 function fiboSum(qtdNumeros){
-    if(qtdNumeros === 1) return console.log(1);;
+    if(qtdNumeros === 1) return console.log(1);
     var fibo = [1,1];
     var soma = 2;
     for(var i = 2; i<qtdNumeros; i++){
         fibo[i] = fibo[i-2] + fibo[i-1];
         soma += fibo[i];
     }
-    return console.log(soma);
+    return soma;
 }
-fiboSum(3);
-fiboSum(4);
-fiboSum(5);
-fiboSum(6);
-fiboSum(7);
+console.log("fibo(3)", fiboSum(3));
+console.log("fibo(4)", fiboSum(4));
+console.log("fibo(5)", fiboSum(5));
+console.log("fibo(6)", fiboSum(6));
+console.log("fibo(7)", fiboSum(7));
 // Exercício 6
 //
 // Quero café
@@ -147,7 +147,7 @@ fiboSum(7);
 function queroCafe(mascada, precos){
   var lista = [ 0.0 ];
   // lista[0] = precos[0];
-  console.log(lista.length);
+  //console.log(lista.length);
     for(var i = 0; i<precos.length;i++)
         if(precos[i] <= mascada)
           lista[lista.length] = precos[i];
@@ -170,7 +170,7 @@ function queroCafe(mascada, precos){
    var retorno = lista[1];
    for(var i = 2; i<lista.length;i++)
         retorno = retorno + "," + lista[i]
-   return console.log(retorno);
+   return retorno;
 
 }
-queroCafe(3.14, [ 5.16, 2.12, 1.15, 3.11, 17.5 ]);
+console.log(queroCafe(3.14, [ 5.16, 2.12, 1.15, 3.11, 17.5 ]));
