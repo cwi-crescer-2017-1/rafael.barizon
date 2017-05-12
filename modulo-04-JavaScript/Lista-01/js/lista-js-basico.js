@@ -116,7 +116,7 @@ console.log("Soma Diferentona(5642)(8749)",somaDiferentona(5642)(8749));
 
 
 function fiboSum(qtdNumeros){
-    if(qtdNumeros === 1) return console.log(1);
+    if(qtdNumeros === 1) return 1;
     var fibo = [1,1];
     var soma = 2;
     for(var i = 2; i<qtdNumeros; i++){
@@ -125,6 +125,8 @@ function fiboSum(qtdNumeros){
     }
     return soma;
 }
+
+console.log("fibo(1)", fiboSum(1));
 console.log("fibo(3)", fiboSum(3));
 console.log("fibo(4)", fiboSum(4));
 console.log("fibo(5)", fiboSum(5));
