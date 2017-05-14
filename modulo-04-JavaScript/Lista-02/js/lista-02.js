@@ -22,7 +22,6 @@ function seriesInvalidas(series){
         || typeof invalido.temporadas     === ('undefined' || null)
         || typeof invalido.titulo         === ('undefined' || null)
         || typeof invalido.diretor        === ('undefined' || null)){
-          // invalido.
           retorno = retorno + invalido.titulo + " - ";
    }
   }
@@ -69,7 +68,7 @@ function mediaDeEpisodios(series){
   }
   return media/quantidade;
 }
-console.log(mediaDeEpisodios(series));
+console.log("Media de Episodios dos seriados: ",mediaDeEpisodios(series));
 // Exercício 4
 //
 // Eu sou um ator de séries?
@@ -89,7 +88,7 @@ function procurarPorNome(series, nome) {
   return false;
 }
 
-console.log(procurarPorNome(series, "Mateus"))
+console.log("Series contain('Mateus')",procurarPorNome(series, "Mateus"))
 
 // Exercício 5
 //
@@ -104,7 +103,7 @@ console.log(procurarPorNome(series, "Mateus"))
 function mascadaEmSerie(serieRecebida){
   return serieRecebida.diretor.length*100000 + serieRecebida.elenco.length*40000;
 }
-console.log(mascadaEmSerie(series[0]))
+console.log("Custo Total Serie[0]: ",mascadaEmSerie(series[0]))
 // Exercício 6
 //
 // Buscas!
@@ -217,54 +216,36 @@ console.log(creditosIlluminatis(series[0]));
 //
 // Dica: Construa uma função separada para identificar se aquela String tem a abreviação;
 //
+function nomeAbreviado(nome){
+  if(nome.includes(".")){
+    return nome.indexOf(".")-1;
+}
+  return false;
+}
 // Show de bola, estamos quase lá!
 //
 // Uma vez achada a série, vamos modificar um pouquinho a implementação. Coloque todas as palavras abreviadas (de preferência sem os pontos finais) em uma string que será retornada ao final do método.
 //
 // Forme uma hashtag com a palavra! #PALAVRA
 //
+
+function serieIlluminati(serie){
+  var retorno = "";
+  for (var i of serie){
+    for(var j of i.elenco){
+        let nomeAbrev = nomeAbreviado(j)
+        if(nomeAbrev !== false)
+          retorno = retorno.concat(j[nomeAbrev])
+        else break;
+    }
+  }
+  return retorno;
+}
+
+console.log(serieIlluminati(series));
 // Ao commitar, coloque no comentário do commit o que achou ;)
 //
 // Um bom FDS!
 //
 // NÃO SURTEM!!
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// //
