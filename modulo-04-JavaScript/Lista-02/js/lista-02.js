@@ -14,14 +14,14 @@ function seriesInvalidas(series){
   var retorno = "";
   for (var invalido of series){
               if( invalido.anoEstreia > anoAtual
-        || typeof invalido.diretor        === ('undefined' || null)
-        || typeof invalido.distribuidora  === ('undefined' || null)
-        || typeof invalido.elenco         === ('undefined' || null)
-        || typeof invalido.genero         === ('undefined' || null)
-        || typeof invalido.numeroEpisodios=== ('undefined' || null)
-        || typeof invalido.temporadas     === ('undefined' || null)
-        || typeof invalido.titulo         === ('undefined' || null)
-        || typeof invalido.diretor        === ('undefined' || null)){
+        || typeof invalido.diretor        === 'undefined'  || invalido.diretor         === null
+        || typeof invalido.distribuidora  === 'undefined'  || invalido.distribuidora   === null
+        || typeof invalido.elenco         === 'undefined'  || invalido.elenco          === null
+        || typeof invalido.genero         === 'undefined'  || invalido.genero          === null
+        || typeof invalido.numeroEpisodios=== 'undefined'  || invalido.numeroEpisodios === null
+        || typeof invalido.temporadas     === 'undefined'  || invalido.temporadas      === null
+        || typeof invalido.titulo         === 'undefined'  || invalido.titulo          === null
+        || typeof invalido.diretor        === 'undefined'  || invalido.diretor         === null){
           retorno = retorno + invalido.titulo + " - ";
    }
   }
