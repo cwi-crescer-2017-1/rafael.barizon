@@ -1,4 +1,3 @@
-console.log("Comecou!");
 console.log(series);
 // Exercício 1
 // Séries Inválidas
@@ -33,7 +32,7 @@ function seriesInvalidas(series){
          retorno.push(invalido.titulo);
    }
   }
-  return retorno.join(" - ");
+  return "Series Invalidas: " +retorno.join(" - ");
 }
 
 console.log(seriesInvalidas(series));
@@ -69,12 +68,11 @@ console.log(filtrarSeriesPorAno(series, 2015));
 // mediaDeEpisodios(series); // retorna o valor da média da soma dos episódios/quantidade de séries no array.
 
 function mediaDeEpisodios(series){
-  var media = 0, quantidade = 0;
+  var media = 0;
   for(var i of series){
       media = media + i.numeroEpisodios;
-      quantidade++;
   }
-  return media/quantidade;
+  return media/series.length;
 }
 console.log("Media de Episodios dos seriados: ",mediaDeEpisodios(series));
 // Exercício 4
@@ -149,6 +147,7 @@ function queroTitulo(titulo){
   return seriesTitulo;
 }
 console.log(queroTitulo("The"));
+console.log("procura titulo com the minusculo ",queroTitulo("the"));
 
 // Exercício 7
 //
@@ -199,9 +198,11 @@ function creditosIlluminatis(serie){
   })
     return retornoElenco;
   }
-  return serie.titulo + "<h1>Diretores</h1>"+
-    diretores(serie.diretor) + "<h1>Elenco</h1>" +
-    elenco(serie.elenco)
+    console.log(serie.titulo);
+    console.log("Diretores");
+    console.log(diretores(serie.diretor));
+    console.log("Elenco");
+    console.log(elenco(serie.elenco));
 }
 
 console.log(creditosIlluminatis(series[0]));
@@ -247,7 +248,7 @@ function serieIlluminati(serie){
         else break;
     }
   }
-  return retorno;
+  return "#" + retorno;
 }
 
 console.log(serieIlluminati(series));
