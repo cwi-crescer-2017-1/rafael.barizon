@@ -11,21 +11,29 @@ console.log(series);
 
 function seriesInvalidas(series){
   var anoAtual = new Date().getFullYear();
-  var retorno = "";
+  var retorno = [];
   for (var invalido of series){
               if( invalido.anoEstreia > anoAtual
-        || typeof invalido.diretor        === 'undefined'  || invalido.diretor         === null
-        || typeof invalido.distribuidora  === 'undefined'  || invalido.distribuidora   === null
-        || typeof invalido.elenco         === 'undefined'  || invalido.elenco          === null
-        || typeof invalido.genero         === 'undefined'  || invalido.genero          === null
-        || typeof invalido.numeroEpisodios=== 'undefined'  || invalido.numeroEpisodios === null
-        || typeof invalido.temporadas     === 'undefined'  || invalido.temporadas      === null
-        || typeof invalido.titulo         === 'undefined'  || invalido.titulo          === null
-        || typeof invalido.diretor        === 'undefined'  || invalido.diretor         === null){
-          retorno = retorno + invalido.titulo + " - ";
+        || typeof invalido.diretor        === 'undefined'
+        || invalido.diretor               === null
+        || typeof invalido.distribuidora  === 'undefined'
+        || invalido.distribuidora         === null
+        || typeof invalido.elenco         === 'undefined'
+        || invalido.elenco                === null
+        || typeof invalido.genero         === 'undefined'
+        || invalido.genero                === null
+        || typeof invalido.numeroEpisodios=== 'undefined'
+        || invalido.numeroEpisodio        === null
+        || typeof invalido.temporadas     === 'undefined'
+        || invalido.temporadas            === null
+        || typeof invalido.titulo         === 'undefined'
+        || invalido.titulo                === null
+        || typeof invalido.diretor        === 'undefined'
+        || invalido.diretor               === null){
+         retorno.push(invalido.titulo);
    }
   }
-  return retorno;
+  return retorno.join(" - ");
 }
 
 console.log(seriesInvalidas(series));
