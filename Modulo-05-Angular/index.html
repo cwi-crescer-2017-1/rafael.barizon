@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
+    <script src="js/controller.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div class="pokemon" ng-controller="controllerPokemon">
+      <h1>Nome: {{pokemon.nome}}</h1>
+      <label for="">Nome Pokemon:</label>
+      <input type="text" ng-model="pokemon.nome">
+      <h1>ID: {{pokemon.id}}</h1>
+      <label for="">ID Pokemon</label>
+      <input type="number" ng-model="pokemon.id">
+    </div>
+
+    <div class="pokemon" ng-controller="controllerPokemonRepeat">
+    <ul>
+      <li ng-repeat="pokemon in pokemons">
+        Nome: {{pokemon.nome}} # Id: {{pokemon.tipo}}
+      </li>
+    </ul>
+    </div>
+
+  </body>
+</html>
