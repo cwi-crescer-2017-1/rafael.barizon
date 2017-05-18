@@ -13,8 +13,11 @@
 
       <button ng-click="minhaFuncao()">Clique Aqui</button>
       <hr>
-
             <span>{{dataTerminada | date:'shortDate'}}</span>
+
+      <ul>
+        <li ng-repeat="instrutor in instrutores">Instrutor: {{ instrutor.nome | mascada}}</li>
+      </ul>
     </div>
   </body>
 </html>
