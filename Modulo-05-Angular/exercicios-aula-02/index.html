@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <script  src="https://code.angularjs.org/1.6.4/angular.js"></script>
+    <script src="js/controller.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div ng-controller="controller">
+      <label for="">Data:</label>
+      <input type="text" placeholder="dd/mm/yyyy" ng-model="dataDigitada">
+
+      <button ng-click="minhaFuncao()">Clique Aqui</button>
+      <hr>
+
+            <span>{{dataTerminada | date:'shortDate'}}</span>
+    </div>
+  </body>
+</html>
