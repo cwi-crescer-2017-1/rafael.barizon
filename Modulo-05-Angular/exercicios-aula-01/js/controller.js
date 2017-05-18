@@ -35,19 +35,6 @@ var pokemons = [
   {nome:"Nidoqueen" , tipo:"Poison"},
   {nome:"Vulpix" , tipo:"Fire"},
                 ];
-myapp.controller('controllerFiltro', ['$scope', function($scope){
-  let pokemons = [
-    $scope.pokemons = {nome:"Bulbasaur" , tipo:"Grass"},
-    $scope.pokemons = {nome:"Charmander" , tipo:"Fire"},
-    $scope.pokemons = {nome:"Squirtle" , tipo:"Water"},
-    $scope.pokemons = {nome:"Metapod" , tipo:"Bug"},
-    $scope.pokemons = {nome:"Kakuna" , tipo:"Bug"},
-    $scope.pokemons = {nome:"Pidgeotto" , tipo:"Flying"},
-    $scope.pokemons = {nome:"Spearow" , tipo:"Flying"},
-    $scope.pokemons = {nome:"Arbok" , tipo:"Poison"},
-    $scope.pokemons = {nome:"Sandshrew" , tipo:"Ground"},
-    $scope.pokemons = {nome:"Nidoqueen" , tipo:"Poison"},
-    $scope.pokemons = {nome:"Vulpix" , tipo:"Fire"}
-  ];
+myapp.controller('controller', ['$scope', function($scope){
 $scope.pokemons = pokemons;
 }]);

@@ -7,14 +7,14 @@
     <title></title>
   </head>
   <body>
-      <div class="" ng-controller="controllerFiltro">
+      <div class="" ng-controller="controller">
           <label for="inputPesquisaPokemon">Pesquisar</label>
           <input id="inputPesquisaPokemon" type="text" placeholder="Nome do Pokemon/Filtro Pesquisa" ng-model="filtroPokemon.nome">
           <hr>
           <ul>
             <li ng-repeat="pokemon in pokemons | filter:filtroPokemon">
             <strong>Nome:</strong> {{pokemon.nome}} <strong>Tipo:</strong> {{pokemon.tipo}}
-            </li>
+            </li>  
           </ul>
       </div>
   </body>
