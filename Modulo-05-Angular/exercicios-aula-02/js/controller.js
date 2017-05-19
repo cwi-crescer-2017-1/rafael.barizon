@@ -1,4 +1,10 @@
 var myapp =  angular.module('myApp',[])
+var aulass = [{nome:"OO"},
+{nome:"ANGULAR"},
+{nome:"BANCO DE DADOS"},
+{nome:"HTML/CSS"},
+{nome:"JavaScript"}
+]
 var aulas = [
             {numero: "1",
             nome:"OO",
@@ -45,7 +51,8 @@ var instrutores = [{
 ];
 
 myapp.controller('controller',['$scope', function($scope){
-  $scope.aulas = aulas
+  $scope.aulas = aulas;
+  $scope.aulass = aulass;
   $scope.instrutores = instrutores;
   $scope.minhaFuncao = function(){
     var data = $scope.dataDigitada;
@@ -53,6 +60,22 @@ myapp.controller('controller',['$scope', function($scope){
     data = new Date(data[2], data[1]-1, data[0])
     $scope.dataTerminada = data;
   }
+  $scope.incluir = function(){
+    console.log("oi");
+    if($scope.formIncluiInstrutores.$invalid)
+      return;
+    console.log("form eh valido");
+    var objInclusao = {ministraAulas:[]};
+    objInclusao.nome = $scope.novoNome;
+    objInclusao.sobrenome = $scope.novoSobrenome;
+    objInclusao.idade = $scope.novoIdade;
+    objInclusao.email = $scope.novoEmail;
+    objInclusao.aula = $scope.novoJaDeuAula;
+    objInclusao.ministraAulas.push( $scope.novoMinistraAulas);
+    instrutores.push(objInclusao);
+    console.log("incluido");
+    console.log(objInclusao);
+}
 }])
 
 
@@ -85,3 +108,69 @@ function pad(n, width, z) {
   n = n + '';
   return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
 }
+
+//fazer de outra forma para pegar o array de dentro
+
+// myapp.filter('outroFiltro', function(){
+//   return function(aula){
+//     let retorno = [];
+//
+//   }
+//
+// })
+//
+
+
+
+
+/* listar Instrutores
+   Permitir Inclusao de novos instrutores
+
+   Instrutor deve ter:
+
+    Nome (texto - obrigatorio - 3~20Letras)
+    Sobrenome ( texto - max 30 Letras)
+    Idade (Numero - Obrigatorio)
+    Email (obrigatorio)
+    Informar se ja deu aula (checkbox)
+    Qual aula ele ministra (select - lista de string de aulas)*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

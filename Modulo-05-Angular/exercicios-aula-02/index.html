@@ -17,6 +17,30 @@
       .instrutorNome{
         float: left;
       }
+
+      form > div {
+        width: 60%;
+        float: left;
+        margin-bottom: 5px;
+      }
+      form > div > input{
+        width:30%;
+        float: right;
+      }
+
+      .botaoIncluir>button {
+        float: right;
+        width: 30%;
+      }
+      select {
+        float: right;
+        width: 30%;
+      }
+      span{
+        float: right;
+        margin-right: 5px;
+      }
+
     </style>
     <title></title>
   </head>
@@ -41,7 +65,59 @@
         </li>
       </ul>
 
+      <ul>
+        <li ng-repeat="Instrutor in instrutores">
+          {{Instrutor.nome}}
+        </li>
+      </ul>
+{{formIncluiInstrutores.nome.$error}}
 
+      <form novalidate name="formIncluiInstrutores" ng-submit="incluir()">
+        <div>
+          <label for="nome">Nome</label>
+          <input type="text" name="nome" ng-model="novoNome" required ng-maxlength="20" ng-minlength="3">
+          <span ng-show="formIncluiInstrutores.nome.$error.required
+          ">Campo Obrigatório</span>
+          <span ng-show="formIncluiInstrutores.nome.$error.minlength">Minimo 3 letras</span>
+          <span ng-show="formIncluiInstrutores.nome.$error.maxlength">Maximo 20 letras</span>
+        </div>
+        <div>
+          <label for="sobrenome">Sobrenome</label>
+          <input type="text" name="sobrenome" ng-model="novoSobrenome" required ng-maxlength="30">
+          <span ng-show="formIncluiInstrutores.sobrenome.$error.required
+          ">Campo Obrigatório</span>
+        </div>
+        <div>
+          <label for="idade">Idade</label>
+          <input type="number" name="idade" ng-model="novoIdade" required>
+          <span ng-show="formIncluiInstrutores.idade.$error.required
+          ">Campo Obrigatório</span>
+
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="text" name="email" ng-model="novoEmail" required>
+          <span ng-show="formIncluiInstrutores.email.$error.required
+          ">Campo Obrigatório</span>
+        </div>
+        <div>
+          <label for="jaDeuAula">Ja deu Aula?</label>
+          <input type="checkbox" name="jaDeuAula" ng-model="novoJaDeuAula">
+        </div>
+        <div>
+          <label for="ministraAulas">Qual aula ministra</label>
+          <select name="ministraAulas" ng-model="novoMinistraAulas">
+            <option ng-repeat="aula in aulass">{{aula.nome}}</option>
+          </select>
+        </div>
+        <div class="botaoIncluir">
+          <button type="submit" name="incluir">Incluir</button>
+        </div>
+
+
+
+
+      </form>
     </div>
   </body>
 </html>
