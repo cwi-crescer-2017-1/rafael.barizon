@@ -1,0 +1,30 @@
+<ul>
+  <li ng-repeat="aula in aulas | aulaOrderBy">
+      ID: {{aula.id }} - Nome Aula: {{aula.nome}}
+  </li>
+  <!-- {{formIncluiAula.$error}} -->
+  <form novalidate name="formIncluiAula" ng-submit="incluirAula()">
+    <label>Incluir Aula</label>
+    <input type="text" name="nomeAula" ng-model="novaAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+    <button type="submit" name="incluirAula">Incluir</button>
+  </form>
+
+  <form novalidate name="formAlterarNomeAula" ng-submit="alterarAula()">
+    <label>Alterar Aula</label>
+    <label>ID:</label>
+    <select ng-model="selecaoAula.id" id="selectAula">
+      <option ng-repeat="aula in aulas" required >{{aula.id}}</option>
+    </select>
+
+    <label>Novo Nome:</label>
+    <input type="text" name="nomeAulaAlterar" ng-model="alterarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+    <button type="submit" name="alterarAula">Alterar</button>
+  </form>
+
+  <!-- {{formDeletarAula.$error}} -->
+  <form novalidate name="formDeletarAula" ng-submit="deletarAula()">
+    <label>Deletar Aula</label>
+    <input type="text" name="nomeAulaDeletar" ng-model="deletarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+    <button type="submit" name="deletarAula">Deletar</button>
+  </form>
+</ul>
