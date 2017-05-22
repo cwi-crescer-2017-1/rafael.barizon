@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+  <head>
+    <meta charset="utf-8">
+    <script  src="https://code.angularjs.org/1.6.4/angular.js"></script>
+    <script src="js/controller.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div ng-controller='controller'>
+        <ul>
+          <li ng-repeat="aula in aulas | aulaOrderBy">
+              ID: {{aula.id }} - Nome Aula: {{aula.nome}}
+          </li>
+          <!-- {{formIncluiAula.$error}} -->
+          <form novalidate name="formIncluiAula" ng-submit="incluirAula()">
+            <label>Incluir Aula</label>
+            <input type="text" name="nomeAula" ng-model="novaAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+            <button type="submit" name="incluirAula">Incluir</button>
+          </form>
+
+          <form novalidate name="formAlterarNomeAula" ng-submit="alterarAula()">
+            <label>Alterar Aula</label>
+            <label>ID:</label>
+            <select ng-model="selecaoAula.id" id="selectAula">
+              <option ng-repeat="aula in aulas" required >{{aula.id}}</option>
+            </select>
+
+            <label>Novo Nome:</label>
+            <input type="text" name="nomeAulaAlterar" ng-model="alterarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+            <button type="submit" name="alterarAula">Alterar</button>
+          </form>
+
+          <!-- {{formDeletarAula.$error}} -->
+          <form novalidate name="formDeletarAula" ng-submit="deletarAula()">
+            <label>Deletar Aula</label>
+            <input type="text" name="nomeAulaDeletar" ng-model="deletarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
+            <button type="submit" name="deletarAula">Deletar</button>
+          </form>
+        </ul>
+        <hr>
+        <ul>
+          <li ng-repeat="instrutor in instrutores | instrutorOrderBy">
+              ID:         {{instrutor.id}}
+              <br>
+              Nome:       {{instrutor.nome}}
+              <br>
+              Sobrenome:  {{instrutor.sobrenome}}
+              <br>
+              Idade: {{instrutor.idade}}
+              <br>
+              email: {{instrutor.email}}
+              <br>
+              Ja deu Aula: {{instrutor.jaDeuAula}}
+              <br>
+              Aulas:  <ul>
+                        <li ng-repeat="aula in instrutor.aula">{{aula.nome}}</li>
+                      </ul>
+              <br>
+              urlFoto: {{instrutor.urlFoto}}
+              <hr>
+          </li>
+        </ul>
+          <form novalidate name="formIncluiInstrutor" ng-submit="incluirInstrutor()">
+            <h3>Incluir Instrutor</h3>
+            <label>Nome</label>
+            <input type="text" name="nomeInstrutor" ng-model="novoInstrutor.nome" required ng-minlength="3" ng-maxlength="20" placeholder="Bernardo">
+              <br>
+            <label>Sobrenome</label>
+            <input type="text" name="sobrenomeInstrutor" ng-model="novoInstrutor.sobrenome" ng-maxlength="30">
+              <br>
+            <label>Idade</label>
+            <input type="number" max=90 name="idadeInstrutor" ng-model="novoInstrutor.idade" required>
+              <br>
+            <label>Email</label>
+            <input type="email" name="emailInstrutor" ng-model="novoInstrutor.email" required>
+              <br>
+            <label>Esta Dando Aula?</label>
+            <input type="checkbox" name="dandoAulaInstrutor" ng-model="novoInstrutor.dandoAula">
+              <br>
+            <label>Aulas, Selecione multiplas segurando CTRL/command e clicando nas aulas desejadas</label>
+            <select multiple name="aulasInstrutor" ng-model="novoInstrutor.aula">
+              <option ng-repeat="a in aulas">{{a.nome}}</option>
+            </select>
+              <br>
+            <label>URL Foto</label>
+            <input type="text" name="urlFotoInstrutor" ng-model="novoInstrutor.urlFoto">
+              <hr>
+            <button type="submit">Incluir Instrutor</button>
+        </form>
+        <hr>
+          <form novalidate name="formAlteraInstrutor" ng-submit="alterarInstrutor()">
+            <select ng-model="selectAltera">
+              <option ng-repeat="i in instrutores">{{i.nome}}</option>
+            </select>
+            <label>Nome</label>
+            <input type="text" name="alteraNomeInstrutor" ng-model="alteraNovoInstrutor.nome"  ng-minlength="3" ng-maxlength="20" placeholder="Bernardo">
+              <br>
+            <label>Sobrenome</label>
+            <input type="text" name="alteraSobrenomeInstrutor" ng-model="alteraNovoInstrutor.sobrenome" ng-maxlength="30">
+              <br>
+            <label>Idade</label>
+            <input type="number" max=90 name="alteraIdadeInstrutor" ng-model="alteraNovoInstrutor.idade" >
+              <br>
+            <label>Email</label>
+            <input type="email" name="alteraEmailInstrutor" ng-model="alteraNovoInstrutor.email" >
+              <br>
+            <label>Esta Dando Aula?</label>
+            <input type="checkbox" name="alteraDandoAulaInstrutor" ng-model="alteraNovoInstrutor.dandoAula">
+              <br>
+            <label>Aulas, Selecione multiplas segurando CTRL/command e clicando nas aulas desejadas</label>
+            <select multiple name="alteraAulasInstrutor" ng-model="alteraNovoInstrutor.aula">
+              <option ng-repeat="a in aulas">{{a.nome}}</option>
+            </select>
+              <br>
+            <label>URL Foto</label>
+            <input type="text" name="alteraUrlFotoInstrutor" ng-model="alteraNovoInstrutor.urlFoto">
+              <hr>
+            <button type="submit">Alterar Instrutor</button>
+
+          </form>
+          <hr>
+          <form novalidate name="formDeletaInstrutor" ng-submit="deletarInstrutor()">
+            <label>Deletar Instrutor</label>
+            <select ng-model="instrutorDeletar">
+              <option ng-repeat="instrutor in instrutores">{{instrutor.nome}}</option>
+            </select>
+            <button type="submit">Deletar Instrutor</button>
+          </form>
+
+    </div>
+  </body>
+</html>
