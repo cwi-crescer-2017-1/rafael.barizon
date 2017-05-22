@@ -114,6 +114,8 @@ myapp.controller('controller', ['$scope', function($scope){
             }
         }
         $scope.novoInstrutor.aula = aulasInstrutor;
+        if($scope.novoInstrutor.urlFoto === undefined)
+          $scope.novoInstrutor.urlFoto = 'https://goo.gl/b264ge';
         instrutores.push($scope.novoInstrutor);
         $scope.novoInstrutor = {};
         alert("Inclusão realizada com Sucesso.")
