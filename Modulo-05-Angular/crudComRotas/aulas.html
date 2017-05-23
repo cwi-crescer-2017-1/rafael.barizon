@@ -1,30 +1,36 @@
 <div class="">
-  <ul>
-    <li ng-repeat="aula in aulas">
-      ID: {{aula.id}} - {{aula.nome}}
-    </li>
-  </ul>
-  <hr>
-</div>
-<div class="">
-    <label>Incluir Aula</label>
-    <input type="text" ng-model="novaAula.nome" placeholder="Banco de Dados">
-    <button ng-click="insert(novaAula)">Incluir</button>
-</div>
 
-<div class="">
-    <label>Alterar Aula</label>
-    <label>ID:</label>
-    <input type="number" ng-model="alterarAula.id">
-    <label>Novo Nome:</label>
-    <input type="text" ng-model="alterarAula.nome" placeholder="Banco de Dados">
-    <button ng-click="update(alterarAula)">Alterar</button>
-  </form>
-</div>
+  <h1>Aulas</h1>
 
-<div class="">
-  <label>Deletar Aula</label>
-  <input type="number" ng-model="deletarAula.id">
-  <button ng-click="delete(deletarAula)">Deletar</button>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Alterar</th>
+      <th>Excluir</th>
+    </tr>
+    <tr ng-repeat="aulaShow in aulas" ng-class="{aulaSelecionada: aula.id === aulaShow.id}">
+      <td>{{aulaShow.id}}</td>
+      <td>{{aulaShow.nome}}</td>
+      <td><a href="/#!/aulas/{{aulaShow.id}}" type="button"><button ng-click="goToAlterar(aulaShow.id)">Alterar</button></a></td>
+      <!-- <td><button ng-click="update(aula)">Alterar</button></td> -->
+      <td><button ng-click="delete(aulaShow)">Deletar</button></td>
+    </tr>
+  </table>
+
+  <div ng-class="{isVisible: aula.id != undefined}" >
+      <label>Incluir Aula</label>
+      <input type="text" ng-model="novaAula.nome" placeholder="Banco de Dados">
+      <button ng-click="insert(novaAula)">Incluir</button>
+  </div>
+
+  <div ng-class="{isVisible: aula.id === idUrl}">
+      <label>Alterar Aula</label>
+      <label>ID:</label>
+      <label ng-model="aula.id"> {{aula.id}}
+      <label>Novo Nome:</label>
+      <input type="text" ng-model="aula.nome" placeholder="Banco de Dados">
+      <button ng-click="update(aula)">Alterar</button>
+    </form>
+  </div>
 </div>
-</ul>

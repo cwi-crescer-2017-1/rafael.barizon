@@ -1,0 +1,98 @@
+<div class="">
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Idade</th>
+      <th>Email</th>
+      <th>Dando Aula?</th>
+      <th>Aulas</th>
+      <th>URL Foto</th>
+      <th>Alterar</th>
+      <th>Deletar</th>
+    </tr>
+    <tr ng-repeat="instrutor in instrutores" >
+      <td>{{instrutor.id}}</td>
+      <td>{{instrutor.nome}}</td>
+      <td>{{instrutor.sobrenome}}</td>
+      <td>{{instrutor.idade}}</td>
+      <td>{{instrutor.email}}</td>
+      <td>{{instrutor.dandoAula? 'Sim':'Nao'}}</td>
+      <td>{{instrutor.aula}}</td>
+      <td>{{instrutor.urlFoto}}</td>
+      <td><a href="/#!/instrutores/{{instrutor.id}}" type="button"><button ng-click="goToAlterar(instrutor.id)">Alterar</button></a>
+        <!-- <button ng-click="goToAlterar(instrutor.id)">Alterar</button> -->
+      </td>
+      <td><button ng-click="delete(instrutor)">Deletar</button></td>
+    </tr>
+  </table>
+  <!-- <a href="/#!/instrutores/{{instrutorShow.id}}">{{instrutorShow}}</a> -->
+
+  <hr>
+</div>
+<div ng-class="{isVisible: instrutor.id != undefined}" >
+  <h1>Incluir Instrutor</h1>
+  <h4>Selecionar varias aulas CTRL/Command + click</h4>
+  <table class="table">
+    <tr>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Idade</th>
+      <th>Email</th>
+      <th>Dando Aula?</th>
+      <th>Aulas</th>
+      <th>URL Foto</th>
+    </tr>
+    <tr>
+      <form novalidate name="formIncluirInstrutor" ng-submit="insert(novoInstrutor)">
+        <td><input type="text" ng-model="novoInstrutor.nome" placeholder="Roberto" required ng-minlength="3" ng-maxlength='20'></td>
+        <td><input type="text" ng-model="novoInstrutor.sobrenome" ng-maxlength="30"></td>
+        <td><input type="number" max="90" ng-model="novoInstrutor.idade" required></td>
+        <td><input type="email" ng-model="novoInstrutor.email" required></td>
+        <td><input type="checkbox" ng-model="novoInstrutor.dandoAula"></td>
+        <td><select multiple ng-model="novoInstrutor.aula">
+              <option ng-repeat="a in aulas" type="number" ng-value="a.id">{{a.nome}}</option>
+            </select></td>
+        <td><input type="text" ng-model="novoInstrutor.urlFoto"></td>
+        <td><button >Incluir</button></td>
+      </form>
+    </tr>
+  </table>
+</div>
+
+<div ng-class="{isVisible: instrutor.id === idUrl}">
+  <h1>Alterar Instrutor</h1>
+  <h4>Selecionar varias aulas CTRL/Command + click</h4>
+  <table class="table">
+    <tr>
+      <th>Nome</th>
+      <th>Sobrenome</th>
+      <th>Idade</th>
+      <th>Email</th>
+      <th>Dando Aula?</th>
+      <th>Aulas</th>
+      <th>URL Foto</th>
+    </tr>
+    <tr>
+      <form novalidate name="formAlterarInstrutor">
+        <td><input type="text" ng-model="instrutor.nome" placeholder="Roberto" ng-minlength="3" ng-maxlength='20'></td>
+        <td><input type="text" ng-model="instrutor.sobrenome" ng-maxlength='30'></td>
+        <td><input type="number" max="90" ng-model="instrutor.idade"></td>
+        <td><input type="email" ng-model="instrutor.email"></td>
+        <td><input type="checkbox" ng-model="instrutor.dandoAula"></td>
+        <td><select multiple ng-model="instrutor.aula">
+              <option ng-repeat="a in aulas" type="number" ng-value="a.id">{{a.nome}}</option>
+            </select></td>
+        <td><input type="text" ng-model="instrutor.urlFoto"></td>
+        <td><button ng-click="update(instrutor)">Alterar</button></td>
+      </form>
+    </tr>
+  </table>
+    <!-- <label>Alterar Instrutor</label>
+    <label>ID:</label>
+    <label ng-model="instrutor.id"> {{instrutor.id}}
+    <label>Novo Nome:</label>
+    <input type="text" ng-model="instrutor.nome" placeholder="Banco de Dados">
+    <button ng-click="update(instrutor)">Alterar</button> -->
+</div>
