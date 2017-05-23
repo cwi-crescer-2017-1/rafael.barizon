@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html ng-app="myapp">
   <head>
-    <meta charset="utf-8"><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-      <script src="js/controller2.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
-
-    <title></title>
+    <meta charset="utf-8">
+    <title>Pagina com Rotas</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.4/angular-locale_pt-br.min.js"></script>
+    <script src="main.js"></script>
+    <script src="services.js"></script>
   </head>
   <body>
-    <div ng-controller='controller'>
-        <a href="#!/aulas">Aulas</a>
-        <a href="#!/instrutores">Instrutores</a>
-        <ng-view></ng-view>
-    </div>
+    <div class="container">
+      <hr>
+      <a href="#!/aulas">Aulas</a>
+      <a href="#!/instrutores">Instrutores</a>
+      <hr>
 
-  </body>
+      <ng-view></ng-view>
+
+      <hr>
+
+    </div>
+</body>
 </html>

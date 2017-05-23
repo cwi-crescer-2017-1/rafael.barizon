@@ -1,30 +1,30 @@
-<ul>
-  <li ng-repeat="aula in aulas | aulaOrderBy">
-      ID: {{aula.id }} - Nome Aula: {{aula.nome}}
-  </li>
-  <!-- {{formIncluiAula.$error}} -->
-  <form novalidate name="formIncluiAula" ng-submit="incluirAula()">
+<div class="">
+  <ul>
+    <li ng-repeat="aula in aulas">
+      ID: {{aula.id}} - {{aula.nome}}
+    </li>
+  </ul>
+  <hr>
+</div>
+<div class="">
     <label>Incluir Aula</label>
-    <input type="text" name="nomeAula" ng-model="novaAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
-    <button type="submit" name="incluirAula">Incluir</button>
-  </form>
+    <input type="text" ng-model="novaAula.nome" placeholder="Banco de Dados">
+    <button ng-click="insert(novaAula)">Incluir</button>
+</div>
 
-  <form novalidate name="formAlterarNomeAula" ng-submit="alterarAula()">
+<div class="">
     <label>Alterar Aula</label>
     <label>ID:</label>
-    <select ng-model="selecaoAula.id" id="selectAula">
-      <option ng-repeat="aula in aulas" required >{{aula.id}}</option>
-    </select>
-
+    <input type="number" ng-model="alterarAula.id">
     <label>Novo Nome:</label>
-    <input type="text" name="nomeAulaAlterar" ng-model="alterarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
-    <button type="submit" name="alterarAula">Alterar</button>
+    <input type="text" ng-model="alterarAula.nome" placeholder="Banco de Dados">
+    <button ng-click="update(alterarAula)">Alterar</button>
   </form>
+</div>
 
-  <!-- {{formDeletarAula.$error}} -->
-  <form novalidate name="formDeletarAula" ng-submit="deletarAula()">
-    <label>Deletar Aula</label>
-    <input type="text" name="nomeAulaDeletar" ng-model="deletarAula.nome" required placeholder="Banco de Dados" required ng-minlength="3" ng-maxlength='20' >
-    <button type="submit" name="deletarAula">Deletar</button>
-  </form>
+<div class="">
+  <label>Deletar Aula</label>
+  <input type="number" ng-model="deletarAula.id">
+  <button ng-click="delete(deletarAula)">Deletar</button>
+</div>
 </ul>
