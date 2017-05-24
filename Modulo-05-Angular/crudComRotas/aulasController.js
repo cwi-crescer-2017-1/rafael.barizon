@@ -19,7 +19,10 @@ myapp.controller('AulasController', function($scope, $routeParams, aulaService){
     // Funções internas
 
     function insert(aula) {
-      aulaService.insert(aula).then(atualizarLista)
+      if($scope.formIncluirAula.$valid){
+        aulaService.insert(aula).then(atualizarLista)
+        $scope.novaAula = {}
+      }
     };
 
     function findById(id) {
@@ -35,7 +38,7 @@ myapp.controller('AulasController', function($scope, $routeParams, aulaService){
     }
 
     function update(aula) {
-        console.log(aula);
+      if($scope.formAlterarAula.$valid)
       aulaService.update(aula).then(atualizarLista());
     };
 
