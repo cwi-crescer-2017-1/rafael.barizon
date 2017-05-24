@@ -9,11 +9,11 @@ myapp.factory('instrutorService', function($http) {
     return $http.get        (urlBase + urlInstrutor + id);
   };
   function atualizar(instrutor){
+    instrutor = inicializar(instrutor);
     return $http.put        (urlBase + urlInstrutor + instrutor.id, instrutor);
   };
   function incluir(instrutor){
-    // instrutor.aula = instrutor.aula.id;
-    instrutor.urlFoto = instrutor.urlFoto || "https://goo.gl/b264ge";
+    instrutor = inicializar(instrutor);
     return $http.post       (urlBase + urlInstrutor , instrutor);
   };
   function deletar(instrutor){
@@ -22,6 +22,12 @@ myapp.factory('instrutorService', function($http) {
   function getTodasAsAulas(){
     return $http.get(urlBase + '/aula');
   };
+
+  function inicializar(instrutor){
+    instrutor.aula = instrutor.aula || [];
+    instrutor.urlFoto = instrutor.urlFoto || "https://goo.gl/b264ge";
+    return instrutor;
+  }
   return {
     list: getTodosOsInstrutores,
     findById: getInstrutorPorId,

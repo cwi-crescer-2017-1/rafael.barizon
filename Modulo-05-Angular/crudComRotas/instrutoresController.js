@@ -20,7 +20,13 @@ myapp.controller('InstrutoresController', function($scope, $routeParams,instruto
 
     function insert(instrutor) {
       console.log($scope.formIncluirInstrutor);
+      console.log($scope.formIncluirInstrutor);
+
+      if(instrutor === undefined)
+        return;
+
       if($scope.formIncluirInstrutor.$valid){
+        console.log(instrutor.aula);
       instrutorService.insert(instrutor).then(atualizarLista)
       $scope.novoInstrutor = {};
       }
@@ -49,6 +55,6 @@ myapp.controller('InstrutoresController', function($scope, $routeParams,instruto
 
     function deleteInstrutor(instrutor){
       instrutorService.delete(instrutor).then(atualizarLista);
-      go
+      // go
     }
 })
