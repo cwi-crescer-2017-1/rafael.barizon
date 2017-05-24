@@ -18,20 +18,28 @@
           display: none;
         }
         .aulaSelecionada{
-          color: red;
+          background: grey;
         }
         .instrutorSelecionado{
-          color: blue;
+          background: grey;
         }
 
     </style>
   </head>
   <body>
+    <ul class="nav nav-pills">
+
+      <li role="presentation" class="active"><a href="#!/aulas">Aulas</a></li>
+      <li role="presentation"><a href="#!/instrutores">Instrutores</a></li>
+
+    </ul>
+
     <div class="container">
-      <hr>
+
+      <!-- <hr>
       <a href="#!/aulas">Aulas</a>
       <a href="#!/instrutores">Instrutores</a>
-      <hr>
+      <hr> -->
 
       <ng-view></ng-view>
 
