@@ -1,0 +1,6 @@
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\bin\Debug\Demonstrativo.exe.config
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\bin\Debug\Demonstrativo.exe
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\bin\Debug\Demonstrativo.pdb
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\obj\Debug\RafaelKuntzerBarizon.sln.Demonstrativo.csprojResolveAssemblyReference.cache
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\obj\Debug\Demonstrativo.exe
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\CWI.Modulo-06\CWI.Modulo-06.Demonstrativo\obj\Debug\Demonstrativo.pdb

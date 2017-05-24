@@ -1,0 +1,6 @@
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\bin\Debug\Demo1.exe.config
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\bin\Debug\Demo1.exe
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\bin\Debug\Demo1.pdb
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\obj\Debug\Demo1.csprojResolveAssemblyReference.cache
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\obj\Debug\Demo1.exe
+C:\Users\rafael.barizon\Documents\GitKraken\minha\rafael.barizon\Modulo-06-C#-dotNet\Aula - 01\Aula1\Demo1\obj\Debug\Demo1.pdb
