@@ -11,7 +11,18 @@ namespace CWI.Modulo_06.Demonstrativo
         static void Main(string[] args)
         {
             FolhaDePagamento folha = new FolhaDePagamento();
-            Demonstrativo demonstrativo = folha.GerarDemonstrativo(200, 5000, 50, 10);
+
+            while (true) {
+
+                String Horas, Salario, horasExtra, HorasDesconto;
+
+                Horas = Console.ReadLine();
+                Salario = Console.ReadLine();
+                horasExtra = Console.ReadLine();
+                HorasDesconto = Console.ReadLine();
+
+
+                Demonstrativo demonstrativo = folha.GerarDemonstrativo(int.Parse(Horas), double.Parse(Salario), double.Parse(horasExtra), double.Parse(HorasDesconto));
 
             Console.WriteLine($"Salario Base ({demonstrativo.HrsConvencao}hrs)                      {demonstrativo.SalarioBase}");
             Console.WriteLine($"Horas Extras ({demonstrativo.HorasExtras.QtdHoras}hrs)                       {demonstrativo.HorasExtras.ValorTotalHoras}" );
@@ -22,8 +33,13 @@ namespace CWI.Modulo_06.Demonstrativo
             Console.WriteLine("TotalDescontos                             " + demonstrativo.TotalDescontos);
             Console.WriteLine("TotalLiquido                               " + demonstrativo.TotalLiquido);
             Console.WriteLine($"Fgts {demonstrativo.Fgts.Aliquota * 100}                                    {demonstrativo.Fgts.Valor}");
-            
-            Console.ReadKey();
+
+            Console.WriteLine("Digite exit para sair ou next para outro demonstrativo");
+            string exit = Console.ReadLine();
+
+                if (exit.ToLower() == "exit")
+                    break;
+            }
         }
     }
 }
