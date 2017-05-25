@@ -237,7 +237,7 @@ namespace RafaelKuntzerBarizon.sln.UnitTest
             double horasExtras = 50;
             double horasDescontadas = 10;
 
-            var folhaPagamento = new FolhaPagamento();
+            var folhaPagamento = new FolhaDePagamento();
             var demonstrativo = folhaPagamento.GerarDemonstrativo(horasCategoria, salarioBase, horasExtras, horasDescontadas);
 
             var quantidadeHorasExtrasEsperado = 50;

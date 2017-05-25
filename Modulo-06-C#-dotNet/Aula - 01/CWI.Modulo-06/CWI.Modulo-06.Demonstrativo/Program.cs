@@ -23,7 +23,10 @@ namespace CWI.Modulo_06.Demonstrativo
 
 
                 Demonstrativo demonstrativo = folha.GerarDemonstrativo(int.Parse(Horas), double.Parse(Salario), double.Parse(horasExtra), double.Parse(HorasDesconto));
-
+                Console.WriteLine(int.Parse(Horas));
+                Console.WriteLine(double.Parse(Salario));
+                Console.WriteLine(double.Parse(horasExtra));
+                Console.WriteLine(double.Parse(HorasDesconto));
             Console.WriteLine($"Salario Base ({demonstrativo.HrsConvencao}hrs)                      {demonstrativo.SalarioBase}");
             Console.WriteLine($"Horas Extras ({demonstrativo.HorasExtras.QtdHoras}hrs)                       {demonstrativo.HorasExtras.ValorTotalHoras}" );
             Console.WriteLine($"Horas Descontadas ({demonstrativo.HorasDescontadas.QtdHoras}hrs)                  {demonstrativo.HorasDescontadas.ValorTotalHoras}");
