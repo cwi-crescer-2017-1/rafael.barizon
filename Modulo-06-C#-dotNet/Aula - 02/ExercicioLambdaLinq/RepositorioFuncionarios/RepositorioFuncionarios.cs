@@ -230,7 +230,9 @@ namespace Repositorio
                 Nome = funcionarioMaior.Nome,
                 DataNascimento = text,
                 SalarioRS = "R$ " + string.Format("{0:0.00}", funcionarioMaior.Cargo.Salario),
+                // CultureInfo.CurrentCulture
                 SalarioUS = "$" + funcionarioMaior.Cargo.Salario.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
+                // .ToString("C", CultureInfo.CreateSpecificCulture("en-US"))
                 QuantidadeMesmoCargo = qtdMesmoCargo
             };
 
