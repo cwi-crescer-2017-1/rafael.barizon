@@ -28,5 +28,26 @@ namespace Demo1.WebApi.Controllers
 
             return Ok(produtos);
         }
+        public IHttpActionResult Get(int id)
+        {
+            var produto = _produtoRepositorio.Obter(id);
+
+            return Ok(produto);
+        }
+
+        public IHttpActionResult Put(Produto produto)
+        {
+            _produtoRepositorio.Alterar(produto);
+
+            return Ok(produto);
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            _produtoRepositorio.Excluir(id);
+
+            return Ok();
+        }
+
     }
 }
