@@ -24,11 +24,13 @@ namespace Chatzap.Controllers
                 return BadRequest();
             else
             {
+                var usuario = UsuariosController.Usuarios.FindIndex(u => u.id == mensagem.IDAutor);
+
                 string pattern = @"(andre)|(nunes)";
                 
                 RegexOptions options = RegexOptions.IgnoreCase;
                 Regex regex = new Regex(pattern, options);
-                string illuminati = "$$$$$$$$$";
+                string illuminati = @"$$$$$$$$$";
                 var mensagemOriginal = mensagem.mensagem;
 
                 mensagem.mensagem = regex.Replace(mensagemOriginal, illuminati);
@@ -36,6 +38,8 @@ namespace Chatzap.Controllers
                 
                 mensagemsChat.Add(mensagem);
                 return Ok();
+
+                
             }
         }
 

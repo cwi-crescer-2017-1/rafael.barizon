@@ -9,12 +9,20 @@ namespace Chatzap.Controllers
 {
     public class UsuariosController : ApiController
     {
-        private static List<Usuario> Usuarios = new List<Usuario>();
-
+        public static List<Usuario> Usuarios = new List<Usuario>();
+        private int idUsuarios = 0;
         public List<Usuario> Get()
         {
             return Usuarios;
         }
+
+        public Usuario Get(string nome)
+        {
+            if(Usuarios.Count > 0)
+            return Usuarios.Where(usuario => usuario.nome == nome).ToList()[0];
+
+            return null;
+        }   
 
         public IHttpActionResult Post(Usuario usuario)
         {
@@ -22,7 +30,7 @@ namespace Chatzap.Controllers
                 return BadRequest();
             else
             {
-                usuario.id = Usuarios.Count;
+                usuario.id = idUsuarios++;
                 if (usuario.url == null || usuario.url == "")
                     usuario.url = "https://media.lovemondays.com.br/logos/e3b058/cwi-software-original.png";
 

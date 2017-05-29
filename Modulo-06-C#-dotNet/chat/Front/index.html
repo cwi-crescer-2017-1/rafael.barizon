@@ -22,17 +22,19 @@
           <div class="chat-thread">
             <ul>
               <li ng-repeat="mensagem in mensagemsChat">
-                <p ng-class="{mensagemInvisivel: mensagem.autor == usuario.nome}"> <img src="usuario.foto" class="imagem-Usuario">  {{ mensagem.autor }} - {{ mensagem.mensagem }}</p>
-                <p ng-class="{mensagemInvisivelAutor: mensagem.autor != usuario.nome, autorDireita: mensagem.autor == usuario.nome}">{{ mensagem.mensagem }} <img src="usuario.foto" class="imagem-Usuario"></p>
+                <p ng-class="{mensagemInvisivel: mensagem.IDAutor == usuario.id}">
+                  <!-- <img src="usuario.url" class="imagem-Usuario">-->  {{ mensagem.mensagem }}</p>
+                <p ng-class="{mensagemInvisivelAutor: mensagem.IDAutor != usuario.id, autorDireita: mensagem.IDAutor == usuario.id}">
+                  {{ mensagem.mensagem }} <!--<img src="usuario.url" class="imagem-Usuario">--></p>
               </li>
             </ul>
           </div>
 
           <div class="inputMessage-Form">
 
-            <form class="chat-window">
+            <form class="chat-window" ng-submit="enviarMensagem(mensagem)">
               <input ng-model="mensagem.mensagem" value="mensagem" autofocus id="inputMensagem" class="chat-window-message" name="chat-window-message" type="text" autocomplete="off" autofocus />
-              <button type="submit" ng-click="enviarMensagem(mensagem)">Enviar Mensagem</button>
+              <button type="submit">Enviar Mensagem</button>
             </form>
 
           </div>
