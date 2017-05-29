@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="chat-app">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/main.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/service.js"></script>
+
+    <title>Chatzap</title>
+</head>
+
+<body ng-controller="ChatController">
+  <div class="container">
+    <div class="header">
+      <h1>Projeto Crescer - CWI Software</h1>
+      Seja bem vindo {{usuario.nome}}
+    </div>
+          <div class="chat-thread">
+            <ul>
+              <li ng-repeat="mensagem in mensagemsChat">
+                <p ng-class="{mensagemInvisivel: mensagem.autor == usuario.nome}"> <img src="usuario.foto" class="imagem-Usuario">  {{ mensagem.autor }} - {{ mensagem.mensagem }}</p>
+                <p ng-class="{mensagemInvisivelAutor: mensagem.autor != usuario.nome, autorDireita: mensagem.autor == usuario.nome}">{{ mensagem.mensagem }} <img src="usuario.foto" class="imagem-Usuario"></p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="inputMessage-Form">
+
+            <form class="chat-window">
+              <input ng-model="mensagem.mensagem" value="mensagem" autofocus id="inputMensagem" class="chat-window-message" name="chat-window-message" type="text" autocomplete="off" autofocus />
+              <button type="submit" ng-click="enviarMensagem(mensagem)">Enviar Mensagem</button>
+            </form>
+
+          </div>
+  </div>
+</body>
+
+</html>
