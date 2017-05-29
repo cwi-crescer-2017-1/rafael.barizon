@@ -1,0 +1,85 @@
+select * from Licitacao;
+
+/*
+Exercicio 1
+Datas
+
+Liste todos os projetos que tiveram atrasos no início da obra, exibir também o tempo previsto (em meses), e o tempo realizado (em meses) para a conclusão da obra.
+*/
+
+select Projeto, DATEDIFF(MONTH, Data_Inicio_Prev, Data_Fim_Prev) as TempoPrevistoMeses, DATEDIFF(MONTH, Data_Inicio_Real, Data_Fim_Real) as TempoRealizadoMeses from Licitacao
+where Data_Inicio_Real > Data_Inicio_Prev;
+
+
+select * from licitacao
+order by empresa_licitante
+
+/*Exercício 2
+Ranking
+Liste as TOP 10 empresas que tiveram maior faturamento, deve ser projetado também o valor médio por profissional.
+Por exemplo:
+Empresa	Total Faturamento R$	Valor Médio por Profissional
+ABC Construcoes	11,976,510.00	48,426.81 (esse valor medio referencia como se tivesse 247,29 empregados) valor real eh 330 empregados
+*/
+
+select top 10 Licitacao.Empresa_Licitante,
+			sum(Valor_realizado) as Faturamento,
+			sum(Valor_realizado)/sum(Profissionais) as ValorMedioPorProfissional
+from Licitacao
+group by empresa_licitante
+order by Faturamento desc;
+-- arrumar questao de nao estar juntando faturamento da mesma empresa--
+
+/*Exercício 3
+TOP Cidades
+Liste as TOP 10 cidades com maior arrecação de impostos.
+*/
+
+select top 10 Municipio, Sum(Imposto_Municipal) as Arrecadacao
+from Licitacao
+group by Municipio
+order by Arrecadacao desc;
+
+/*Exercício 4
+Finais de semana
+Liste todos os projetos que tiveram a data de início (real) ocorrendo em finais de semana (sábado ou domingo).
+*/
+select projeto
+from licitacao
+where datepart(dw, data_inicio_real) in (1,7)
+/*
+Exercício 5
+Empresas com sorte
+Liste todas as empresas que tiveram (ou terão) um faturamento (valor previsto) superior a 50% do seu faturamento no ano anterior.
+*/
+
+select Empresa_Licitante
+from licitacao
+where Faturamento_1Ano_Anterior*.5 <= Valor_Previsto
+group by empresa_licitante
+
+/*
+Exercício 6
+Custo real
+Liste os projetos exibindo o custo real do projeto. Caso o projeto seja de esfera federal deve ser descontado o imposto federal,
+e assim respectivamente para as esferas estaduais e municipais.
+*/
+select projeto,esfera, case esfera
+		when 'Federal'	 then	Valor_Realizado - Imposto_federal
+		when 'Municipal' then	Valor_Realizado - Imposto_Municipal
+		when 'Estadual'  then	Valor_Realizado-Imposto_estadual
+		end as CustoRealDoProjeto
+		 from licitacao
+	order by CustoRealDoProjeto;
+/*Exercício 7
+
+Investigação
+
+O projeto 17255 foi suspenso, o motivo foi o elevado custo para o orçamento anual do município. Com isso o projeto 17120 foi
+proposto para substituí-lo. A partir de uma investigação mais detalhada foi visto que esse motivo não era a verdadeira razão.
+Explique por que este motivo não é válido apresentando uma consulta com dados. */
+
+select identificador, projeto, valor_realizado ,imposto_Municipal
+	from licitacao
+	where identificador = 17255 or identificador = 17120;
+-- motivo  imposto municipal é maior no projeto substituto

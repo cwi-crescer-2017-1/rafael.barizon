@@ -1,0 +1,70 @@
+Gametification
+
+Colaboradores
+	ID
+	Nome
+	Email
+
+Categoria
+	ID
+	Nome
+	Pontuacao
+
+Produto
+	ID
+	NomeProduto
+	pontuacao
+	Descricao
+	imagem
+	quantidadeEstoque
+
+Solicitacao
+	IDSolicitacao
+	IDColaborador
+	Solicitante? Sim ou Nao
+	IDCategoria	
+
+ResposavelLancamento
+	IDSolicitacao
+	IDColaborador
+
+Cada categoria terá uma estrutura com vários solicitantes, colaboradores responsáveis pelo lançamento
+dos registros, que serão outros colaboradores (que realizaram a ação);
+? Cada lançamento deve ter as seguintes informações:
+o Data do registro
+o Categoria ID 
+o Descrição da ação realizada
+o Pontuação (conforme a categoria)
+o Descrição pública – que será exibido no extrato
+
+
+
+
+
+5. Cada lançamento será analisado por um ou vários aprovadores, sendo estes agrupados por categoria.
+Após esta aprovação a pontuação passará a exibir no extrato detalhado de cada colaborador.
+
+
+
+6. O sistema deve prever que seja feito uma solicitação de resgate. Neste resgate poderá ser feito a
+seleção de um ou vários produtos, ou então informe um texto indicando uma experiência equivalente
+a pontuação pela qual deseja resgatar.
+? Exemplo: quero uma aventura nos pedalinhos de gramado, para o dia 20 de dezembro.
+
+
+7. Da mesma forma o resgate também precisa de aprovação, por um grupos de pessoas que terão este
+tipo de permissão. Após a aprovação deverá ser permitido informar o valor de cada resgate, porém este
+valor não deve ser exibido para o usuário final no seu extrato.
+8. Sobre o extrato e resgate de pontuação, deve ser previsto o seguinte fluxo:
+? Solicitado ? aprovado ? realizado
+
+
+
+oracle sql developer data modeler
+
+
+
+
+
+
+
