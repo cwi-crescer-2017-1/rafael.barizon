@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace EditoraCrescer.Infraesturtura.Repositorios
 {
-    public class LivroRepositorio
+    public class RevisorRepositorio
     {
         private Contexto contexto = new Contexto();
 
-        public List<Livro> Obter()
+        public List<Revisor> Obter()
         {
-            return contexto.Livros.ToList();
+            return contexto.Revisores.ToList();
         }
 
-        public bool Inserir(Livro livro)
+        public bool Inserir(Revisor revisor)
         {
             try
-            { 
-                contexto.Livros.Add(livro);
+            {
+                contexto.Revisores.Add(revisor);
                 contexto.SaveChanges();
                 return true;
             }
@@ -28,14 +28,18 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             {
                 return false;
             }
+
         }
 
         public bool Delete(int id)
         {
             try
             {
-                var livroDelete = contexto.Livros.FirstOrDefault(x => x.Isbn == id);
-                contexto.Livros.Remove(livroDelete);
+                var revisorDelete = contexto.Revisores.FirstOrDefault(x => x.Id == id);
+                var temLivro = contexto.Livros.FirstOrDefault(x => x.IdRevisor == revisorDelete.Id);
+                if (temLivro == null)
+                    return false;
+                contexto.Revisores.Remove(revisorDelete);
                 contexto.SaveChanges();
                 return true;
             }

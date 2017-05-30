@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Revisor.cs" />
+    <Compile Include="Mapings\RevisorMap.cs" />
     <Compile Include="Mapings\AutorMap.cs" />
     <Compile Include="Contexto.cs" />
     <Compile Include="Entidades\Autor.cs" />
@@ -58,6 +60,9 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\AutorRepositorio.cs" />
+    <Compile Include="Repositorios\RevisorRepositorio.cs" />
+    <Compile Include="Repositorios\LivroRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

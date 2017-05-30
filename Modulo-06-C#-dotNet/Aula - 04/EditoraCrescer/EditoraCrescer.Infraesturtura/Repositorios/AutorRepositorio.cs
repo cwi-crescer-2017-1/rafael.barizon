@@ -1,26 +1,26 @@
-﻿using EditoraCrescer.Infraesturtura.Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EditoraCrescer.Infraesturtura.Entidades;
 
 namespace EditoraCrescer.Infraesturtura.Repositorios
 {
-    public class LivroRepositorio
+    public class AutorRepositorio
     {
         private Contexto contexto = new Contexto();
 
-        public List<Livro> Obter()
+        public List<Autor> Obter()
         {
-            return contexto.Livros.ToList();
+            return contexto.Autores.ToList();
         }
 
-        public bool Inserir(Livro livro)
+        public bool Incluir(Autor autor)
         {
             try
-            { 
-                contexto.Livros.Add(livro);
+            {
+                contexto.Autores.Add(autor);
                 contexto.SaveChanges();
                 return true;
             }
@@ -28,14 +28,18 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             {
                 return false;
             }
+            
         }
 
         public bool Delete(int id)
         {
             try
             {
-                var livroDelete = contexto.Livros.FirstOrDefault(x => x.Isbn == id);
-                contexto.Livros.Remove(livroDelete);
+                var autorDelete = contexto.Autores.FirstOrDefault(x => x.Id == id);
+                var temLivro = contexto.Livros.FirstOrDefault(x => x.IdAutor == autorDelete.Id);
+                if (temLivro == null)
+                    return false;
+                contexto.Autores.Remove(autorDelete);
                 contexto.SaveChanges();
                 return true;
             }
