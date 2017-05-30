@@ -144,36 +144,45 @@ namespace Demo1.Infraestrutura.Repositorios
 
                 using (var comando = conexao.CreateCommand())
                 {
-                    comando.CommandText = @"SELECT pedido.Id, pedido.NomeCliente,
-                        itemPedido.id, itemPedido.PedidoId, itemPedido.ProdutoId, itemPedido.Quantidade  
-                        FROM pedido, ItemPedido";
+                    comando.CommandText = @"SELECT id, nomecliente FROM pedido";
 
                     var dataReader = comando.ExecuteReader();
-                    var pedido = new Pedido();
+                    
                     while (dataReader.Read())
                     {
-                        if (pedido == null)
-                        {
-                            pedido.Id = (int)dataReader["pedido.Id"];
-                            pedido.NomeCliente = (string)dataReader["pedido.NomeCliente"];
-                        }
-                        else if (pedido.Id != (int)dataReader["pedido.Id"])
-                        {
-                            pedidos.Add(pedido);
-                            pedido.Id = (int)dataReader["pedido.Id"];
-                            pedido.NomeCliente = (string)dataReader["pedido.NomeCliente"];
-                        }
 
-                        var itemPedido = new ItemPedido()
-                        {
-                            ProdutoId = (int)dataReader["itemPedido.ProdutoId"],
-                            Id = (int)dataReader["itemPedido.id"],
-                            Quantidade = (int)dataReader["itemPedido.Quantidade"]
-                        };
-                        pedido.Itens.Add(itemPedido);
+                        var pedido = new Pedido();
+                        pedido.Id  = (int)dataReader["id"];
+                        pedido.NomeCliente = (string)dataReader["nomecliente"];
+                        pedido.Itens = new List<ItemPedido>();
+                        pedidos.Add(pedido);
                     }
-                    pedidos.Add(pedido);
+                    dataReader.Close();
+                }
 
+                using (var comando = conexao.CreateCommand())
+                {
+                    comando.CommandText = @"SELECT id, PedidoId, ProdutoId, Quantidade  
+                                            FROM ItemPedido";
+
+                    var dataReader = comando.ExecuteReader();
+                    var idPedido = 0;
+                    var itemPedidoPedidoId = pedidos[0].Id;
+                    while (dataReader.Read())
+                    {
+                        var itemPedido = new ItemPedido();
+                        itemPedido.Id = (int)dataReader["id"];
+                        itemPedido.ProdutoId = (int)dataReader["ProdutoId"];
+                        itemPedido.Quantidade = (int)dataReader["Quantidade"];
+                        var idPedidoInterna = (int)dataReader["PedidoId"];
+                        if (itemPedidoPedidoId != idPedidoInterna)
+                        {
+                            itemPedidoPedidoId = idPedidoInterna;
+                            idPedido++;
+                        }
+                        pedidos[idPedido].Itens.Add(itemPedido);
+                    }
+                
                 }
             }
 

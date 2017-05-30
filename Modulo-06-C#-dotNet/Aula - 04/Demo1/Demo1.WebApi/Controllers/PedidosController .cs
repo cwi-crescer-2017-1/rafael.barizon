@@ -45,7 +45,7 @@ namespace Demo1.WebApi.Controllers
 
             return Ok(pedido);
         }
-
+        
         public IHttpActionResult Delete(int id)
         {
             _pedidoRepositorio.Excluir(id);
