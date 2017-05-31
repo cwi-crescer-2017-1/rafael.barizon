@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EditoraCrescer.Infraesturtura.Entidades;
+using System.Data.Entity;
 
 namespace EditoraCrescer.Infraesturtura.Repositorios
 {
-    public class AutorRepositorio
+    public class AutorRepositorio: IDisposable
     {
         private Contexto contexto = new Contexto();
 
@@ -47,6 +48,41 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             {
                 return false;
             }
+        }
+
+        public List<Livro> ObterLivrosAutorId(int id)
+        {
+            return contexto.Livros.Where(x => x.IdAutor == id).ToList();
+        }
+
+        public Autor ObterId(int id)
+        {
+            return contexto.Autores.FirstOrDefault(x => x.Id == id);
+        }
+
+        public bool Alterar(int id, Autor autor)
+        {
+            try
+            {
+                if (id != autor.Id)
+                    return false;
+                if (contexto.Autores.Count(x => x == autor) > 0)
+                {
+                    contexto.Entry(autor).State = EntityState.Modified;
+                    contexto.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
         }
     }
 }
