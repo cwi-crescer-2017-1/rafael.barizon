@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace EditoraCrescer.Infraesturtura
 {
-    internal class RevisorMap : EntityTypeConfiguration<Autor>
+    internal class RevisorMap : EntityTypeConfiguration<Revisor>
     {
         public RevisorMap()
         {
