@@ -16,11 +16,19 @@ var myapp = angular.module('myapp', ['ngRoute']);
 myapp.config(function ($routeProvider) {
 
   $routeProvider
-    .when('/lancamentos', {
+    .when('/livros', {
       controller: 'LancamentosController',
       templateUrl: 'lancamentos.html'
     })
+    .when('/livros/:idUrl', {
+      controller: 'LivrosController',
+      templateUrl: 'livros.html'
+    })
+    .when('/login', {
+      controller: 'LoginController',
+      templateUrl: 'login.html'
+    })
     .otherwise({
-      redirectTo: '/lancamentos'
+      redirectTo: '/livros'
     });
 });

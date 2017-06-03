@@ -36,6 +36,22 @@ namespace EditoraCrescer.Api.Controllers
 
             return Ok(livros);
         }
+        [Route("qtd")]
+        [HttpGet]
+        public IHttpActionResult GetPaginacao()
+        {
+            var paginacao = repositorio.Paginacao()/6 +1;
+
+            return Ok(paginacao);
+        }
+        [Route("qtdLivros/{qtd:int}")]
+        [HttpGet]
+        public IHttpActionResult GetLivrosQtd(int qtd)
+        {
+            var livros = repositorio.ObterQuantidadePagina(qtd);
+
+            return Ok(livros);
+        }
         [Route("lancamento")]
         [HttpGet]
         public IHttpActionResult GetLancamento()

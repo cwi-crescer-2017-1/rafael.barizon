@@ -9,15 +9,24 @@ myapp.controller('LancamentosController', function($scope, $routeParams, lancame
   $scope.controller = 'LancamentosController';
   $scope.lancamentos = [];
   $scope.livros = [];
+  $scope.paginacao = [0];
+  $scope.idUrl = $routeParams.idUrl;
+  console.log("scope idUrl "+$scope.idUrl);
   // let atualizarLista = function (){list();}
   // $scope.insert = insert;
   // $scope.update = update;
   // $scope.delete = deleteAula;
   // $scope.id = $routeParams.idUrl;
-  let atulizarLancamentos = function(){ getLancamentos();}
-  atulizarLancamentos();
-  let atulizarLivros = function(){ getLivros();}
-  atulizarLivros();
+  let atualizarLancamentos = function(){ getLancamentos();}
+  atualizarLancamentos();
+  let atualizarLivros = function(){ getLivros($routeParams.idUrl);}
+    atualizarLivros();
+  let atualizarPaginacao = function() { getPaginacao();}
+  atualizarPaginacao();
+  // let atualizarQtdLivros = function(){ getQtdLivros(6);}
+  //   atualizarQtdLivros();
+
+
   console.log($scope.lancamentos);
   // console.log($scope.lancamentos);
 
@@ -30,19 +39,44 @@ myapp.controller('LancamentosController', function($scope, $routeParams, lancame
     // console.log($scope);
 
     // Funções internas
-
+    function getPaginacao() {
+      lancamentosServices.paginacao().then(function (response) {
+        if(response.data > 0)
+          for(let a = 1; a <=response.data; a++)
+            $scope.paginacao[a] = a;
+      })
+    }
 
     function getLancamentos() {
       lancamentosServices.lancamentos().then(function (response) {
         console.log("Response data " + response.data);
-        $scope.lancamentos = response.data;
+
+        for (let i = 0; i < response.data.length; i++) {
+            if(i === 3) break;
+            $scope.lancamentos[i]=response.data[i];
+        }
       });
       console.log("passo do then");
     }
     function getLivros() {
       lancamentosServices.livros().then(function (response) {
         console.log("Response data " + response.data);
-        $scope.livros = response.data;
+        for (let i = 0; i < response.data.length; i++) {
+            if(i === 6) break;
+            $scope.livros[i]=response.data[i];
+        }
+        // $scope.livros = response.data;
+      });
+      console.log("passo do then");
+    }
+    function getQtdLivros(qtdLivros) {
+      lancamentosServices.qtdLivros(qtdLivros).then(function (response) {
+        console.log("Response data " + response.data);
+        for (let i = 0; i < response.data.length; i++) {
+            if(i === 6) break;
+            $scope.livros[i]=response.data[i];
+        }
+        // $scope.livros = response.data;
       });
       console.log("passo do then");
     }

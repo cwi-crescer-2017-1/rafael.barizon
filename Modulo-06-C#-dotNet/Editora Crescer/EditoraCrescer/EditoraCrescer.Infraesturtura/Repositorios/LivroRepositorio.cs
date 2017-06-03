@@ -11,7 +11,8 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
     public class LivroRepositorio : IDisposable
     {
         private Contexto contexto = new Contexto();
-
+        private int quantidade = 0;
+        private int qtdLivros = 0;
         public dynamic Obter()
         {
             //return contexto.Livros
@@ -47,9 +48,36 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
                 }); 
         }
 
+        public dynamic ObterQuantidadePagina(int qtd)
+        {
+            qtdLivros = contexto.Livros.Count();
+
+            var pegarQtos = qtdLivros - quantidade;
+            if (pegarQtos > 0);
+            {
+                if (qtdLivros - quantidade >= 6)
+                {
+                    quantidade += 6;
+                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade-6).Take(qtd);
+                }
+                else
+                {
+                    quantidade += pegarQtos;
+                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade - pegarQtos).Take(pegarQtos);
+                }
+            }
+        }
+
+        public int Paginacao()
+        {
+            return contexto.Livros.Count();
+        }
+
         public dynamic ObterLancamento()
         {
             DateTime data = DateTime.Now.AddDays(-7);
+            qtdLivros = contexto.Livros.Count();
+            if (qtdLivros > 6) quantidade = 6;
             return contexto.Livros
                 .Where(x => x.DataPublicacao >= data)
                 .Select(x => new {
@@ -67,6 +95,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             { 
                 contexto.Livros.Add(livro);
                 contexto.SaveChanges();
+                qtdLivros++;
                 return true;
             }
             catch
@@ -82,6 +111,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
                 var livroDelete = contexto.Livros.FirstOrDefault(x => x.Isbn == isbn);
                 contexto.Livros.Remove(livroDelete);
                 contexto.SaveChanges();
+                qtdLivros--;
                 return true;
             }
             catch
