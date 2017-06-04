@@ -12,11 +12,15 @@ myapp.factory('lancamentosServices', function($http) {
   };
   function getPaginacao(){
     return $http.get(urlBase + '/qtd')
-  }
+  };
+  function getEscolhido(id){
+    return $http.get(urlBase + '/escolhido/' +id );
+  };
   return {
     lancamentos: getTodosLancamentos,
     livros: getTodosLivros,
     qtdLivros: getQtdLivros,
-    paginacao: getPaginacao
+    paginacao: getPaginacao,
+    escolhido: getEscolhido
   };
 });

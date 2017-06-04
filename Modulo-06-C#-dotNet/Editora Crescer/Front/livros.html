@@ -1,21 +1,22 @@
 <div class="conteudo-livros">
   <div class="row row-centered">
-    <div class="col-md-2 col-centered" ng-repeat="livro in livros">
+    <div class="col-md-4 col-centered" ng-repeat="livro in livros" ng-click="#!/livro/{{livro.Isbn}}">
         <!-- {{livro}} -->
         <div>
               <img src="{{livro.Capa}}" alt="{{livro.Titulo}}">
         </div>
         <div>
           <p>{{livro.Titulo}}</p>
-          <p>Genero: {{livro.Genero}}</p>
-          <p>Autor: {{livro.NomeAutor}}</p>
+          <p><strong>Genero:</strong> {{livro.Genero}}</p>
+          <p><strong>Autor:</strong> {{livro.NomeAutor}}</p>
         </div>
     </div>
   </div>
 </div>
 
-<nav aria-label="Page navigation example" class="navbar navbar-toggleable-md navbar-light bg-faded fixed-bottom">
+<!-- <nav aria-label="Page navigation example" class="navbar navbar-toggleable-md navbar-light bg-faded fixed-bottom">
   <ul class="pagination justify-content-center">
-    <li ng-repeat="p in paginacao"class="page-item" ng-class="{invisible: p==0}"><a class="page-link" href="/#!/livros/{{p}}">{{p}}</a></li>
-  </ul>
+    <li class="page-item" ><a class="page-link" href="/#!">1</a></li>
+    <li ng-repeat="p in paginacao"class="page-item" ng-class="{invisible: p==0}"><a class="page-link" href="/#!/livros/{{p+1}}">{{p+1}}</a></li>
+  </ul> -->
 </nav>

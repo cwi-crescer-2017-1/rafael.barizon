@@ -5,11 +5,11 @@ let livros = [{ nome : 'Senhor dos Aneis',
   nome : "Senhor dos Aneis",
   url : "https://prodimage.images-bn.com/pimages/9780544003415_p0_v4_s192x300.jpg"
 }];
-myapp.controller('LancamentosController', function($scope, $routeParams, lancamentosServices){
+myapp.controller('LancamentosController', function($scope, $routeParams, lancamentosServices,$rootScope){
   $scope.controller = 'LancamentosController';
   $scope.lancamentos = [];
   $scope.livros = [];
-  $scope.paginacao = [0];
+  $rootScope.paginacao = [0];
   $scope.idUrl = $routeParams.idUrl;
   console.log("scope idUrl "+$scope.idUrl);
   // let atualizarLista = function (){list();}
@@ -43,8 +43,9 @@ myapp.controller('LancamentosController', function($scope, $routeParams, lancame
       lancamentosServices.paginacao().then(function (response) {
         if(response.data > 0)
           for(let a = 1; a <=response.data; a++)
-            $scope.paginacao[a] = a;
+            $rootScope.paginacao[a] = a;
       })
+      console.log($rootScope.paginacao);
     }
 
     function getLancamentos() {

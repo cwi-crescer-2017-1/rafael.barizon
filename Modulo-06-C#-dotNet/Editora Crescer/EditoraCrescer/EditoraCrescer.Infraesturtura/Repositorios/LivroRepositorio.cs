@@ -35,35 +35,67 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             return contexto.Livros.FirstOrDefault(x => x.Isbn == isbn);
         }
 
+        public object GetEscolhido(int isbn)
+        {
+            return contexto.Livros
+                .Where(x => x.Isbn == isbn)
+                .Select(x => new
+                {
+                    Isbn = x.Isbn,
+                    Titulo = x.Titulo,
+                    Capa = x.Capa,
+                    NomeAutor = x.Autor.Nome,
+                    Genero = x.Genero,
+                    Descricao = x.Descricao,
+                    DataPublicacao = x.DataPublicacao
+                })
+                .FirstOrDefault();
+        }
+
         public dynamic ObterGenero(string genero)
         {
             return contexto.Livros
                 .Where(x => x.Genero.Contains(genero))
-                .Select(x => new {
+                .Select(x => new
+                {
                     Isbn = x.Isbn,
                     Titulo = x.Titulo,
                     Capa = x.Capa,
                     NomeAutor = x.Autor.Nome,
                     Genero = x.Genero
-                }); 
+                });
         }
 
         public dynamic ObterQuantidadePagina(int qtd)
         {
             qtdLivros = contexto.Livros.Count();
-
+            quantidade = (6 * qtd) - 6;
             var pegarQtos = qtdLivros - quantidade;
-            if (pegarQtos > 0);
+            if (pegarQtos > 0) ;
             {
-                if (qtdLivros - quantidade >= 6)
+
+                if (pegarQtos >= 6)
                 {
-                    quantidade += 6;
-                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade-6).Take(qtd);
+
+                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade).Take(6).Select(x => new
+                    {
+                        Isbn = x.Isbn,
+                        Titulo = x.Titulo,
+                        Capa = x.Capa,
+                        NomeAutor = x.Autor.Nome,
+                        Genero = x.Genero
+                    });
                 }
                 else
                 {
-                    quantidade += pegarQtos;
-                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade - pegarQtos).Take(pegarQtos);
+                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade).Take(pegarQtos).Select(x => new
+                    {
+                        Isbn = x.Isbn,
+                        Titulo = x.Titulo,
+                        Capa = x.Capa,
+                        NomeAutor = x.Autor.Nome,
+                        Genero = x.Genero
+                    }); ;
                 }
             }
         }
@@ -80,7 +112,8 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             if (qtdLivros > 6) quantidade = 6;
             return contexto.Livros
                 .Where(x => x.DataPublicacao >= data)
-                .Select(x => new {
+                .Select(x => new
+                {
                     Isbn = x.Isbn,
                     Titulo = x.Titulo,
                     Capa = x.Capa,
@@ -92,7 +125,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
         public bool Inserir(Livro livro)
         {
             try
-            { 
+            {
                 contexto.Livros.Add(livro);
                 contexto.SaveChanges();
                 qtdLivros++;

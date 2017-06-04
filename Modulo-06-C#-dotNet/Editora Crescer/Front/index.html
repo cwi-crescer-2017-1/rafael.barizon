@@ -16,6 +16,8 @@
     <script src="js/lancamentosServices.js"></script>
     <script src="js/lancamentosController.js"></script>
     <script src="js/livrosController.js"></script>
+    <script src="js/loginController.js"></script>
+    <script src="js/escolhidoController.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
     <link rel="stylesheet" href="css/main.css">
@@ -60,9 +62,12 @@
             </form>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+        <div ng-controller="LoginController" class="loginModal">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" ng-click="login()">Login</button>
+        </div>
+        <!-- <form class="form-inline my-2 my-lg-0" action="login.html">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-        </form>
+        </form> -->
       </div>
     </nav>
 
@@ -73,6 +78,11 @@
       <ng-view></ng-view>
 
     </div>
-
+    <nav aria-label="Page navigation example" class="navbar navbar-toggleable-md navbar-light bg-faded ">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" ><a class="page-link" href="/#!">1</a></li>
+        <li ng-repeat="p in paginacao"class="page-item" ng-class="{invisible: p==0}"><a class="page-link" href="/#!/livros/{{p+1}}">{{p+1}}</a></li>
+      </ul>
+    </nav>
   </body>
 </html>

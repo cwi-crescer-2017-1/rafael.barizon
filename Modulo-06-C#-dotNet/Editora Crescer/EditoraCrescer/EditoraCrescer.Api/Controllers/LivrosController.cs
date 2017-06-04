@@ -28,6 +28,14 @@ namespace EditoraCrescer.Api.Controllers
 
             return Ok(livro);
         }
+        [Route("escolhido/{isbn:int}")]
+        [HttpGet]
+        public IHttpActionResult GetEscolhido(int isbn)
+        {
+            var livro = repositorio.GetEscolhido(isbn);
+
+            return Ok(livro);
+        }
         [Route("{genero}")]
         [HttpGet]
         public IHttpActionResult GetGenero(string genero)
@@ -40,7 +48,7 @@ namespace EditoraCrescer.Api.Controllers
         [HttpGet]
         public IHttpActionResult GetPaginacao()
         {
-            var paginacao = repositorio.Paginacao()/6 +1;
+            var paginacao = repositorio.Paginacao()/6;
 
             return Ok(paginacao);
         }

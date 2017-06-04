@@ -24,6 +24,10 @@ myapp.config(function ($routeProvider) {
       controller: 'LivrosController',
       templateUrl: 'livros.html'
     })
+    .when('/escolhido/:idUrl', {
+      controller: 'EscolhidoController',
+      templateUrl: 'escolhido.html'
+    })
     .when('/login', {
       controller: 'LoginController',
       templateUrl: 'login.html'

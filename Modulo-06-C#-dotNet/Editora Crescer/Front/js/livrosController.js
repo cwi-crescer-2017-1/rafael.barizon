@@ -1,8 +1,8 @@
 
-myapp.controller('LivrosController', function($scope, $routeParams, lancamentosServices){
+myapp.controller('LivrosController', function($scope, $routeParams, lancamentosServices,$rootScope){
   $scope.controller = 'LivrosController';
   $scope.livros = [];
-  $scope.paginacao = [0];
+  $rootScope.paginacao = [0];
   $scope.idUrl = $routeParams.idUrl;
   // let atualizarLista = function (){list();}
   // $scope.insert = insert;
@@ -11,7 +11,7 @@ myapp.controller('LivrosController', function($scope, $routeParams, lancamentosS
   // $scope.id = $routeParams.idUrl;
   let atualizarPaginacao = function() { getPaginacao();}
   atualizarPaginacao();
-  let atualizarQtdLivros = function(){ getQtdLivros(6);}
+  let atualizarQtdLivros = function(){ getQtdLivros($scope.idUrl);}
     atualizarQtdLivros();
 
     // Funções internas
@@ -19,7 +19,7 @@ myapp.controller('LivrosController', function($scope, $routeParams, lancamentosS
       lancamentosServices.paginacao().then(function (response) {
         if(response.data > 0)
           for(let a = 1; a <=response.data; a++)
-            $scope.paginacao[a] = a;
+            $rootScope.paginacao[a] = a;
       })
     }
 
