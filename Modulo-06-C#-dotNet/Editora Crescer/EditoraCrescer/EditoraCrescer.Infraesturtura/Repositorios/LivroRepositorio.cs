@@ -32,7 +32,8 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         public Livro ObterIsbn(int isbn)
         {
-            return contexto.Livros.Include(x => x.Autor).Include(x=>x.Revisor).FirstOrDefault(x => x.Isbn == isbn);
+            ////return contexto.Livros.Include(x => x.Autor).Include(x=>x.Revisor).FirstOrDefault(x => x.Isbn == isbn);
+            return contexto.Livros.Include(x => x.Autor).FirstOrDefault(x => x.Isbn == isbn);
         }
 
         public object GetEscolhido(int isbn)
@@ -71,8 +72,8 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             qtdLivros = contexto.Livros.Count();
             quantidade = (6 * qtd) - 6;
             var pegarQtos = qtdLivros - quantidade;
-            if (pegarQtos > 0) ;
-            {
+            //if (pegarQtos > 0) 
+            
 
                 if (pegarQtos >= 6)
                 {
@@ -88,16 +89,17 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
                 }
                 else
                 {
-                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade).Take(pegarQtos).Select(x => new
-                    {
-                        Isbn = x.Isbn,
-                        Titulo = x.Titulo,
-                        Capa = x.Capa,
-                        NomeAutor = x.Autor.Nome,
-                        Genero = x.Genero
-                    }); ;
+                    return contexto.Livros.OrderBy(x => x.Isbn).Skip(quantidade).Take(pegarQtos)
+                        .Select(x => new
+                            {
+                                Isbn = x.Isbn,
+                                Titulo = x.Titulo,
+                                Capa = x.Capa,
+                                NomeAutor = x.Autor.Nome,
+                                Genero = x.Genero
+                            }); 
                 }
-            }
+            
         }
 
         public int Paginacao()

@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraCrescer.Infraesturtura", "EditoraCrescer.Infraesturtura\EditoraCrescer.Infraesturtura.csproj", "{A06FE95F-7728-410A-80E4-3BAABEF469D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "program", "program\program.csproj", "{FC39B8A9-994C-44DD-A174-F88A88ACF605}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditoraCrescer.Api", "EditoraCrescer.Api\EditoraCrescer.Api.csproj", "{1FFC8A9D-BFAE-445C-A32E-FB09CC07BAFD}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{A06FE95F-7728-410A-80E4-3BAABEF469D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A06FE95F-7728-410A-80E4-3BAABEF469D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A06FE95F-7728-410A-80E4-3BAABEF469D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC39B8A9-994C-44DD-A174-F88A88ACF605}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC39B8A9-994C-44DD-A174-F88A88ACF605}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC39B8A9-994C-44DD-A174-F88A88ACF605}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC39B8A9-994C-44DD-A174-F88A88ACF605}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1FFC8A9D-BFAE-445C-A32E-FB09CC07BAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FFC8A9D-BFAE-445C-A32E-FB09CC07BAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFC8A9D-BFAE-445C-A32E-FB09CC07BAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU

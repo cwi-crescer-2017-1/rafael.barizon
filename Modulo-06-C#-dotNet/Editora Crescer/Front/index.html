@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js" type="text/javascript"></script>
 <script src="https://rawgit.com/cwi-crescer-2017-1/instrutores/master/modulo-05-angularjs/auth/auth.module.js" type="text/javascript"></script>
     <script src="js/lancamentosServices.js"></script>
+    <script src="js/navController.js"></script>
     <script src="js/lancamentosController.js"></script>
     <script src="js/livrosController.js"></script>
     <script src="js/loginController.js"></script>
@@ -21,6 +22,7 @@
 
   </head>
   <body >
+    <div ng-controller="NavController">
     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -40,18 +42,27 @@
                 <option>Genero</option>
                 <option>Autor</option>
               </select>
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" ng-model="search.campo">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" ng-model="search.campo" required>
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
           </li>
+          <li>
+            <form class="form-inline my-2 my-lg-0" ng-submit="assinar(assinatura)">
+            <label>Fique Sabendo dos Lancamentos </label>
+            <input class="form-control mr-sm-2" type="email" placeholder="email@email.com" ng-model="assinatura.email">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Assinar</button>
+            </form>
+          </li>
         </ul>
-        <div class="loginModal">
+        <div ng-class="{invisible: logado}">
           <a href="#!/login"> <button class="btn btn-outline-success my-2 my-sm-0" type="button">Login</button></a>
+        </div>
+        <div ng-class="{invisible: !logado}">
+          <a href="#!/logout"> <button class="btn btn-outline-success my-2 my-sm-0" type="button">Logout</button></a>
         </div>
       </div>
     </nav>
-
-
+  </div>
 
     <div class="container">
 
@@ -62,7 +73,9 @@
     <nav aria-label="Page navigation example" class="navbar navbar-toggleable-md navbar-light bg-faded " ng-class="{invisible: loginController}">
       <ul class="pagination justify-content-center">
         <li class="page-item" ><a class="page-link" href="/#!">1</a></li>
-        <li ng-repeat="p in paginacao"class="page-item" ng-class="{invisible: p==0}"><a class="page-link" href="/#!/livros/{{p+1}}">{{p+1}}</a></li>
+        <li ng-repeat="p in paginacao"class="page-item" ng-class="{invisible: p==0}">
+          <a class="page-link" href="/#!/livros/{{p+1}}">{{p+1}}</a>
+        </li>
       </ul>
     </nav>
   </body>

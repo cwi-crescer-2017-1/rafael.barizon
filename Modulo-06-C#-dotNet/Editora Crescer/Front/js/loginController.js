@@ -12,6 +12,7 @@ myapp.controller('LoginController', function($scope, $routeParams, authService,$
         function (response) {
           console.log(response);
           alert('Login com sucesso!');
+          $rootScope.logado = true;
           $location.path('#!/administrativo').replace();
         },
         function (response) {
