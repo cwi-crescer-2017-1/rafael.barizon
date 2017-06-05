@@ -1,0 +1,36 @@
+<div class="escolhido">
+  <div class="row ">
+    <div class="col-md-12">
+        <div>
+              <img src="{{escolhido.Capa}}" alt="{{escolhido.Titulo}}">
+        </div>
+        <div>
+          <p><strong>Titulo:</strong> {{escolhido.Titulo}}</p>
+          <p><strong>Autor:</strong> {{escolhido.Autor.Nome}}</p>
+          <p><strong>Genero:</strong> {{escolhido.Genero}}</p>
+          <strong>Descricao:</strong> {{escolhido.Descricao}}
+          <p><strong>DataPublicacao:</strong> {{escolhido.DataPublicacao}}</p>
+        </div>
+        <table class="table">
+          <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Genero</th>
+            <th>Descricao</th>
+            <th>URL Capa</th>
+            <th>Alterar</th>
+          </tr>
+          <tr>
+            <form novalidate name="formAlterarInstrutor">
+              <td><input type="text" ng-model="alterar.Titulo"></td>
+              <td><input type="text" ng-model="alterar.Autor.Nome"></td>
+              <td><input type="text" ng-model="alterar.Genero"></td>
+              <td><input type="text" ng-model="alterar.Descricao"></td>
+              <td><input type="text" ng-model="alterar.Capa"></td>
+              <td><button ng-click="update(alterar)">Alterar</button></td>
+            </form>
+          </tr>
+        </table>
+    </div>
+  </div>
+</nav>

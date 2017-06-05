@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BasicAuthorizationAttribute.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\AutoresController.cs" />
     <Compile Include="Controllers\LivrosController.cs" />
     <Compile Include="Controllers\RevisoresController.cs" />

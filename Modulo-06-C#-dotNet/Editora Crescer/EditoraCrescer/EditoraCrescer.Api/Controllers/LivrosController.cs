@@ -20,6 +20,12 @@ namespace EditoraCrescer.Api.Controllers
 
             return Ok(livros);
         }
+        [Route("{id}")]
+        public IHttpActionResult Put(int id, Livro livro)
+        {
+            repositorio.Alterar(id, livro);
+            return Ok(livro);
+        }
         [Route("{isbn:int}")]
         [HttpGet]
         public IHttpActionResult GetIsbn(int isbn)
@@ -84,13 +90,14 @@ namespace EditoraCrescer.Api.Controllers
         }
 
         //PUT    api/Livros/{isbn}
-        [Route("{isbn:int}")]
-        public IHttpActionResult Put(int isbn, Livro livro)
-        {
-            if (repositorio.Alterar(isbn, livro))
-                return Ok(livro);
-            return BadRequest();
-        }
+        //[Route("{isbn:int}")]
+        //[HttpPut]
+        //public IHttpActionResult Put(int isbn, Livro livro)
+        //{
+        //    if (repositorio.Alterar(isbn, livro))
+        //        return Ok(livro);
+        //    return BadRequest();
+        //}
 
         protected override void Dispose(bool disposing)
         {

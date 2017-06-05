@@ -1,9 +1,4 @@
-
-myapp.controller('LoginController', function($scope, $routeParams, authService,$rootScope,$location){
-  console.log("hi");
-  $scope.controller = 'LoginController';
-
-  $rootScope.loginController = true;
+angular.module('app').controller('LoginController', function ($scope, authService) {
 
   $scope.login = function (usuario) {
 
@@ -12,13 +7,12 @@ myapp.controller('LoginController', function($scope, $routeParams, authService,$
         function (response) {
           console.log(response);
           alert('Login com sucesso!');
-          $location.path('#!/administrativo').replace();
+
         },
         function (response) {
           console.log(response);
           alert('Erro no Login!');
         });
   };
-
 
 });

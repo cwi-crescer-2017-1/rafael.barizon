@@ -32,7 +32,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
 
         public Livro ObterIsbn(int isbn)
         {
-            return contexto.Livros.FirstOrDefault(x => x.Isbn == isbn);
+            return contexto.Livros.Include(x => x.Autor).Include(x=>x.Revisor).FirstOrDefault(x => x.Isbn == isbn);
         }
 
         public object GetEscolhido(int isbn)
@@ -112,6 +112,7 @@ namespace EditoraCrescer.Infraesturtura.Repositorios
             if (qtdLivros > 6) quantidade = 6;
             return contexto.Livros
                 .Where(x => x.DataPublicacao >= data)
+                .OrderBy(x => x.DataPublicacao)
                 .Select(x => new
                 {
                     Isbn = x.Isbn,

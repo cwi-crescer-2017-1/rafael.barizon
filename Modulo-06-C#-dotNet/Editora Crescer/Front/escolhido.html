@@ -10,6 +10,8 @@
           <p><strong>Genero:</strong> {{escolhido.Genero}}</p>
           <strong>Descricao:</strong> {{escolhido.Descricao}}
           <p><strong>DataPublicacao:</strong> {{escolhido.DataPublicacao}}</p>
+          <a href="#!/alterar/{{escolhido.Isbn}}"> <button class="btn btn-outline-success my-2 my-sm-0" type="button">Alterar</button></a>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" ng-click="publicar(escolhido)">Publicar</button>
         </div>
     </div>
   </div>

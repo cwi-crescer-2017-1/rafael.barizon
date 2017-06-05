@@ -1,17 +1,4 @@
-var myapp = angular.module('myapp', ['ngRoute']);
-// let livros = [{ nome : 'Senhor dos Aneis',
-//   url : 'https://prodimage.images-bn.com/pimages/9780544003415_p0_v4_s192x300.jpg'
-// },
-// {
-//   nome : "Senhor dos Aneis",
-//   url : "https://prodimage.images-bn.com/pimages/9780544003415_p0_v4_s192x300.jpg"
-// }]
-// myapp.controller('controller', ['$scope', function($scope){
-//   $scope.livros= livros;
-// }]);
-
-
-var myapp = angular.module('myapp', ['ngRoute']);
+var myapp = angular.module('myapp', ['ngRoute', 'auth']);
 
 myapp.config(function ($routeProvider) {
 
@@ -28,11 +15,65 @@ myapp.config(function ($routeProvider) {
       controller: 'EscolhidoController',
       templateUrl: 'escolhido.html'
     })
+    .when('/alterar/:idUrl', {
+      controller: 'AlterarController',
+      templateUrl: 'alterar.html'
+    })
     .when('/login', {
       controller: 'LoginController',
       templateUrl: 'login.html'
+    })
+    .when('/administrativo', {
+      controller: 'administrativoController',
+      templateUrl: 'administrativo.html',
+      resolve: {
+        // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+        autenticado: function (authService) {
+          return authService.isAutenticadoPromise();
+        }
+      }
     })
     .otherwise({
       redirectTo: '/livros'
     });
 });
+
+myapp.constant('authConfig', {
+
+    // Obrigatória - URL da API que retorna o usuário
+    urlUsuario: 'http://localhost:55030/api/usuarios',
+
+    // Obrigatória - URL da aplicação que possui o formulário de login
+    urlLogin: '/login',
+
+    // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGIN com sucesso
+    urlPrivado: '/privado',
+
+    // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGOUT
+    urlLogout: '/home'
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
