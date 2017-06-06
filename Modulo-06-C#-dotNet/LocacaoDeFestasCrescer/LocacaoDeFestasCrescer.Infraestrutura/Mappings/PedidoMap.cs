@@ -12,19 +12,27 @@ namespace LocacaoDeFestasCrescer.Infraestrutura
             //CLIENTE
             HasRequired(x => x.Cliente)
                 .WithMany()
-                .HasForeignKey(x => x.Id_Cliente);
+                .Map(x => x.MapKey("IdCliente"));
+            //.HasForeignKey(x => x.Id_Cliente);
             //PRODUTO
             HasRequired(x => x.Produto)
                 .WithMany()
-                .HasForeignKey(x => x.Id_Produto);
+                .Map(x => x.MapKey("IdProduto"));
+            //.HasForeignKey(x => x.Id_Produto);
             //PACOTE
             HasOptional(x => x.ProdutoPacote)
                 .WithMany()
-                .HasForeignKey(x => x.Id_ProdutoPacote);
-            //OPCIONAL
-            HasOptional(x => x.ProdutoOpcional)
+                .Map(x => x.MapKey("IdProdutoPacote"));
+            //.HasForeignKey(x => x.Id_ProdutoPacote);
+
+            HasMany(x => x.ProdutosOpcionais)
                 .WithMany()
-                .HasForeignKey(x => x.Id_ProdutoOpcional);
+                .Map(x =>
+                {
+                    x.MapLeftKey("IdPedido");
+                    x.MapRightKey("IdProdutoPacote");
+                    x.ToTable("ProdutosOpcionaisPedido");
+                });
         }
     }
 }

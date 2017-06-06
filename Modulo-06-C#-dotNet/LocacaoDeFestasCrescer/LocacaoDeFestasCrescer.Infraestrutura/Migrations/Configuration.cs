@@ -1,4 +1,4 @@
-namespace LocacaoDeFestasCrescer.Infraestrutura.Migrations
+namespace Infraestrutura.Migrations
 {
     using System;
     using System.Data.Entity;

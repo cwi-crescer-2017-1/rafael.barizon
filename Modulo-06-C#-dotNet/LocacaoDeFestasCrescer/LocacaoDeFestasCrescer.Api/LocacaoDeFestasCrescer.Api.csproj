@@ -92,9 +92,12 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\ControllerBasica.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\RegistrarUsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,7 +111,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocacaoDeFestasCrescer.Dominio\LocacaoDeFestasCrescer.Dominio.csproj">
+      <Project>{65be0f76-40e9-41d8-8e7c-1062276e0ad5}</Project>
+      <Name>LocacaoDeFestasCrescer.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocacaoDeFestasCrescer.Infraestrutura\LocacaoDeFestasCrescer.Infraestrutura.csproj">
+      <Project>{43e34915-9319-4930-8227-4024fcdd25ca}</Project>
+      <Name>LocacaoDeFestasCrescer.Infraestrutura</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

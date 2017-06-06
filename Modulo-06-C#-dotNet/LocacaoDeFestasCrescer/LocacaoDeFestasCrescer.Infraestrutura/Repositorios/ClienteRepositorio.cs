@@ -1,6 +1,7 @@
 ﻿using LocacaoDeFestasCrescer.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -20,19 +21,23 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
             return contexto.Clientes.FirstOrDefault(x => x.Cpf == cpf);
         }
 
+        public void IncluirCliente(Cliente cliente)
+        {
+            contexto.Clientes.Add(cliente);
+            contexto.SaveChanges();
+        }
 
-
-
+        public void AlterarCliente(Cliente cliente)
+        {
+            contexto.Entry(cliente).State = EntityState.Modified;
+            contexto.SaveChanges();
+        }
 
         public void Dispose()
         {
             contexto.Dispose();
         }
 
-        public void IncluirCliente(Cliente cliente)
-        {
-            contexto.Clientes.Add(cliente);
-            contexto.SaveChanges();
-        }
+        
     }
 }

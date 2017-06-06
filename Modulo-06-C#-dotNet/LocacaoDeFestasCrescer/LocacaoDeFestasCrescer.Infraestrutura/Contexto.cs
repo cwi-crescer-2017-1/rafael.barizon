@@ -1,4 +1,5 @@
 ﻿using LocacaoDeFestasCrescer.Dominio.Entidades;
+using LocacaoDeFestasCrescer.Infraestrutura.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,17 +14,18 @@ namespace LocacaoDeFestasCrescer.Infraestrutura
         { }
 
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Operador> Operadores { get; set; }
+        //public DbSet<Operador> Operadores { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ProdutoOpcional> ProdutosOpcionais { get; set; }
         public DbSet<ProdutoPacote> ProdutosPacotes { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
-
+       
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ClienteMap());
-            modelBuilder.Configurations.Add(new OperadorMap());
+            modelBuilder.Configurations.Add(new UsuarioMap());
             modelBuilder.Configurations.Add(new ProdutoMap());
             modelBuilder.Configurations.Add(new ProdutoOpcionalMap());
             modelBuilder.Configurations.Add(new ProdutoPacoteMap());

@@ -11,6 +11,7 @@ namespace LocacaoDeFestasCrescer.Infraestrutura
             HasKey(x => x.Id);
 
             Property(x => x.Nome).HasMaxLength(100);
+            Property(x => x.Cpf).HasMaxLength(11).IsFixedLength();
         }
     }
 }
