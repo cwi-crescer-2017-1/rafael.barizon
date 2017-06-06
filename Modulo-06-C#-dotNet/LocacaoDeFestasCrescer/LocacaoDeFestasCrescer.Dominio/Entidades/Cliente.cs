@@ -13,5 +13,19 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
         public string Endereco { get; set; }
         public Genero Genero { get; set; }
         public DateTime DataNascimento { get; set; }
+
+        public bool Validar()
+        {
+            return Nome.Length > 6 ?
+                   Cpf.Length == 11 ?
+                   Endereco != null ?
+                   DataNascimento != null?
+                   true :
+                   true :
+                   true :
+                   true :
+                   false;
+
+        }
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocacaoDeFestasCrescer.Infr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocacaoDeFestasCrescer.Api", "LocacaoDeFestasCrescer.Api\LocacaoDeFestasCrescer.Api.csproj", "{0B46812C-C3A9-4772-AA3F-0F1D2DBFF81A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program_Adicionar_Dados_No_Banco", "Program_Adicionar_Dados_No_Banco\Program_Adicionar_Dados_No_Banco.csproj", "{F9413BB8-1B00-4626-965C-E9C81EBC96C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0B46812C-C3A9-4772-AA3F-0F1D2DBFF81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B46812C-C3A9-4772-AA3F-0F1D2DBFF81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B46812C-C3A9-4772-AA3F-0F1D2DBFF81A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9413BB8-1B00-4626-965C-E9C81EBC96C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9413BB8-1B00-4626-965C-E9C81EBC96C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9413BB8-1B00-4626-965C-E9C81EBC96C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9413BB8-1B00-4626-965C-E9C81EBC96C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
