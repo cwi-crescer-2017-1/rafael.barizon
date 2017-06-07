@@ -1,0 +1,18 @@
+.col-md-3 img{
+  max-width: 250px;
+  min-width: 150px;
+  max-height: 200px;
+  min-height: 100px;
+  width: auto;
+  height: auto;
+
+}
+
+/*.check-with-label:checked + .label-for-check {
+  color: red;
+}*/
+
+input[type="checkbox"]:not(:checked) + .label-for-check {
+  opacity: 0.6;
+    /* styles */
+}
