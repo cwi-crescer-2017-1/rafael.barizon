@@ -7,13 +7,12 @@ using System.Web.Http;
 
 namespace LocacaoDeFestasCrescer.Api.Controllers
 {
-    [RoutePrefix("api/Clientes")]
+    [RoutePrefix("api/clientes")]
     public class ClientesController : ControllerBasica, IDisposable
     {
         private ClienteRepositorio repositorio = new ClienteRepositorio();
 
-        [Route("{cpf}")]
-        [HttpGet]
+        [HttpGet, Route("{cpf}")]
         public HttpResponseMessage GetByCPF(string cpf)
         {
             var Cliente = repositorio.ObterClienteCPF(cpf);
@@ -26,24 +25,28 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
                 return ResponderOK(Cliente);
             }
         }
-        
-        [HttpPost]
-        public HttpResponseMessage Post(Cliente Cliente)
-        {
-            if (Cliente.Validar())
+
+        [HttpPost, Route]
+        public HttpResponseMessage Post([FromBody]Cliente cliente)
             {
-                repositorio.IncluirCliente(Cliente);
-                return ResponderOK(Cliente);
+            if(cliente == null)
+            {
+                return ResponderErro("Cliente Nulo");
+            }
+            if (cliente.Validar())
+            {
+                repositorio.IncluirCliente(cliente);
+                return ResponderOK(cliente);
             }
             else
             {
-                return ResponderErro(Cliente.Mensagens);
+                return ResponderErro(cliente.Mensagens);
             }
         }
 
         [Route("{cpf}")]
         [HttpPut]
-        public HttpResponseMessage Put(string cpf, Cliente cliente)
+        public HttpResponseMessage Put(string cpf, [FromBody]Cliente cliente)
         {
             var clienteAlterar = repositorio.ObterClienteCPF(cpf);
             if (clienteAlterar != null)

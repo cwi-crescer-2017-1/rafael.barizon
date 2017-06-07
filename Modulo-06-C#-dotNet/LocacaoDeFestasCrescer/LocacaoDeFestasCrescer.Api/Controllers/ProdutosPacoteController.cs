@@ -31,7 +31,7 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
                 return ResponderOK(ProdutosPacote);
             }
         }
-        [Route("{int: id}")]
+        [Route("{id:int}")]
         [HttpGet]
         public HttpResponseMessage Get(int id)
         {
