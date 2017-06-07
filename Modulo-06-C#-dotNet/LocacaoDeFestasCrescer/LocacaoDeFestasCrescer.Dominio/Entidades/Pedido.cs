@@ -17,6 +17,7 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
         public DateTime? DataEntregaReal { get; private set; }
         public decimal ValorTotal { get; private set; }
         public decimal? ValorTotalReal { get; private set; }
+        public List<string> Mensagens { get; private set; }
 
         protected Pedido() { }
 
@@ -31,15 +32,20 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
             Produto = produto;
             ProdutoPacote = produtoPacote;
             ProdutosOpcionais = produtosOpcionais;
+            //foreach(var produtoOpcional in ProdutosOpcionais)
+            //{
+            //    produtoOpcional.Quantidade
+            //}
             DataPedido = DateTime.UtcNow;
             DataEntregaPrevista = dataEntregaPrevista;
             CalcularValor();
+            Mensagens = new List<string>();
         }
 
         private void CalcularValor()
         {
             decimal valorTotal = Produto.Valor;
-            
+
             // Somando Valor do Produto Pacote
             if (ProdutoPacote != null)
             {
@@ -69,14 +75,14 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
             int dias;
             int.TryParse(diasPrevistoPedido.ToString(), out dias);
 
-            if(dias == 0)
+            if (dias == 0)
             {
                 ValorTotalReal = ValorTotal;
                 return;
             }
 
             decimal valorTotalReal = Produto.Valor;
-            
+
             // Somando Valor do Produto Pacote
             if (ProdutoPacote != null)
             {
@@ -93,6 +99,21 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
 
             ValorTotalReal = valorTotalReal * dias;
 
+        }
+
+        public bool Validar()
+        {
+            Mensagens.Clear();
+
+            if (Cliente == null)
+                Mensagens.Add("Cliente nao existe.");
+            if (Produto == null)
+                Mensagens.Add("Produto nao existe");
+            if (DataEntregaPrevista < DataPedido)
+                Mensagens.Add("Data de entrega anterior a Data do Pedido");
+            if (ValorTotal == 0.00m)
+                Mensagens.Add("Valor Total do pedido esta com erro");
+            return Mensagens.Count == 0;
         }
 
         public void AlterarPedido(

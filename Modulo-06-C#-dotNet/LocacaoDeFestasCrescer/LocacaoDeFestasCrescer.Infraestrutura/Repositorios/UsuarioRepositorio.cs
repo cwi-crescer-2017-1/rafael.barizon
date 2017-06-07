@@ -23,10 +23,6 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
             contexto.Entry(usuario).State = EntityState.Modified;
             contexto.SaveChanges();
         }
-        //public void Excluir(Usuario usuario)
-        //{
-        //    contexto[usuario.Email] = usuario;
-        //}
 
         public Usuario Obter(string email)
         {

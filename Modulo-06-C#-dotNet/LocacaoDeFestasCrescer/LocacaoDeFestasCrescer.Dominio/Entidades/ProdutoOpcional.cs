@@ -22,7 +22,12 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
         }
         public bool VerificarQuantidade(int QuantidadeProdutoOpcionalBanco)
         {
-            return QuantidadeProdutoOpcionalBanco >= Quantidade;
+            return QuantidadeProdutoOpcionalBanco <= Quantidade;
+        }
+
+        public void AlterarQuantidade (int quantidade)
+        {
+                Quantidade = Quantidade - quantidade;
         }
     }
 }

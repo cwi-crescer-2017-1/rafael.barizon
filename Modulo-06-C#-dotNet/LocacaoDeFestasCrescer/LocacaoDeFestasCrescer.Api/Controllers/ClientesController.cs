@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace LocacaoDeFestasCrescer.Api.Controllers
 {
     [RoutePrefix("api/Clientes")]
-    public class ClientesController : ApiController, IDisposable
+    public class ClientesController : ControllerBasica, IDisposable
     {
         private ClienteRepositorio repositorio = new ClienteRepositorio();
 
@@ -19,13 +19,11 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             var Cliente = repositorio.ObterClienteCPF(cpf);
             if (Cliente == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound,
-                    new { mensagens = new string[] { "CPF nao Encontrado" } });
+                return ResponderErro("CPF nao Encontrado");
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.OK,
-                   new { dados = Cliente });
+                return ResponderOK(Cliente);
             }
         }
         
@@ -35,12 +33,11 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             if (Cliente.Validar())
             {
                 repositorio.IncluirCliente(Cliente);
-                return Request.CreateResponse(HttpStatusCode.OK, new { dados = Cliente });
+                return ResponderOK(Cliente);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest,
-                    new { mensagens = Cliente.Mensagens });
+                return ResponderErro(Cliente.Mensagens);
             }
         }
 
@@ -48,20 +45,20 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
         [HttpPut]
         public HttpResponseMessage Put(string cpf, Cliente cliente)
         {
-            var clienteRepositorio = repositorio.ObterClienteCPF(cpf);
-            if (clienteRepositorio != null)
+            var clienteAlterar = repositorio.ObterClienteCPF(cpf);
+            if (clienteAlterar != null)
             {
-                clienteRepositorio.AlterarCliente(cliente.Nome, cliente.Cpf, cliente.Endereco, cliente.Genero, cliente.DataNascimento);
-                if(clienteRepositorio.Validar())
-                    repositorio.AlterarCliente(clienteRepositorio);
-                // adicionar controller basica 
-                //return ResponderOk(clienteRepositorio);
-                return Request.CreateResponse(HttpStatusCode.OK, new { dados = clienteRepositorio });
+                clienteAlterar.AlterarCliente(cliente.Nome, cliente.Cpf, cliente.Endereco, cliente.Genero, cliente.DataNascimento);
+                if (clienteAlterar.Validar())
+                {
+                    repositorio.AlterarCliente(clienteAlterar);
+                    return ResponderOK(clienteAlterar);
+                }
+                return ResponderErro(clienteAlterar.Mensagens);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest,
-                    new { mensagens = "Cliente não Existe" });
+                return ResponderErro("Cliente não Existe");
             }
         }
 

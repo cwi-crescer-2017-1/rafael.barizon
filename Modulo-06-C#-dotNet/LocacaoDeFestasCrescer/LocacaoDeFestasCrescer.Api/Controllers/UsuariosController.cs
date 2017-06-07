@@ -13,13 +13,13 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
 {
 
     // Permite usuário não autenticados acessarem a controller
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [RoutePrefix("api/Usuarios")]
-    public class UsuarioController : ControllerBasica, IDisposable
+    public class UsuariosController : ControllerBasica, IDisposable
     {
         readonly UsuarioRepositorio _usuarioRepositorio;
 
-        public UsuarioController()
+        public UsuariosController()
         {
             _usuarioRepositorio = new UsuarioRepositorio();
         }
@@ -68,11 +68,13 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             return ResponderOK();
         }
 
+
         // Exige que o usuário se autentique
-        //[BasicAuthorization]
+        [BasicAuthorization]
         // Verificar o que fazer aqui...
-        [HttpGet, Route("usuario")]
-        public HttpResponseMessage Obter()
+        [Route("auth")]
+        [HttpGet]
+        public HttpResponseMessage Get()
         {
             // só pode obter as informações do usuário corrente (logado, autenticado)
             var usuario = _usuarioRepositorio.Obter(Thread.CurrentPrincipal.Identity.Name);
