@@ -11,8 +11,10 @@
 /*.check-with-label:checked + .label-for-check {
   color: red;
 }*/
-
-input[type="checkbox"]:not(:checked) + .label-for-check {
+.label-for-check{
+  transition-duration: .5s;
+}
+input[type="radio"]:not(:checked) + .label-for-check {
   opacity: 0.6;
     /* styles */
 }

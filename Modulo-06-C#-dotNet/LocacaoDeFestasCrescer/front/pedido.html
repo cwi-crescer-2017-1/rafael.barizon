@@ -1,88 +1,101 @@
 <br>
+
+<hr>
+
 <form name="formCadastroPedido" method="post">
     <h3>Produtos</h3>
-      <div class="produtosTela">
+    <hr>
+    <select class="" name="" ng-model="pedido.ProdutoID" ng-value="produto.Id">
+      <option value="{{produto.Id}}" ng-repeat="produto in produtos">{{produto.Festa}} : {{ produto.Valor}}</option>
+    </select>
+
+    <hr>
+<div class="produtosTela">
         <div class="row">
-<input id="festaInfantil" type="checkbox" value="1"  class="check-with-label" style="display:none;">
-<label for="festaInfantil" class="label-for-check">
-          <div class="col-md-3">
-            <div>
-              <img src="https://goo.gl/Z0Zn22" alt="Festa Infantil">
-            </div>
-            <div>
-              <p>
-                Festa Infantil
-              </p>
-            </div>
-          </div>
-</label>
+          <input name="produto" ng-model="valorProduto" id="festaInfantil" type="radio" value="1"  class="check-with-label" style="display:none;">
+          <label for="festaInfantil" class="label-for-check">
+                    <div class="col-md-3">
+                      <div>
+                        <img src="https://goo.gl/Z0Zn22" alt="Festa Infantil">
+                      </div>
+                      <div>
+                        <p>
+                          Festa Infantil
+                        </p>
+                      </div>
+                    </div>
+          </label>
 
-<input id="festaAdulto" type="checkbox" value="2"  class="check-with-label" style="display:none;">
-<label for="festaAdulto" class="label-for-check">
-          <div class="col-md-3">
-            <div>
-              <img src="https://goo.gl/plm3nR" alt="Festa Adulto" >
+          <input name="produto" id="festaAdulto" type="radio" value="2"  class="check-with-label" style="display:none;">
+          <label for="festaAdulto" class="label-for-check">
+                    <div class="col-md-3">
+                      <div>
+                        <img src="https://goo.gl/plm3nR" alt="Festa Adulto" >
 
-            </div>
-            <div>
-              <p>
-                Festa Adulto
-              </p>
-            </div>
-          </div>
-</label>
-<input id="festaCasamento" type="checkbox" value="3" class="check-with-label" style="display:none;">
-<label for="festaCasamento" class="label-for-check">
-          <div class="col-md-3">
-            <div>
-              <img src="https://goo.gl/6VfZbk" alt="Festa Casamento">
-            </div>
-            <div>
-              <p>
-                Festa Casamento
-              </p>
-            </div>
-          </div>
-</label>
+                      </div>
+                      <div>
+                        <p>
+                          Festa Adulto
+                        </p>
+                      </div>
+                    </div>
+          </label>
+          <input name="produto" id="festaCasamento" type="radio" value="3" class="check-with-label" style="display:none;">
+          <label for="festaCasamento" class="label-for-check">
+                    <div class="col-md-3">
+                      <div>
+                        <img src="https://goo.gl/6VfZbk" alt="Festa Casamento">
+                      </div>
+                      <div>
+                        <p>
+                          Festa Casamento
+                        </p>
+                      </div>
+                    </div>
+          </label>
 
-<input id="festaFormatura" type="checkbox" value="4" class="check-with-label" style="display:none;">
-<label for="festaFormatura" class="label-for-check">
-          <div class="col-md-3">
-            <div>
-              <img src="https://goo.gl/6LEvNz" alt="Festa Formatura">
-            </div>
-            <div>
-              <p>
-                Festa Formatura
-              </p>
-            </div>
-          </div>
-</label>
+          <input name="produto" id="festaFormatura" type="radio" value="4" class="check-with-label" style="display:none;">
+          <label for="festaFormatura" class="label-for-check">
+                    <div class="col-md-3">
+                      <div>
+                        <img src="https://goo.gl/6LEvNz" alt="Festa Formatura">
+                      </div>
+                      <div>
+                        <p>
+                          Festa Formatura
+                        </p>
+                      </div>
+                    </div>
+          </label>
         </div>
-        <!-- <select ng-model="pedido.Produto" ng-value="pedido.Produto">
-          <option value="0">Festa Infantil</option>
-          <option value="1">Festa Alduto</option>
-          <option value="2">Festa Casamento</option>
-          <option value="2">Festa Formatura</option>
-        </select> -->
-      </div>
-    <hr>
-    <h3>Produtos Pacote</h3>
-    <div class="pacote">
-      <div>Decoracao</div>
-      <div>Decoracao + Intalacao</div>
-      <div>Decoracao + Intalacao + equipe</div>
-    </div>
-    <hr>
-    <h3>Produtos Opcionais</h3>
-    <div class="opcionais">
-      <div>Piscina de Bolinhas</div>
-      <div>Carrinho de Algodão Doce</div>
-      <div>Cama Elástica</div>
-      <div>Escorregador Inflável</div>
-    </div>
-    <hr>
+</div>
+              <hr>
+              <h3>Produtos Pacote</h3>
+                <hr>
+              <select class="" name="" ng-model="pedido.ProdutoPacoteID" ng-value="pacote.Id">
+                <option value="{{pacote.Id}}" ng-repeat="pacote in pacotes">{{pacote.Nome}} : {{ pacote.Descricao}} : {{pacote.Valor}}</option>
+              </select>
+
+              <div class="pacote">
+                <div>Decoracao</div>
+                <div>Decoracao + Intalacao</div>
+                <div>Decoracao + Intalacao + equipe</div>
+              </div>
+              <hr>
+              <h3>Produtos Opcionais</h3>
+              <hr>
+            <select class="" name="" ng-model="pedido.ProdutosOpcionaisIDs" ng-value="opcional.Id" multiple>
+              <option value="{{opcional.Id}}" ng-repeat="opcional in opcionais">{{opcional.Descricao}}: {{opcional.Valor}}</option>
+            </select>
+              <div class="opcionais">
+                <div>Piscina de Bolinhas</div>
+                <div>Carrinho de Algodão Doce</div>
+                <div>Cama Elástica</div>
+                <div>Escorregador Inflável</div>
+              </div>
+              <hr>
 </form>
+
 <h3>Dados do Cliente</h3>
 <div class="cadastroCliente">
 <form name="formCadastroDeCliente" novalidate ng-submit="cadastrarCliente(cliente)">
@@ -90,7 +103,7 @@
     <div class="col-md-6">
       <label>CPF: </label>
       <input type="text" ng-model="cliente.Cpf" required ng-minlength="11" maxlength="11">
-      <button type="submit" ng-click="verificarCPF(cliente.Cpf)" >Verificar CPF</button>
+      <button type="button" ng-click="verificarCPF(cliente.Cpf)" >Verificar CPF</button>
     </div>
   </div>
   <div class="row">
@@ -123,9 +136,23 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <button type="submit" ng-disabled="formCadastroDeCliente.$invalid">Cadastrar</button>
+      <button type="submit" ng-disabled="formCadastroDeCliente.$invalid">Cadastrar Cliente</button>
       <!-- <button type="submit" ng-disabled="formCadastroDeCliente.$invalid" ng-click="alterarCliente(cliente)">Alterar</button> -->
     </div>
   </div>
 </form>
+<label>Data de Entrega: </label>
+<input type="date" ng-model="pedido.DataEntregaPrevista" >
+
+<hr>
+
+produtoId SELECIONADO : {{pedido.produtoId}} <br>
+pacoteId SELECIONADO : {{pedido.pacoteId}} <br>
+opcionalId SELECIONADO : {{pedido.ProdutosOpcionaisIDs}} <br>
+ClienteCPF SELECIONADO: {{pedido.ClienteCPF}} <br>
+DataEntregaPrevista SELECIONADO: {{pedido.DataEntregaPrevista}} <br>
+<hr>
+<button type="button" ng-click="cadastrarPedido(pedido)">Cadastrar Pedido</button>
+<button type="button" ng-click="gerarOrcamento(pedido)">Gerar Orcamento do Pedido</button>
+<hr>orcamento {{orcamento}} <hr>
 </div>

@@ -1,4 +1,4 @@
-angular.module('app').config(function ($routeProvider) {
+angular.module('festaCrescer').config(function ($routeProvider) {
 
   $routeProvider
 

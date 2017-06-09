@@ -3,18 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>Locacao de Festas Crescer</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://code.angularjs.org/1.6.4/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js" type="text/javascript"></script>
+
+    <!-- Autenticação -->
+    <script src="js/auth.module.js" type="text/javascript"></script>
+
+    <script src="js/app.module.js" type="text/javascript"></script>
+    <script src="js/app.route.js" type="text/javascript"></script>
     <script src="js/modulo.js"></script>
+
+    <script src="js/login.controller.js" type="text/javascript"></script>
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
+    <!-- <script src="js/service.js"></script>
+    <script src="js/controller.js"></script> -->
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
 
   <div class="container">
-
+<!-- {{usuario}} -->
     <ng-view></ng-view>
 
   </div>

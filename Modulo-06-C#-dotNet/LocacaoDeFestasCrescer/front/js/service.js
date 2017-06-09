@@ -2,30 +2,57 @@ FestaCrescer.factory('festaCrescerService', function($http) {
 
   let urlBase = 'http://localhost:49793/api/';
 //http://localhost:49793/api/clientes/12345678903
+
+/// GET ///
   function getByCPF(cpf){
     return $http.get(urlBase + 'clientes/' + cpf);
   }
-  function cadastrarCliente(cliente){
-    return $http.post(urlBase + 'clientes/', cliente);
-  }
   function getProdutos(){
-    return $http.get(urlBase + '/produtos');
+    return $http.get(urlBase + 'produtos');
   };
-  function getAulaPorId(id) {
-    return $http.get(urlBase + '/aula/' + id);
+  function getPacotes() {
+    return $http.get(urlBase + 'produtosPacote');
   };
-  function atualizar(aula){
-    return $http.put(urlBase + '/aula/' + aula.id, aula);
+  function getOpcionais() {
+    return $http.get(urlBase + 'produtosOpcional');
   };
-  function incluir(aula){
-    return $http.post(urlBase + '/aula', aula);
+  function getAtrasados() {
+    return $http.get(urlBase + 'pedidos/relatorioAtrasos');
   };
-  function deletar(aula){
-    return $http.delete(urlBase + '/aula/' + aula.id)
+  function obterRelatorio30Dias(data, gerente) {
+    return $http.get(urlBase + 'pedidos/relatorioMensal/'+ gerente +'/'+ data);
+  };
+  function gerarOrcamento(model) {
+    return $http.post(urlBase + 'pedidos/orcamento', model);
+  };
+  // function finalizarPedido(id){
+  //   return $http.get(urlBase + 'pedidos/' + id);
+  // }
+/// POST ///
+  function cadastrarCliente(cliente){
+    return $http.post(urlBase + 'clientes', cliente);
   }
+  function cadastrarPedido(modelPedido){
+    return $http.post(urlBase + 'pedidos', modelPedido);
+  }
+
+  function finalizarPedido(id){
+    return $http.put(urlBase + 'pedidos/' + id);
+  }
+
+
   return {
     getByCPF: getByCPF,
+    getProdutos: getProdutos,
+    getPacotes: getPacotes,
+    getOpcionais: getOpcionais,
+    getAtrasados: getAtrasados,
+    gerarOrcamento: gerarOrcamento,
+    obterRelatorio30Dias: obterRelatorio30Dias,
+
+    finalizarPedido:finalizarPedido,
     cadastrarCliente: cadastrarCliente,
-    getProdutos: getProdutos
+    cadastrarPedido: cadastrarPedido
+
   };
 });

@@ -1,0 +1,12 @@
+{{usuario}}
+oiasDOsiAodias
+
+<div ng-show="usuario.Gerente">
+<ul>
+  <li ng-repeat="re in relatorioMensal">{{re}}</li>
+</ul>
+  {{relatorioMensal}}
+
+<input ng-model="dataRelatorio" type="date">
+<button type="button" ng-click="obterRelatorio(dataRelatorio, usuario)">GerarRelatorio</button>
+</div>

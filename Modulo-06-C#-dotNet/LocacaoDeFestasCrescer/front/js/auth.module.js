@@ -47,13 +47,13 @@ angular.module('auth').factory('authService', function (authConfig, $http, $q, $
           $location.path(urlPrivado);
         }
 
-        // resolve promise com sucesso 
+        // resolve promise com sucesso
         deferred.resolve(response);
       },
 
       // Erro
       function (response) {
-        // resolve promise com erro 
+        // resolve promise com erro
         deferred.reject(response);
       });
 

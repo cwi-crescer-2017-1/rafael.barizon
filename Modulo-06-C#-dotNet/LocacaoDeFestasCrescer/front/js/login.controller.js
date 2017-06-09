@@ -1,5 +1,5 @@
-angular.module('app').controller('LoginController', function ($scope, authService) {
-
+angular.module('festaCrescer').controller('LoginController2', function ($scope, authService, $rootScope) {
+$scope.controller="LoginController2";
   $scope.login = function (usuario) {
 
     authService.login(usuario)
@@ -7,6 +7,7 @@ angular.module('app').controller('LoginController', function ($scope, authServic
         function (response) {
           console.log(response);
           alert('Login com sucesso!');
+          $rootScope.usuario = response.data.dados;
 
         },
         function (response) {
