@@ -1,13 +1,14 @@
 ﻿using LocacaoDeFestasCrescer.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
 {
-    public class PedidoRepositorio: IDisposable
+    public class PedidoRepositorio : IDisposable
     {
         private Contexto contexto = new Contexto();
 
@@ -16,12 +17,20 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
             return contexto.Pedidos.ToList();
         }
 
-        public List<Pedido> ObterRelatorio(DateTime data)
+        public dynamic ObterRelatorio(DateTime data)
         {
-            return contexto.Pedidos
-                .Where( x => 
-                            x.DataEntregaReal.Value != null &&
-                            x.DataEntregaReal.Value.Subtract(data).TotalDays <= 30.00)
+            var data2 = data.AddDays(-30.00);
+           return contexto.Pedidos
+                .Where(x =>
+                           x.DataEntregaReal.Value != null &&
+                           x.DataEntregaReal.Value <= data &&
+                           x.DataEntregaReal.Value >= data2)
+                           .Select(x => new
+                           {
+                               Festa = x.Produto.Festa.ToString(),
+                               ClientePedido = x.Cliente.Nome,
+                               ValorFinal = x.ValorTotalReal
+                           })
                 .ToList();
         }
 
@@ -31,19 +40,51 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
                 .Where(x =>
                        x.DataEntregaReal == null &&
                        x.DataEntregaPrevista <= DateTime.UtcNow)
-                       .OrderByDescending(x => x.DataEntregaReal)
+                .OrderBy(x => x.DataEntregaPrevista)
+                
                        .ToList();
         }
 
         public void Criar(Pedido pedido)
         {
             contexto.Pedidos.Add(pedido);
+            contexto.Entry(pedido.Cliente).State = System.Data.Entity.EntityState.Unchanged;
+            contexto.Entry(pedido.Produto).State = System.Data.Entity.EntityState.Unchanged;
+
+            if (pedido.ProdutoPacote != null)
+            {
+                contexto.Entry(pedido.ProdutoPacote).State = System.Data.Entity.EntityState.Modified;
+            }
+
+            if (pedido.ProdutosOpcionais != null)
+            {
+                foreach (var produtoOpcional in pedido.ProdutosOpcionais)
+                {
+                    contexto.Entry(produtoOpcional).State = System.Data.Entity.EntityState.Unchanged;
+                }
+            }
+
             contexto.SaveChanges();
         }
 
         public void Dispose()
         {
             contexto.Dispose();
+        }
+
+        public Pedido ObterById(int id)
+        {
+            return contexto.Pedidos.Where(x => x.Id == id)
+                .Include(x => x.Produto)
+                .Include(x => x.ProdutoPacote)
+                .Include(x => x.ProdutosOpcionais)
+                .FirstOrDefault();
+        }
+
+        public void FinalizarPedido(Pedido pedido)
+        {
+            contexto.Entry(pedido).State = EntityState.Modified;
+            contexto.SaveChanges();
         }
     }
 }

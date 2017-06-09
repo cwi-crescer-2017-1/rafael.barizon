@@ -62,20 +62,20 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
 
             var diasPrevistoPedido = DataEntregaPrevista.Subtract(DataPedido);
             int dias;
-            int.TryParse(diasPrevistoPedido.ToString(), out dias);
+            int.TryParse(diasPrevistoPedido.Days.ToString(), out dias);
 
             // ValorTotal determinado
             ValorTotal = valorTotal * dias;
         }
 
-        private void CalcularValorReal()
+        public void CalcularValorReal()
         {
             DataEntregaReal = DateTime.UtcNow;
             var diasPrevistoPedido = DataEntregaReal.Value.Subtract(DataEntregaPrevista);
             int dias;
-            int.TryParse(diasPrevistoPedido.ToString(), out dias);
-
-            if (dias == 0)
+            int.TryParse(diasPrevistoPedido.Days.ToString(), out dias);
+            
+            if (dias < 1)
             {
                 ValorTotalReal = ValorTotal;
                 return;
@@ -97,7 +97,7 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
                 }
             }
 
-            ValorTotalReal = valorTotalReal * dias;
+            ValorTotalReal = (valorTotalReal * dias) + ValorTotal;
 
         }
 

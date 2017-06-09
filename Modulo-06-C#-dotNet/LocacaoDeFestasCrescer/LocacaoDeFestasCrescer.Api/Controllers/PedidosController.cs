@@ -30,12 +30,12 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             }
             return ResponderOK(pedidos);
         }
-        [Route("relatorioMensal/{data:datetime}")]
+        [Route("relatorioMensal/{gerente:bool}/{data:datetime}")]
         [HttpGet]
-        public HttpResponseMessage ObterRelatorioMensal(Usuario gerente, DateTime data)
+        public HttpResponseMessage ObterRelatorioMensal(bool gerente, DateTime data)
         {
 
-            if (gerente.Gerente == false)
+            if (gerente == false)
             {
                 return ResponderErro("Usuario nao eh Gerente");
             }
@@ -59,7 +59,7 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
         [HttpGet]
         public HttpResponseMessage ObterRelatorioMensal(Usuario gerente)
         {
-            if (gerente.Gerente == false)
+            if (gerente==null || gerente.Gerente == false)
             {
                 return ResponderErro("Usuario nao eh Gerente");
             }
@@ -77,20 +77,20 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Route]
         public HttpResponseMessage Post([FromBody]RegistrarPedidoModel model)
         {
+            //return ResponderOK();
             var cliente = new ClienteRepositorio().ObterClienteCPF(model.ClienteCPF);
-
             var produto = new ProdutoRepositorio().ObterById(model.ProdutoID);
             ProdutoPacote produtoPacote = null;
-            if(model.ProdutoPacoteID!= null)
+            if (model.ProdutoPacoteID != null)
             {
                 produtoPacote = new ProdutoPacoteRepositorio().ObterById(model.ProdutoPacoteID.Value);
             }
-                
+
             List<ProdutoOpcional> produtosOpcionais = null;
-            if (model.ProdutosOpcionaisIDs == null)
+            if (model.ProdutosOpcionaisIDs != null)
             {
                 produtosOpcionais = new List<ProdutoOpcional>();
                 foreach (var idOpcionais in model.ProdutosOpcionaisIDs)
@@ -103,7 +103,7 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
                 }
             }
 
-            var pedido = new Pedido(cliente,produto , produtoPacote, produtosOpcionais, model.DataEntregaPrevista);
+            var pedido = new Pedido(cliente, produto, produtoPacote, produtosOpcionais, model.DataEntregaPrevista);
 
             if (pedido.Validar())
             {
@@ -113,10 +113,10 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             return ResponderErro(pedido.Mensagens);
         }
         [Route("orcamento")]
-        [HttpGet]
+        [HttpPost]
         public HttpResponseMessage GetOrcamento([FromBody]RegistrarPedidoModel model)
         {
-            var cliente = new ClienteRepositorio().ObterClienteCPF(model.ClienteCPF);
+            var cliente = new Cliente();
 
             var produto = new ProdutoRepositorio().ObterById(model.ProdutoID);
             ProdutoPacote produtoPacote = null;
@@ -126,7 +126,7 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             }
 
             List<ProdutoOpcional> produtosOpcionais = null;
-            if (model.ProdutosOpcionaisIDs == null)
+            if (model.ProdutosOpcionaisIDs != null)
             {
                 produtosOpcionais = new List<ProdutoOpcional>();
                 foreach (var idOpcionais in model.ProdutosOpcionaisIDs)
@@ -144,7 +144,22 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             return ResponderOK(pedido.ValorTotal);
         }
 
-        
+        [HttpPut, Route("{id:int}")]
+        public HttpResponseMessage finalizarPedido(int id)
+        {
+            var pedido = _pedidoRepositorio.ObterById(id);
+            if(pedido == null)
+            {
+                return ResponderErro("Pedido nao encontrado para este ID");
+            }
+            else
+            {
+                pedido.CalcularValorReal();
+                _pedidoRepositorio.FinalizarPedido(pedido);
+                return ResponderOK(pedido);
+            }
+
+        }
         protected override void Dispose(bool disposing)
         {
             _pedidoRepositorio.Dispose();

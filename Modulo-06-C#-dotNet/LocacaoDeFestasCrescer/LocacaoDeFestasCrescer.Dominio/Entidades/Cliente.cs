@@ -15,7 +15,7 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
         public DateTime DataNascimento { get; set; }
         public List<string> Mensagens { get; private set; }
 
-        protected Cliente () { }
+        public Cliente () { }
 
         public Cliente ( string nome, string cpf, string endereco, Genero genero, DateTime dataNascimento)
         {
