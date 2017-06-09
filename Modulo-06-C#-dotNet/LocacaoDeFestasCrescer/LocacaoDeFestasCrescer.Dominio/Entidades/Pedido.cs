@@ -65,7 +65,14 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
             int.TryParse(diasPrevistoPedido.Days.ToString(), out dias);
 
             // ValorTotal determinado
-            ValorTotal = valorTotal * dias;
+            if(dias > 0)
+            {
+                ValorTotal = valorTotal * dias;
+            }
+            else
+            {
+                ValorTotal = valorTotal;
+            }
         }
 
         public void CalcularValorReal()

@@ -1,3 +1,11 @@
+.container{
+  padding-top: 60px;
+}
+.col-md-1{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
 .col-md-3 img{
   max-width: 250px;
   min-width: 150px;

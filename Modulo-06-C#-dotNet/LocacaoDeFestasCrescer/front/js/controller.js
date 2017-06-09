@@ -1,3 +1,6 @@
+FestaCrescer.controller('logoutController', function ($scope, authService){
+  $scope.logout = authService.logout;
+})
 FestaCrescer.controller('LoginController', function($scope, $routeParams, festaCrescerService, $location, $rootScope){
   $scope.controller = 'LoginController';
   console.log("OIIIIIII");
@@ -16,6 +19,7 @@ FestaCrescer.controller('LoginController', function($scope, $routeParams, festaC
   $scope.obterRelatorio = obterRelatorio30Dias;
   $scope.getFinalizar = getFinalizar;
   $scope.usuario = $rootScope.usuario;
+  $scope.valorGeral = 0;
   console.log($location.path());
 
   console.log("url agora: "  );
@@ -24,6 +28,11 @@ FestaCrescer.controller('LoginController', function($scope, $routeParams, festaC
     data = data.toISOString().split('T')[0];
     festaCrescerService.obterRelatorio30Dias(data, usuario.Gerente).then(function (response){
       $scope.relatorioMensal = response.data.dados;
+  $scope.valorGeral = 0;
+      for(a of $scope.relatorioMensal){
+        $scope.valorGeral += a.ValorFinal;
+        console.log($scope.valorGeral);
+      }
     }).catch( function (){
       console.log("DEU MERDA PRA PEGAR RELATORIO");
     })
@@ -35,9 +44,9 @@ FestaCrescer.controller('LoginController', function($scope, $routeParams, festaC
     atualizarPacotesNaTela();
     atualizarOpcionaisNaTela();
   }
-// if($location.path() === '/relatorio'){
-//   atualizarAtrasadosNaTela();
-// }
+
+  atualizarAtrasadosNaTela();
+
 
   function getFinalizar(finalizar){
     festaCrescerService.finalizarPedido(finalizar).then( function (response){
@@ -118,6 +127,7 @@ FestaCrescer.controller('LoginController', function($scope, $routeParams, festaC
   }
 
     function atualizarAtrasadosNaTela(){
+      console.log("entro pra epgar atrasados");
       festaCrescerService.getAtrasados().then(function(response){
         $scope.atrasados = response.data.dados;
         console.log("ACHOOOOOOO");

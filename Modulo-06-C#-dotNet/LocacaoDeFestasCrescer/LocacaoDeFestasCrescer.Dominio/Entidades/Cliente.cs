@@ -37,7 +37,8 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
 
         public bool Validar()
         {
-            Mensagens.Clear();
+            if(Mensagens != null)
+                Mensagens.Clear();
 
             if(string.IsNullOrEmpty(Nome) || Nome.Length < 6 )
                 Mensagens.Add("Nome é inválido.");
@@ -48,7 +49,7 @@ namespace LocacaoDeFestasCrescer.Dominio.Entidades
             if (DataNascimento == null)
                 Mensagens.Add("Data de Nascimento é inválida.");
 
-            return Mensagens.Count == 0;
+            return  Mensagens == null || Mensagens.Count == 0;
 
         }
     }

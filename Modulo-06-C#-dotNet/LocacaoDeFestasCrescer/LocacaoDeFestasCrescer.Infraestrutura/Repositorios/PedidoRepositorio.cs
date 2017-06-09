@@ -27,6 +27,7 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
                            x.DataEntregaReal.Value >= data2)
                            .Select(x => new
                            {
+                               PedidoId = x.Id,
                                Festa = x.Produto.Festa.ToString(),
                                ClientePedido = x.Cliente.Nome,
                                ValorFinal = x.ValorTotalReal
@@ -34,14 +35,22 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
                 .ToList();
         }
 
-        public List<Pedido> ObterAtrasos()
+        public dynamic ObterAtrasos()
         {
             return contexto.Pedidos
                 .Where(x =>
                        x.DataEntregaReal == null &&
                        x.DataEntregaPrevista <= DateTime.UtcNow)
                 .OrderBy(x => x.DataEntregaPrevista)
-                
+                .Select(x => new
+                {
+                    PedidoId = x.Id,
+                    Festa = x.Produto.Festa.ToString(),
+                    ClientePedido = x.Cliente.Nome,
+                    Pacote = x.ProdutoPacote.Descricao,
+                    Opcionais = x.ProdutosOpcionais,
+                    Valor = x.ValorTotal
+                })
                        .ToList();
         }
 
@@ -53,14 +62,14 @@ namespace LocacaoDeFestasCrescer.Infraestrutura.Repositorios
 
             if (pedido.ProdutoPacote != null)
             {
-                contexto.Entry(pedido.ProdutoPacote).State = System.Data.Entity.EntityState.Modified;
+                contexto.Entry(pedido.ProdutoPacote).State = System.Data.Entity.EntityState.Unchanged;
             }
 
             if (pedido.ProdutosOpcionais != null)
             {
                 foreach (var produtoOpcional in pedido.ProdutosOpcionais)
                 {
-                    contexto.Entry(produtoOpcional).State = System.Data.Entity.EntityState.Unchanged;
+                    contexto.Entry(produtoOpcional).State = System.Data.Entity.EntityState.Modified;
                 }
             }
 

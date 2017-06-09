@@ -54,26 +54,19 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
             }
 
         }
-        
+
         [Route("relatorioAtrasos")]
         [HttpGet]
-        public HttpResponseMessage ObterRelatorioMensal(Usuario gerente)
+        public HttpResponseMessage ObterRelatorioMensal()
         {
-            if (gerente==null || gerente.Gerente == false)
+            var atrasados = _pedidoRepositorio.ObterAtrasos();
+            if (atrasados == null)
             {
-                return ResponderErro("Usuario nao eh Gerente");
+                return ResponderErro("Nao existem clientes atrasados");
             }
             else
             {
-                var atrasados = _pedidoRepositorio.ObterAtrasos();
-                if (atrasados == null)
-                {
-                    return ResponderErro("Nao existem clientes atrasados");
-                }
-                else
-                {
-                    return ResponderOK(atrasados);
-                }
+                return ResponderOK(atrasados);
             }
         }
 
@@ -148,9 +141,9 @@ namespace LocacaoDeFestasCrescer.Api.Controllers
         public HttpResponseMessage finalizarPedido(int id)
         {
             var pedido = _pedidoRepositorio.ObterById(id);
-            if(pedido == null)
+            if (pedido == null || pedido.DataEntregaReal != null)
             {
-                return ResponderErro("Pedido nao encontrado para este ID");
+                return ResponderErro("Pedido nao encontrado para este ID ou ja esta finalizado");
             }
             else
             {

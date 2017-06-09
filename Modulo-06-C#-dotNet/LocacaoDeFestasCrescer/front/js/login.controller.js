@@ -8,11 +8,14 @@ $scope.controller="LoginController2";
           console.log(response);
           alert('Login com sucesso!');
           $rootScope.usuario = response.data.dados;
+          $rootScope.logout = authService.logout;
+          $rootScope.logado = true;
 
         },
         function (response) {
           console.log(response);
           alert('Erro no Login!');
+          $rootScope.logado = false;
         });
   };
 

@@ -10,7 +10,7 @@ angular.module('auth').config(function ($httpProvider) {
 });
 
 // Service de autenticação
-angular.module('auth').factory('authService', function (authConfig, $http, $q, $location, $localStorage) {
+angular.module('auth').factory('authService', function (authConfig, $http, $q, $location, $localStorage, $rootScope) {
 
   // Utiliza constant de configuração
   let urlUsuario = authConfig.urlUsuario;
@@ -65,16 +65,16 @@ angular.module('auth').factory('authService', function (authConfig, $http, $q, $
 
   // LOGOUT (sem retorno)
   function logout() {
-
+    console.log("entro aqui pra limpa o logado");
     // Limpa localstorage e http headers adicionados
     delete $localStorage.usuarioLogado;
-    delete $localStorage.Authorization;
+    delete $localStorage.headerAuth;
     $http.defaults.headers.common.Authorization = undefined;
-
+    $rootScope.logado = false;
     // Redireciona se tiver uma url configurada
-    if (urlLogout) {
-      $location.path(urlLogout);
-    }
+    // if (urlLogout) {
+      $location.path(urlLogin);
+    // }
   };
 
   function getUsuario() {

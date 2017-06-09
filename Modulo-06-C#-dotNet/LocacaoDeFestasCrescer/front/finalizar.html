@@ -1,4 +1,37 @@
-<input type="text" ng-model="finalizar">
-<button type="button" ng-click="getFinalizar(finalizar)">Finalizar Pedido</button>
 
-{{pedido}}
+
+
+<div class="row">
+  <div class="col-md-1">
+    <strong>
+      ID Pedido:
+    </strong>
+  </div>
+  <div class="col-md-2">
+    <input class="form-control" type="text" ng-model="finalizar">
+  </div>
+  <div class="col-md-2">
+    <button class="btn" type="button" ng-click="getFinalizar(finalizar)">Finalizar Pedido</button>
+  </div>
+</div>
+
+
+
+
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Pedido Id</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{pedido.Id}}</td>
+      <td>{{'R$' + pedido.ValorTotalReal}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>

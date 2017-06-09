@@ -1,12 +1,43 @@
-{{usuario}}
-oiasDOsiAodias
+<h1>Relatorio de 30 dias conforme data</h1>
 
-<div ng-show="usuario.Gerente">
-<ul>
-  <li ng-repeat="re in relatorioMensal">{{re}}</li>
-</ul>
-  {{relatorioMensal}}
-
-<input ng-model="dataRelatorio" type="date">
-<button type="button" ng-click="obterRelatorio(dataRelatorio, usuario)">GerarRelatorio</button>
+<div class="row">
+  <div class="col-md-1">
+    <strong>
+      Data Pesquisa:
+    </strong>
+  </div>
+  <div class="col-md-2">
+    <input class="form-control" ng-model="dataRelatorio" type="date">
+  </div>
+  <div class="col-md-2">
+    <button class="btn" type="button" ng-click="obterRelatorio(dataRelatorio, usuario)">GerarRelatorio</button>
+  </div>
 </div>
+<!-- <button type="button" class="btn">Basic</button> -->
+<div ng-show="$root.usuario.Gerente">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Pedido Id</th>
+        <th>Festa</th>
+        <th>Cliente</th>
+        <th>Valor Final</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pedido in relatorioMensal">
+        <td>{{pedido.PedidoId}}</td>
+        <td>{{pedido.Festa}}</td>
+        <td>{{pedido.ClientePedido}}</td>
+        <td>{{'R$' + pedido.ValorFinal}}</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><strong>Valor Total Final: </strong></td>
+        <td>{{'R$' + valorGeral}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>

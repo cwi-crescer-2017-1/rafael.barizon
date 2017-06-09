@@ -1,16 +1,20 @@
 <br>
 
-<hr>
+<div class="form-group">
 
 <form name="formCadastroPedido" method="post">
     <h3>Produtos</h3>
     <hr>
-    <select class="" name="" ng-model="pedido.ProdutoID" ng-value="produto.Id">
-      <option value="{{produto.Id}}" ng-repeat="produto in produtos">{{produto.Festa}} : {{ produto.Valor}}</option>
+    <select class="form-control" name="" ng-model="pedido.ProdutoID" >
+      <option value="1">Infantil: R$800.00</option>
+      <option value="2">Adulto: R$1200.00</option>
+      <option value="3">Casamento: R$1600.00</option>
+      <option value="4">Formatura: R$2000.00</option>
+      <!-- <option value="{{produto.Id}}" ng-repeat="produto in produtos">{{produto.Festa}} : {{ produto.Valor}}</option> -->
     </select>
 
     <hr>
-<div class="produtosTela">
+<!-- <div class="produtosTela">
         <div class="row">
           <input name="produto" ng-model="valorProduto" id="festaInfantil" type="radio" value="1"  class="check-with-label" style="display:none;">
           <label for="festaInfantil" class="label-for-check">
@@ -68,60 +72,48 @@
                     </div>
           </label>
         </div>
-</div>
+</div> -->
               <hr>
               <h3>Produtos Pacote</h3>
                 <hr>
-              <select class="" name="" ng-model="pedido.ProdutoPacoteID" ng-value="pacote.Id">
+              <select class="form-control" name="" ng-model="pedido.ProdutoPacoteID" ng-value="pacote.Id">
                 <option value="{{pacote.Id}}" ng-repeat="pacote in pacotes">{{pacote.Nome}} : {{ pacote.Descricao}} : {{pacote.Valor}}</option>
               </select>
-
-              <div class="pacote">
-                <div>Decoracao</div>
-                <div>Decoracao + Intalacao</div>
-                <div>Decoracao + Intalacao + equipe</div>
-              </div>
               <hr>
               <h3>Produtos Opcionais</h3>
-              <hr>
-            <select class="" name="" ng-model="pedido.ProdutosOpcionaisIDs" ng-value="opcional.Id" multiple>
+
+            <select class="form-control" name="" ng-model="pedido.ProdutosOpcionaisIDs" ng-value="opcional.Id" multiple>
               <option value="{{opcional.Id}}" ng-repeat="opcional in opcionais">{{opcional.Descricao}}: {{opcional.Valor}}</option>
             </select>
-              <div class="opcionais">
-                <div>Piscina de Bolinhas</div>
-                <div>Carrinho de Algodão Doce</div>
-                <div>Cama Elástica</div>
-                <div>Escorregador Inflável</div>
-              </div>
               <hr>
 </form>
 
 <h3>Dados do Cliente</h3>
-<div class="cadastroCliente">
+<!-- <div class="cadastroCliente"> -->
 <form name="formCadastroDeCliente" novalidate ng-submit="cadastrarCliente(cliente)">
   <div class="row">
     <div class="col-md-6">
       <label>CPF: </label>
-      <input type="text" ng-model="cliente.Cpf" required ng-minlength="11" maxlength="11">
-      <button type="button" ng-click="verificarCPF(cliente.Cpf)" >Verificar CPF</button>
+      <input class="form-control" type="text" ng-model="cliente.Cpf" required ng-minlength="11" maxlength="11">
+      <button  class="btn" type="button" ng-click="verificarCPF(cliente.Cpf)" >Verificar CPF</button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <label>Nome: </label>
-      <input type="text" ng-model="cliente.Nome" required>
+      <input class="form-control" type="text" ng-model="cliente.Nome" required>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <label>Endereco: </label>
-      <input type="text"ng-model="cliente.Endereco" required>
+      <input class="form-control" type="text"ng-model="cliente.Endereco" required>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
       <label>Genero: </label>
-      <select ng-model="cliente.Genero" ng-value="cliente.Genero" >
+      <select class="form-control" ng-model="cliente.Genero" ng-value="cliente.Genero" >
         <option value="0">Nao Informado</option>
         <option value="1">Masculino</option>
         <option value="2">Feminino</option>
@@ -131,28 +123,29 @@
   <div class="row">
     <div class="col-md-6">
       <label>{{cliente.DataNascimento}}Data de Nascimento: </label>
-      <input type="date" ng-model="cliente.DataNascimento" required>
+      <input class="form-control" type="date" ng-model="cliente.DataNascimento" required>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <button type="submit" ng-disabled="formCadastroDeCliente.$invalid">Cadastrar Cliente</button>
+      <button class="btn" type="submit" ng-disabled="formCadastroDeCliente.$invalid">Cadastrar Cliente</button>
       <!-- <button type="submit" ng-disabled="formCadastroDeCliente.$invalid" ng-click="alterarCliente(cliente)">Alterar</button> -->
     </div>
   </div>
 </form>
 <label>Data de Entrega: </label>
-<input type="date" ng-model="pedido.DataEntregaPrevista" >
+<input class="form-control" type="date" ng-model="pedido.DataEntregaPrevista" >
 
 <hr>
-
-produtoId SELECIONADO : {{pedido.produtoId}} <br>
-pacoteId SELECIONADO : {{pedido.pacoteId}} <br>
+<strong>
+produtoId SELECIONADO : {{pedido.ProdutoID}} <br>
+pacoteId SELECIONADO : {{pedido.ProdutoPacoteID}} <br>
 opcionalId SELECIONADO : {{pedido.ProdutosOpcionaisIDs}} <br>
 ClienteCPF SELECIONADO: {{pedido.ClienteCPF}} <br>
-DataEntregaPrevista SELECIONADO: {{pedido.DataEntregaPrevista}} <br>
+DataEntregaPrevista SELECIONADO: {{pedido.DataEntregaPrevista}} <br></strong>
 <hr>
-<button type="button" ng-click="cadastrarPedido(pedido)">Cadastrar Pedido</button>
-<button type="button" ng-click="gerarOrcamento(pedido)">Gerar Orcamento do Pedido</button>
-<hr>orcamento {{orcamento}} <hr>
+<button class="btn" type="button" ng-click="cadastrarPedido(pedido)">Cadastrar Pedido</button>
+<button class="btn" type="button" ng-click="gerarOrcamento(pedido)">Gerar Orcamento do Pedido</button>
+<hr><strong>Total Orcamento</strong> {{': R$'+orcamento}} <hr>
 </div>
+<!-- </div> -->

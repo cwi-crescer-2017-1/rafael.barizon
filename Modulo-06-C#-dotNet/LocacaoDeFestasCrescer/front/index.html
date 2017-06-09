@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
+    <ul class="nav navbar-nav" ng-if="$root.logado">
+        <li><a href="#!/pedido">Pedido</a></li>
+        <li><a href="#!/finalizar">Finalizar Pedido</a></li>
+        <li><a href="#!/atrasos">Atrasos</a></li>
+        <li ng-if="$root.usuario.Gerente"><a href="#!/relatorio">Relatorio</a></li>
+        <li><a ng-click="logout()" ng-controller="logoutController">Logout</a></li>
+    </ul>
 
   <div class="container">
 <!-- {{usuario}} -->

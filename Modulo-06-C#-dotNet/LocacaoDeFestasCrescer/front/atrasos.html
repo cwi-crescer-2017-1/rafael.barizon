@@ -1,3 +1,30 @@
-<ul>
-  <li ng-repeat="atrasado in atrasados">{{atrasado}}</li>
-</ul>
+<h1>Pedidos Atrasados</h1>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Pedido Id</th>
+      <th>Festa</th>
+      <th>Pacote</th>
+      <th>Opcionais</th>
+      <th>Cliente</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="a in atrasados">
+      <td>{{a.PedidoId}}</td>
+      <td>{{a.Festa}}</td>
+      <td>{{a.Pacote}}</td>
+      <td>
+        <ul>
+          <li ng-repeat="o in a.Opcionais">{{o.Descricao}}</li>
+        </ul>
+      </td>
+      <td>{{a.ClientePedido}}</td>
+      <td>{{'R$' + a.Valor}}</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
