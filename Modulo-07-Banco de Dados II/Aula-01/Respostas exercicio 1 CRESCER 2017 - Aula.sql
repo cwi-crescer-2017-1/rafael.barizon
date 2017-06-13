@@ -11,14 +11,15 @@ select prod.idproduto, prod.nome
 from produto prod 
 where prod.idproduto not in
 (
-select prod.idproduto
-from produto prod
-inner join pedidoitem on pedidoitem.idproduto = prod.idproduto
+select idproduto
+from  pedidoitem 
 inner join pedido on pedidoitem.idpedido = pedido.idpedido
-where pedido.datapedido > sysdate-120 
-);
+where pedido.datapedido >= add_months(trunc(sysdate), -4)
+)
+order by prod.idproduto;
 
-
+--select * from user_tables;
+--exec dbms_stats.gather_schema_stats(USER);
 
 --Exercício 2
 --Alterando status
@@ -35,11 +36,18 @@ select * from produto where idproduto = 2;
 
 define prodID;
 
-select prod.idproduto, count(prod.idproduto) total
-from produto prod
-join pedidoitem on pedidoitem.idproduto = prod.idproduto and pedidoitem.idproduto = :prodid
-join pedido on pedidoitem.idpedido = pedido.idpedido and pedido.DATAENTREGA >= to_date(201701, 'YYYYMM')
-group by prod.idproduto;
+select sum(item.quantidade) qtde
+from pedidoitem item
+  inner join pedido ped on ped.idpedido = item.idpedido
+  where item.idproduto = :p_IDProduto
+ and ped.datapedido >= trunc(sysdate, 'yyyy');
+
+
+select  sum(pedidoitem.QUANTIDADE) total
+from pedidoitem 
+join pedido on pedidoitem.idpedido = pedido.idpedido 
+          and pedidoitem.idproduto = :prodid 
+          and pedido.DATAENTREGA >= trunc(sysdate, 'YYYY');
 
 
 
