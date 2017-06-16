@@ -45,12 +45,13 @@ create or replace package body pck_megasena as
   
   function gerarDataSorteio(idCAnterior in numeric) return CONCURSO.DATA_SORTEIO%type as
     vDataProx CONCURSO.DATA_SORTEIO%type;
-    vDataAnt CONCURSO.DATA_SORTEIO%type;
+    vDataAnt integer;
   begin
     select (1 + trunc(DATA_SORTEIO) - trunc (DATA_SORTEIO, 'IW'))
     into vDataAnt
     from CONCURSO
     where IDCONCURSO = idCAnterior;
+    
     
     --6 = sabado
     --3 = quarta
