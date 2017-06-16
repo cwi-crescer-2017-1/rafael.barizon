@@ -1,0 +1,48 @@
+ function ultimo_concurso return CONCURSO.IDCONCURSO%type as
+    idC CONCURSO.IDCONCURSO%type;
+  begin
+    select max(IDCONCURSO)
+    into idC
+    from concurso;
+    return idC;
+  end;  
+  function calc_premio_bruto(idConc in numeric) return APOSTA.VALOR%type as
+    valorTotal APOSTA.VALOR%type;
+  begin
+    select sum(valor)
+    into valorTotal
+    from APOSTA
+    where IDCONCURSO = idConc;
+    valorTotal := valorTotal * 0.453;
+    return valorTotal;
+  end;
+  
+  function gerarDataSorteio(idCAnterior in numeric) return CONCURSO.DATA_SORTEIO%type as
+    vDataProx CONCURSO.DATA_SORTEIO%type;
+    vDataAnt integer;
+  begin
+    select (1 + trunc(DATA_SORTEIO) - trunc (DATA_SORTEIO, 'IW')), DATA_SORTEIO
+    into vDataAnt, vDataProx
+    from CONCURSO
+    where IDCONCURSO = idCAnterior;
+    if( vDataAnt = 6 ) then
+      vDataProx:= vDataProx +4;
+    else
+      vDataProx:= vDataProx +3;
+    end if;
+    return vDataProx;
+  end;
+  
+  procedure geraProximoConcurso as
+    vIdUltimoConc CONCURSO.IDCONCURSO%type;
+    vPremioBruto APOSTA.VALOR%type;
+    vDataProxSorteio CONCURSO.DATA_SORTEIO%type;
+   begin
+      vIdUltimoConc := ultimo_concurso;
+      vPremioBruto := calc_premio_bruto(vIdAnterior);
+      vDataProxSorteio := gerarDataSorteio(vIdUltimoConc);
+      salvaConcurso((vIdUltimoConc+1), vDataProxSorteio, vPremioBruto);
+   end geraProximoConcurso;
+  --------------------------
+
+
