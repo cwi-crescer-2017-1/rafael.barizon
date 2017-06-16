@@ -1,0 +1,21 @@
+select napos.idaposta, nApos.numero from numero_aposta nApos
+join aposta apo on nApos.IDAPOSTA = apo.IDAPOSTA
+where apo.idconcurso = 1824
+order by napos.idaposta;
+
+seleciona numeros apostados no concurso de id 1824
+
+
+
+
+select primeira_dezena from concurso where idconcurso = 1824
+union
+select segunda_dezena from concurso where idconcurso = 1824
+union
+select terceira_dezena from concurso where idconcurso = 1824
+union
+select quarta_dezena from concurso where idconcurso = 1824
+union
+select quinta_dezena from concurso where idconcurso = 1824
+union
+select sexta_dezena from concurso where idconcurso = 1824;
