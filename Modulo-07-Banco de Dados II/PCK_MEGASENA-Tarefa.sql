@@ -72,6 +72,7 @@ create or replace package body pck_megasena is
 
   function calc_acumulo(idConc in numeric) return  CONCURSO.PREMIO_SENA%type as
     acumuladoRetorno CONCURSO.PREMIO_SENA%type;
+    acumFinalZeroOuCinco CONCURSO.PREMIO_SENA%type;
     acum numeric;
   begin
     select PREMIO_SENA
@@ -85,6 +86,12 @@ create or replace package body pck_megasena is
     where IDCONCURSO = idConc;
     if(acum = 0) then
       return 0;
+    end if;
+    -- ADICIONADO ISSO PARA CASO DE FINAIS 0 ou 5 
+    -- ID que veio eh do concurso anterior por isso pega e diminui 4 e pega todos os 5 anteriores ao novo concurso final 0, 1, 2, 3, 4 ou 5, 6, 7, 8 ,9 
+    if (REMAINDER( (idConc+1), 5 ) = 0) then
+    select sum(ACUMULADO_PROXIMO_05) into acumFinalZeroOuCinco from concurso where IDCONCURSO >= idConc-4;
+    acumuladoRetorno := acumuladoRetorno + acumFinalZeroOuCinco;
     end if;
     return acumuladoRetorno;
   end;
