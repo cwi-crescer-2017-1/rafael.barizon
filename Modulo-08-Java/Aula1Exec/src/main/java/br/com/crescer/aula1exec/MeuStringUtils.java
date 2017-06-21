@@ -49,7 +49,7 @@ public class MeuStringUtils implements IStringUtils {
         //ou seja se quando invertida ela tem os mesmos caracteres sem os espaços, 
         //acentuação e case sensitive, exemplo - "ovo", "Ame a ema", "A sogra má e amargosa")
         String strNormalizada = normalizaString(string);
-        String srtInvertida = inverter(string);
+        String srtInvertida = inverter(strNormalizada);
         
         return strNormalizada.equals(srtInvertida);
     }
@@ -58,7 +58,8 @@ public class MeuStringUtils implements IStringUtils {
         return Normalizer
                 .normalize(string, Normalizer.Form.NFD)
                 .replaceAll("[^\\p{ASCII}]", "")
-                .replaceAll("[^a-zA-Z]", "")
+//                .replaceAll("[^a-zA-Z]", "")
+                .replaceAll("[\\s]", "")
                 .toLowerCase();
     }
     

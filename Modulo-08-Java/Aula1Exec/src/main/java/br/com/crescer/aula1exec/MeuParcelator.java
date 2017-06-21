@@ -33,14 +33,17 @@ public class MeuParcelator implements IParcelator{
             3. 30/08/2016 - R$ 110,00 ...
         */
         Map<String, BigDecimal> retorno = new LinkedHashMap<>();
-        BigDecimal juros = valorParcelar.multiply(BigDecimal.valueOf(taxaJuros));
+        BigDecimal juros = valorParcelar.multiply(BigDecimal.valueOf(taxaJuros/100));
         BigDecimal total = valorParcelar.add(juros);
-        double numP = numeroParcelas;
-        BigDecimal parcela = total.divide(BigDecimal.valueOf(numP), 2,  RoundingMode.HALF_UP);
+        BigDecimal parcela = total.divide(BigDecimal.valueOf(numeroParcelas), 2,  RoundingMode.HALF_UP);
+        BigDecimal vlResto = parcela.multiply(BigDecimal.valueOf(numeroParcelas)).subtract(total);
         SimpleDateFormat sp = new SimpleDateFormat("dd/MM/yyyy");
         String data = sp.format(dataPrimeiroVencimento);
         for( int i = 0 ; i < numeroParcelas; i++){  
-            retorno.put(data, parcela);
+            retorno.put(data, parcela.subtract(vlResto));
+            
+            vlResto = BigDecimal.ZERO;
+            
             Calendar c = Calendar.getInstance();
             try {
                 c.setTime(sp.parse(data));

@@ -7,11 +7,8 @@ package br.com.crescer.aula1exec;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.function.BiConsumer;
 
 /**
  *
@@ -53,6 +50,13 @@ public class Exec {
 //				System.out.println( "Key: " + entry.getKey() + "\t" + " Value: " + entry.getValue() );
 //			}
 //		}
+    
+        MeuStringUtils meuString = new MeuStringUtils();
+        
+        String string = "A sogra má e amargosa";
+        
+        System.out.println(meuString.isPalindromo(string));
+    
     }
     
 }
