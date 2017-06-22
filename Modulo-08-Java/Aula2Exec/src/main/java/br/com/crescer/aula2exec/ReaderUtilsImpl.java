@@ -22,35 +22,34 @@ public class ReaderUtilsImpl implements ReaderUtils {
         String retorno = "";
         if (new MeuStringUtils().isEmpty(string)) {
             retorno = "Arquivo nao existe";
-        }
-        if (!string.contains(".txt")) {
+        } else if (!string.contains(".txt")) {
             retorno = "arquivo nao eh .txt";
-        }
-        File f = new File(string);
+        } else {
+            File f = new File(string);
 
-        if (!f.isFile()) {
-            retorno = "arquivo nao encontrado";
-        }
+            if (!f.isFile()) {
+                retorno = "arquivo nao encontrado";
+            } else {
 
-        try {
-            final Reader reader = new FileReader(f);
-            final BufferedReader bufferReader = new BufferedReader(reader);
-            while (true) {
-                String readLine = bufferReader.readLine();
-                if (new MeuStringUtils().isEmpty(readLine)) {
-                    break;
+                try {
+                    final Reader reader = new FileReader(f);
+                    final BufferedReader bufferReader = new BufferedReader(reader);
+                    while (true) {
+                        String readLine = bufferReader.readLine();
+                        if (readLine == null) {
+                            break;
+                        }
+                        retorno = retorno + readLine + '\n';
+                    }
+
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ReaderUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ReaderUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                retorno = retorno + readLine + '\n';
             }
-
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ReaderUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ReaderUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return retorno;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public static void main(String[] args) {

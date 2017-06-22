@@ -24,15 +24,16 @@ public class FileUtisImpl implements FileUtis {
             File f = new File(string);
             boolean b = false;
             if (!f.exists()) {
-                System.out.println("Nao existe");
                 if (string.contains(".")) {
                     f.getParentFile().mkdirs(); 
                     b = f.createNewFile();
                     
                 } else {
+                    if(f.getParentFile() != null)
+                        f.getParentFile().mkdirs(); 
                     b = f.mkdir();
                 }
-            }else System.out.println("ja Existe");
+            }
 
             return b;
         } catch (IOException e) {
@@ -79,12 +80,13 @@ public class FileUtisImpl implements FileUtis {
     
     public static void main(String[] args) {
         FileUtis fileUtils = new FileUtisImpl();
-        //System.out.println("criar: " + fileUtils.mk("TestDir\\1.txt"));
-        //System.out.println("criar: " + fileUtils.mk("TestDir\\dir"));
-        System.out.println("criar: " + fileUtils.mk("TestDir\\dir\\outro2"));
-        System.out.println("listar: " + fileUtils.ls("TestDir"));
-        System.out.println("listar: " + fileUtils.ls("TestDir\\dir\\outro\\1.txt"));
-        System.out.println("mover: " + fileUtils.mv("TestDir\\dir", "TestDir\\1.txt"));
+//        System.out.println("criar: " + fileUtils.mk("DIretorioNaoExistia\\1.txt"));
+//        System.out.println("criar: " + fileUtils.mk("TestDir\\1.txt"));
+//        System.out.println("criar: " + fileUtils.mk("TestDir1"));
+//        System.out.println("criar: " + fileUtils.mk("TestDir\\dir\\outro2"));
+//        System.out.println("listar: " + fileUtils.ls("TestDir"));
+//        System.out.println("listar: " + fileUtils.ls("TestDir\\dir\\outro\\1.txt"));
+        System.out.println("mover: " + fileUtils.mv("TestDir\\1.txt", "TestDir\\dir\\1.txt"));
         
     }
     
