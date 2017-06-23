@@ -87,12 +87,16 @@ public class SQLUtilsImpl implements SQLUtils {
             try(final Connection connection = connect()){
                 ResultSet rs = connection.createStatement().executeQuery(query);
                 int colQtd = rs.getMetaData().getColumnCount();
+                retorno = retorno + rs.getMetaData().getColumnName(1);
+                for (int i = 2; i<=colQtd; i++)
+                    retorno = retorno +"," + rs.getMetaData().getColumnName(i);
                 while(rs.next()){
+                    retorno = retorno + System.getProperty("line.separator");
                     retorno = retorno + rs.getString(1);
                     for(int i = 2; i <= colQtd; i++){
                         retorno = retorno +"," + rs.getString(i);
                     }
-                    retorno = retorno + System.getProperty("line.separator");
+                    
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(SQLUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,23 +108,27 @@ public class SQLUtilsImpl implements SQLUtils {
     @Override
     public void importCSV(File file) {
         //Deve possuir um metodo onde possa ser importado um arquivo ".csv".
-        
-        if(file.isFile() && file.getAbsolutePath().contains(".csv")){
-            
+        System.out.println("oi");
+        System.out.println(file.isFile()+" "+file.getAbsolutePath());
+        if(file.isFile() && file.getPath().toLowerCase().contains(".csv")){
+            System.out.println("Entro");
             try {
                 final Reader reader = new FileReader(file);
                 final BufferedReader bufferReader = new BufferedReader(reader);
                 String[] cabecalho = bufferReader.readLine().split(",");
                 int tipo;
                 if(cabecalho.length == 3){
-                    if(cabecalho[2]=="SIGLA"){
+                    if(cabecalho[2].equalsIgnoreCase("SIGLA")){
                         tipo = 1;
+                        System.out.println("TIPO PAIS");
                     }
                     else {
                         tipo = 2;
+                        System.out.println("TIPO CIDADE");
                     }
                 }else {
                     tipo = 3;
+                    System.out.println("TIPO ESTADO");
                 }
                                 
                 while(true){
@@ -185,10 +193,13 @@ public class SQLUtilsImpl implements SQLUtils {
     
     public static void main(String[] args){
         //String file = "C:\\Users\\rafael.barizon\\Documents\\sql.sql";
+        String importPath = "import.CSV";
+        String exportQuery = "SELECT * FROM PAIS";
         SQLUtils t = new SQLUtilsImpl();
+        File export = t.importCSV(exportQuery);
         //t.runFile(file);
-        
-        System.out.println(t.executeQuery("SELECT * FROM CIDADE WHERE ID = 3000"));  
+        //t.importCSV(importF);
+        //System.out.println(t.executeQuery("SELECT * FROM CIDADE WHERE ID = 3000"));  
         
         System.out.println("termino");
     }
