@@ -16,12 +16,15 @@ import br.com.crescer.aula3.pessoa.PessoaDao;
 public class NovoClass {
 
     public static void main(String[] args){
-        final Pessoa p = new Pessoa();
-        final PessoaDao pessoaDao = new PessoaDaoImpl();
-        p.setId(1l);
-        p.setNome("Rafael");
-         
-        pessoaDao.insert(p);
+        
+        System.out.println("oi" +'-' + "oi".substring(0, "oi".length()-1));
+//        
+//        final Pessoa p = new Pessoa();
+//        final PessoaDao pessoaDao = new PessoaDaoImpl();
+//        p.setId(1l);
+//        p.setNome("Rafael");
+//         
+//        pessoaDao.insert(p);
         
     } 
     

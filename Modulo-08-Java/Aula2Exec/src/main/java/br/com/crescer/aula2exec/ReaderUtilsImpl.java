@@ -39,7 +39,7 @@ public class ReaderUtilsImpl implements ReaderUtils {
                         if (readLine == null) {
                             break;
                         }
-                        retorno = retorno + readLine + '\n';
+                        retorno = retorno + readLine;
                     }
 
                 } catch (FileNotFoundException ex) {

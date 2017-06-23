@@ -9,9 +9,11 @@ import br.com.crescer.aula1exec.MeuStringUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class FileUtisImpl implements FileUtis {
+public class FileUtilsImpl implements FileUtils {
 
     @Override
     public boolean mk(String string) {
@@ -49,9 +51,14 @@ public class FileUtisImpl implements FileUtis {
         if(new MeuStringUtils().isEmpty(string)){
                 return false;                
         }
-        File f = new File(string);
-        
-        return f.isDirectory()? false : f.delete();
+        if(!string.contains(".")){
+            try {
+                throw new Exception();
+            } catch (Exception ex) {
+                Logger.getLogger(FileUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return new File(string).delete();
     }
 
     @Override
@@ -68,26 +75,44 @@ public class FileUtisImpl implements FileUtis {
     @Override
     public boolean mv(String in, String out) {
         //O método mv deve mover o arquivo, caso for um diretório deve exibir uma mensagem que o arquivo é invalido.
-        File fIn = new File(in);
+        System.out.println("in "+ in);
+        System.out.println("out " + out);
+        if(!in.contains(".txt") || !out.contains(".txt"))
+            System.out.println("entro pra da exception");
+            try {
+                throw new RuntimeException();
+        } catch (RuntimeException ex) {
+            Logger.getLogger(FileUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        if(fIn.isFile()){
+        File fIn = new File(in);
+        if(fIn.exists()){
+            System.out.println("Entro pra muda");
             File fOut = new File(out);
             return fIn.renameTo(fOut);
+        }else{
+            System.out.println("entro no lugar errado");
+            try {
+                throw new RuntimeException();
+        } catch (RuntimeException ex) {
+            Logger.getLogger(FileUtilsImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Arquivo invalido");
+        }
+            
+        
         return false;
     }
     
-    public static void main(String[] args) {
-        FileUtis fileUtils = new FileUtisImpl();
-//        System.out.println("criar: " + fileUtils.mk("DIretorioNaoExistia\\1.txt"));
-//        System.out.println("criar: " + fileUtils.mk("TestDir\\1.txt"));
-//        System.out.println("criar: " + fileUtils.mk("TestDir1"));
-//        System.out.println("criar: " + fileUtils.mk("TestDir\\dir\\outro2"));
-//        System.out.println("listar: " + fileUtils.ls("TestDir"));
-//        System.out.println("listar: " + fileUtils.ls("TestDir\\dir\\outro\\1.txt"));
-        System.out.println("mover: " + fileUtils.mv("TestDir\\1.txt", "TestDir\\dir\\1.txt"));
-        
-    }
+//    public static void main(String[] args) {
+//        FileUtils fileUtils = new FileUtilsImpl();
+////        System.out.println("criar: " + fileUtils.mk("DIretorioNaoExistia\\1.txt"));
+////        System.out.println("criar: " + fileUtils.mk("TestDir\\1.txt"));
+////        System.out.println("criar: " + fileUtils.mk("TestDir1"));
+////        System.out.println("criar: " + fileUtils.mk("TestDir\\dir\\outro2"));
+////        System.out.println("listar: " + fileUtils.ls("TestDir"));
+////        System.out.println("listar: " + fileUtils.ls("TestDir\\dir\\outro\\1.txt"));
+//        System.out.println("mover: " + fileUtils.mv("TestDir\\1.txt", "TestDir\\dir\\1.txt"));
+//        
+//    }
     
 }

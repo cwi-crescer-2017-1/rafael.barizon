@@ -9,7 +9,7 @@ package br.com.crescer.aula2exec;
  *
  * @author rafael.barizon
  */
-public interface FileUtis {
+public interface FileUtils {
     boolean mk(String string);
 
     boolean rm(String string);
