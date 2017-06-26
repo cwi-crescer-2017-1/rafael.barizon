@@ -6,10 +6,15 @@
 package br.com.crescer.aula4exec;
 
 import br.com.crescer.aula4exec.cliente.Cliente;
+import br.com.crescer.aula4exec.cliente.ClienteDaoImpl;
 import br.com.crescer.aula4exec.funcionario.Funcionario;
+import br.com.crescer.aula4exec.funcionario.FuncionarioDaoImpl;
 import br.com.crescer.aula4exec.genero.Genero;
+import br.com.crescer.aula4exec.genero.GeneroDaoImpl;
 import br.com.crescer.aula4exec.locacao.Locacao;
+import br.com.crescer.aula4exec.locacao.LocacaoDaoImpl;
 import br.com.crescer.aula4exec.video.Video;
+import br.com.crescer.aula4exec.video.VideoDaoImpl;
 
 /**
  *
@@ -19,11 +24,11 @@ public class Run {
     public static void main(String[] args) {
         //GenericDao<Cliente, Long> Cliente = new GenericDao<>();
         
-        CrudDao daoFuncionario = new GenericDao<Funcionario, Long>(Funcionario.class);
-        CrudDao daoCliente = new GenericDao<Cliente, Long>(Cliente.class);
-        CrudDao daoGenero = new GenericDao<Genero, Long>(Genero.class);
-        CrudDao daoVideo = new GenericDao<Video, Long>(Video.class);
-        CrudDao daoLocacao = new GenericDao<Locacao, Long>(Locacao.class);
+        CrudDao daoFuncionario = new FuncionarioDaoImpl(Funcionario.class);
+        CrudDao daoCliente = new ClienteDaoImpl(Cliente.class);
+        CrudDao daoGenero = new GeneroDaoImpl(Genero.class);
+        CrudDao daoVideo = new VideoDaoImpl(Video.class);
+        CrudDao daoLocacao = new LocacaoDaoImpl(Locacao.class);
         
         Funcionario funcionario = new Funcionario();
         Cliente cliente = new Cliente();
@@ -31,15 +36,15 @@ public class Run {
         Video video = new Video();
         Locacao locacao = new Locacao();
         
-        
-        funcionario.setNome("Carlos Alberto");
-        funcionario.setRg("2313225756");
-        
-        cliente.setNome("Rafael Barizon ");
+//        
+//        funcionario.setNome("Carlos Alberto");
+//        funcionario.setRg("2313225756");
+//        
+        cliente.setNome("Rafael Barizon");
         cliente.setCpf("02521450030");
         cliente.setCelular("54 9 9165 3981");
         
-        genero.setDescricao("ACAO");
+//        genero.setDescricao("ACAO");
 //        video.setValor(5.00);
 //        video.setNome("Mad Max: Fury Road");
 //        video.setId_genero(genero.getId());
@@ -51,8 +56,8 @@ public class Run {
         
         
 //        daoFuncionario.save(funcionario);
-//        daoCliente.save(cliente);
-        daoGenero.save(genero);
+        daoCliente.save(cliente);
+//        daoGenero.save(genero);
         
 //        daoVideo.save(video);
 //        daoLocacao.save(locacao);

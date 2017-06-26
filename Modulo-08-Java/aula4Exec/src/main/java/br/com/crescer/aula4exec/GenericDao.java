@@ -17,69 +17,64 @@ import org.hibernate.Session;
  * @param <T>
  * @param <ID>
  */
-public class GenericDao<T, ID> implements CrudDao<T, ID>{
+public class GenericDao<T, ID> implements CrudDao<T, ID> {
 
-    
-    
     private final Class<T> entity;
-    
-    public GenericDao(Class<T> entity){
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private Session session;
+
+    private void start() {
+        emf = Persistence.createEntityManagerFactory("CRESCER");
+        em = emf.createEntityManager();
+        session = em.unwrap(Session.class);
+    }
+
+    private void finish() {
+        em.close();
+        emf.close();
+    }
+
+    public GenericDao(Class<T> entity) {
         this.entity = entity;
     }
-    
+
     @Override
     public T save(T e) {
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRESCER");
-        final EntityManager em = emf.createEntityManager();
-        final Session session = em.unwrap(Session.class);
+        start();
         em.getTransaction().begin();
         session.save(e);
         em.getTransaction().commit();
-        
-        
-        em.close();
-        emf.close();
+
+        finish();
         return e;
     }
 
     @Override
     public void remove(T e) {
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRESCER");
-        final EntityManager em = emf.createEntityManager();
-        final Session session = em.unwrap(Session.class);
+        start();
         em.getTransaction().begin();
         session.delete(e);
         em.getTransaction().commit();
-        em.close();
-        emf.close();
+        finish();
     }
 
     @Override
     public T loadById(ID id) {
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRESCER");
-        final EntityManager em = emf.createEntityManager();
-        final Session session = em.unwrap(Session.class);
+        start();
         em.getTransaction().begin();
         T t = em.find(entity, id);
-        em.close();
-        emf.close();
-        return t; 
+        finish();
+        return t;
     }
 
     @Override
     public List<T> findAll() {
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRESCER");
-        final EntityManager em = emf.createEntityManager();
-        final Session session = em.unwrap(Session.class);
+        start();
         em.getTransaction().begin();
         List<T> listT = session.createCriteria(entity).list();
-        em.close();
-        emf.close();
+        finish();
         return listT;
     }
-    
-//    public void close(){
-//        em.close();
-//        em.getEntityManagerFactory().close();
-//    }
+
 }
