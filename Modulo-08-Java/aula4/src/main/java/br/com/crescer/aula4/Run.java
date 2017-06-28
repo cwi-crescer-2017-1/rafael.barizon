@@ -11,13 +11,13 @@ public class Run {
     public static void main(String[] args) {
 
         final Cliente cliente = new Cliente();
-        cliente.setId(2l);
+        cliente.setId(3333l);
         cliente.setNome("Rafael");
 
         new ClienteDaoImpl().insert(cliente);
-        cliente.setNome("Rafael");
-        new ClienteDaoImpl().update(cliente);
-        new ClienteDaoImpl().delete(cliente);
+//        cliente.setNome("Rafael");
+//        new ClienteDaoImpl().update(cliente);
+//        new ClienteDaoImpl().delete(cliente);
 
     }
 

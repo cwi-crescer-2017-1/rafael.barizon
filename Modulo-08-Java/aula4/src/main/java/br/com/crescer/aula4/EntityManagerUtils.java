@@ -15,14 +15,16 @@ import javax.persistence.Persistence;
  */
 public class EntityManagerUtils {
     
-    public EntityManager getEntityManager() {
-        final EntityManagerFactory emf = Persistence.createEntityManagerFactory("CRESCER");
+    public EntityManagerFactory  getEntityManagerFactory() {
+        return Persistence.createEntityManagerFactory("CRESCER");
+    }
+    public EntityManager getEntityManager(EntityManagerFactory emf) {
         return emf.createEntityManager();
     }
 
-    public void close(EntityManager em) {
+    public void close(EntityManager em, EntityManagerFactory emf) {
         em.close();
-        em.getEntityManagerFactory().close();
+        emf.close();
     }
     
 }

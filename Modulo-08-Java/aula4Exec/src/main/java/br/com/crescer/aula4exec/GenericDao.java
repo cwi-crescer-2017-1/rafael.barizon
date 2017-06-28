@@ -45,7 +45,7 @@ public class GenericDao<T, ID> implements CrudDao<T, ID> {
         em.getTransaction().begin();
         session.save(e);
         em.getTransaction().commit();
-
+        
         finish();
         return e;
     }
@@ -54,7 +54,7 @@ public class GenericDao<T, ID> implements CrudDao<T, ID> {
     public void remove(T e) {
         start();
         em.getTransaction().begin();
-        session.delete(e);
+        em.remove(em.contains(e) ? e : em.merge(e)); //session.delete(e);
         em.getTransaction().commit();
         finish();
     }

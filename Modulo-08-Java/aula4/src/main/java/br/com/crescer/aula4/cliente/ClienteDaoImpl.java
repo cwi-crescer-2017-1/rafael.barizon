@@ -7,26 +7,29 @@ package br.com.crescer.aula4.cliente;
 
 import br.com.crescer.aula4.EntityManagerUtils;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
 
 public class ClienteDaoImpl implements ClienteDao {
 
     @Override
     public void insert(Cliente cliente) {
-        EntityManagerUtils emu = new EntityManagerUtils();
-        final EntityManager em = emu.getEntityManager();
-                
+        final EntityManagerFactory emf = new EntityManagerUtils().getEntityManagerFactory();
+        final EntityManager em = new EntityManagerUtils().getEntityManager(emf);
+        final Cliente cli = cliente;        
         em.getTransaction().begin();
-        em.persist(cliente);
+        em.persist(cli);
         em.getTransaction().commit();
 
-        emu.close(em);
+        em.close();
+        emf.close();
+        //new EntityManagerUtils().close(em, emf);
     }
 
     @Override
     public void update(Cliente cliente) {
-        EntityManagerUtils emu = new EntityManagerUtils();
-        final EntityManager em = emu.getEntityManager();
+        final EntityManagerFactory emf = new EntityManagerUtils().getEntityManagerFactory();
+        final EntityManager em = new EntityManagerUtils().getEntityManager(emf);
 
         final Cliente update = em.find(Cliente.class, cliente.getId());
         em.detach(update);
@@ -36,29 +39,35 @@ public class ClienteDaoImpl implements ClienteDao {
         em.merge(update);
         em.getTransaction().commit();
         
-        emu.close(em);
-        
+        //new EntityManagerUtils().close(em, emf);
+        em.close();
+        emf.close();
     }
 
     @Override
     public void delete(Cliente cliente) {
-        EntityManagerUtils emu = new EntityManagerUtils();
-        final EntityManager em = emu.getEntityManager();
+        final EntityManagerFactory emf = new EntityManagerUtils().getEntityManagerFactory();
+        final EntityManager em = new EntityManagerUtils().getEntityManager(emf);
         final Cliente excluir = em.find(Cliente.class, cliente.getId());
         
         em.getTransaction().begin();
         em.remove(excluir);
         em.getTransaction().commit();
         
-        emu.close(em);
+        //new EntityManagerUtils().close(em, emf);
+        em.close();
+        emf.close();
     }
 
     @Override
     public Cliente loadBy(Long id) {
-        EntityManagerUtils emu = new EntityManagerUtils();
-        final EntityManager em = emu.getEntityManager();
+        final EntityManagerFactory emf = new EntityManagerUtils().getEntityManagerFactory();
+        final EntityManager em = new EntityManagerUtils().getEntityManager(emf);
         final Cliente cli = em.find(Cliente.class, id);
-        emu.close(em);
+        //new EntityManagerUtils().close(em, emf);
+        
+        em.close();
+        emf.close();
         return cli;
     }
     

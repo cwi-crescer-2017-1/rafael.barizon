@@ -15,6 +15,7 @@ import br.com.crescer.aula4exec.locacao.Locacao;
 import br.com.crescer.aula4exec.locacao.LocacaoDaoImpl;
 import br.com.crescer.aula4exec.video.Video;
 import br.com.crescer.aula4exec.video.VideoDaoImpl;
+import java.util.List;
 
 /**
  *
@@ -56,7 +57,18 @@ public class Run {
         
         
 //        daoFuncionario.save(funcionario);
-        daoCliente.save(cliente);
+//        List<Cliente> list = daoCliente.findAll();
+//        for(Cliente c : list){
+//            System.out.println(c.getId()+" - "+c.getNome() + " - " + c.getCpf() + " - " + c.getCelular());
+//        }
+        
+//        daoCliente.remove(list.get(2));
+        Cliente c = (Cliente) daoCliente.loadById(50l);
+        System.out.println(c.getId()+" - "+c.getNome() + " - " + c.getCpf() + " - " + c.getCelular());
+//        list = daoCliente.findAll();
+//        for(Cliente c : list){
+//            System.out.println(c.getId()+" - "+c.getNome() + " - " + c.getCpf() + " - " + c.getCelular());
+//        }
 //        daoGenero.save(genero);
         
 //        daoVideo.save(video);
