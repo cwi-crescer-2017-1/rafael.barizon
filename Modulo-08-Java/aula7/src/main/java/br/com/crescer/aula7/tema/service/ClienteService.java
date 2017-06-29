@@ -40,5 +40,9 @@ public class ClienteService implements GenericService<Cliente, Long> {
     public List<Cliente> findAll() {
         return (List<Cliente>) clienteRepository.findAll();
     }
+    
+    public Cliente loadByCpf(String cpf){
+        return clienteRepository.findByCpf(cpf);
+    }
 
 }

@@ -26,6 +26,11 @@ public class ClienteRest {
     public Cliente findOne(@PathVariable("id") Long id) {
         return clienteService.loadById(id);
     }
+    
+    @GetMapping("/cpf/{cpf}")
+    public Cliente findOne(@PathVariable("cpf") String cpf) {
+        return clienteService.loadByCpf(cpf);
+    }
 
     @ResponseBody
     @GetMapping
@@ -33,14 +38,16 @@ public class ClienteRest {
         return clienteService.findAll();
     }
     
-    @PostMapping
+    @PostMapping("/save")
     public Cliente save(@RequestBody Cliente c){
         return clienteService.save(c);
     }
     
-    @PostMapping("/{id}")
+    @PostMapping("/remove")
     public void remove(@RequestBody Cliente c){
         clienteService.remove(c);
     }
+    
+    
     
 }

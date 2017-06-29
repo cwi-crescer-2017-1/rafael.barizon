@@ -13,5 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Barizon
  */
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
-    
+
+    public Cliente findByCpf(String cpf);
 }
