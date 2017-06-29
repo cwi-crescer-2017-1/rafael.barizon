@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "GENERO")
 public class Genero implements Serializable {
 
-    private static final String SQ_NAME = "SQ_GENERO";
+    private static final String SQ_NAME = "SEQ_GENERO";
 
     @Id
     @GeneratedValue(strategy = SEQUENCE, generator = SQ_NAME)
