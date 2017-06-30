@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.crescer.social.service.PostContentsService;
 import java.math.BigDecimal;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
@@ -17,24 +19,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RestController
 @RequestMapping("/postcontents")
 public class PostContentsRest {
+
     @Autowired
-    private PostContentsService postContentsService; 
-    
+    private PostContentsService postContentsService;
+
     @RequestMapping(value = {"/feed/{id}"}, method = RequestMethod.GET)
     public List<Postcontents> findPosts(@PathVariable(value = "id") BigDecimal id) {
         return postContentsService.findAll(id);
     }
 
-//    @PostMapping("/save")
-//    public Postcontents save(@RequestBody Postcontents c){
-//        return postContentsService.save(c);
-//    }
-//    
-//    @PostMapping("/remove")
-//    public void remove(@RequestBody Postcontents c){
-//        postContentsService.remove(c);
-//    }
-    
-    
-    
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
+    public List<Postcontents> findAllForId(@PathVariable(value = "id") BigDecimal id) {
+        return postContentsService.findAllForId(id);
+    }
+
+    @PostMapping("/save")
+    public void save(@RequestBody Postcontents c) {
+        postContentsService.save(c);
+    }
+
+    @PostMapping("/remove/{id}")
+    public void remove(@PathVariable(value = "id") BigDecimal id) {
+        postContentsService.remove(id);
+    }
+
 }

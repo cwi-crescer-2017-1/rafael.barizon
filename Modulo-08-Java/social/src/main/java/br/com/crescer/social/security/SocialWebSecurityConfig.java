@@ -31,6 +31,8 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers(POST, "/usersocial/cadastro").permitAll()
                 .and()
+                .authorizeRequests().antMatchers(POST, "/usersocial/update").permitAll()
+                .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic()

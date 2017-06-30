@@ -31,9 +31,11 @@ public class UsersocialRest {
        return usersocialService.findByUsername(us.getUsername());
     }
     
-    @PostMapping("/save")
+    @PostMapping("/update")
     public void save(@RequestBody Usersocial us){
-        usersocialService.save(us);
+        Usersocial user = new Usersocial(us.getId(), us.getPassword(), us.getUsername());
+        user.validate();
+        usersocialService.save(user);
     }
     
     @PostMapping("/remove")

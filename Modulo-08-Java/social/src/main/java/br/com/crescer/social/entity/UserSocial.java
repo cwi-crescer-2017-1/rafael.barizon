@@ -88,7 +88,7 @@ public class Usersocial implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = encrypt(password);
+        this.password = password;
     }
 
     public String getUsername() {
@@ -134,6 +134,10 @@ public class Usersocial implements Serializable {
 
     private String encrypt(String password) {
         return new BCryptPasswordEncoder().encode(password);
+    }
+
+    public void validate() {
+        this.password = encrypt(password);
     }
     
 }

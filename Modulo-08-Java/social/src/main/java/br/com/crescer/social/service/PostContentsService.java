@@ -12,6 +12,7 @@ import br.com.crescer.social.entity.Userprofile;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,25 @@ public class PostContentsService {
                 });
         Collections.sort(posts);
         return posts;
+    }
+
+    public ArrayList<Postcontents> findAllForId(BigDecimal id) {
+        ArrayList<Postcontents> p = new ArrayList<>();
+        postContentsRepository.findByUserProfile_idUser(id).forEach(po -> {
+            Postcontents content = new Postcontents(po.getId(), po.getContent(), po.getNumberOfLikes(), po.getPublishDate());
+            Userprofile up = new Userprofile(po.getUserProfile().getIdUser(), null, 0, po.getUserProfile().getName());
+            content.setUserProfile(up);
+            p.add(content);
+        });
+        return p;
+    }
+
+    public void save(Postcontents c) {
+        postContentsRepository.save(c);
+    }
+
+    public void remove(BigDecimal id) {
+        postContentsRepository.delete(id.longValue());
     }
 
 }

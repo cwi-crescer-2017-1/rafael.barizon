@@ -7,6 +7,7 @@ package br.com.crescer.social.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -59,6 +60,11 @@ public class Relationship implements Serializable {
 
     public Relationship(RelationshipPK relationshipPK) {
         this.relationshipPK = relationshipPK;
+        Userprofile up = new Userprofile();
+        up.setIdUser(BigDecimal.valueOf(relationshipPK.getIdUser().doubleValue()));
+        this.userprofile1 = up;
+        up.setIdUser(BigDecimal.valueOf(relationshipPK.getIdUserRelationship().doubleValue()));
+        this.userprofile = up;
     }
 
     public Relationship(RelationshipPK relationshipPK, RelationshipStatus relationshipStatus) {
