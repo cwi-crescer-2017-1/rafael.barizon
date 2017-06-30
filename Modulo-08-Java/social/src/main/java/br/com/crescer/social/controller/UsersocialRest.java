@@ -1,53 +1,44 @@
-package br.com.crescer.aula7.tema.controller;
+package br.com.crescer.social.controller;
 
-import br.com.crescer.aula7.tema.entity.Cliente;
-import br.com.crescer.aula7.tema.service.ClienteService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import br.com.crescer.social.entity.Usersocial;
+import br.com.crescer.social.service.UsersocialService;
+import java.util.ArrayList;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
  * @author Barizon
  */
 @RestController
-@RequestMapping("/cliente")
-public class ClienteRest {
+@RequestMapping("/usersocial")
+public class UsersocialRest {
     @Autowired
-    private ClienteService clienteService; 
+    private UsersocialService usersocialService; 
     
-    @GetMapping("/{id}")
-    public Cliente findOne(@PathVariable("id") Long id) {
-        return clienteService.loadById(id);
+    @PostMapping("/cadastro")
+    public void cadastrar(@RequestBody Usersocial us) {
+        usersocialService.save(us);
     }
     
-    @GetMapping("/cpf/{cpf}")
-    public Cliente findOne(@PathVariable("cpf") String cpf) {
-        return clienteService.loadByCpf(cpf);
-    }
-
-    @ResponseBody
     @GetMapping
-    public List<Cliente> findAll() {
-        return clienteService.findAll();
+    public Usersocial findOne(@RequestBody Usersocial us) {
+       return usersocialService.findByUsername(us.getUsername());
     }
     
     @PostMapping("/save")
-    public Cliente save(@RequestBody Cliente c){
-        return clienteService.save(c);
+    public void save(@RequestBody Usersocial us){
+        usersocialService.save(us);
     }
     
     @PostMapping("/remove")
-    public void remove(@RequestBody Cliente c){
-        clienteService.remove(c);
+    public void remove(@RequestBody Usersocial us){
+        usersocialService.remove(us);
     }
-    
-    
     
 }

@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.aula7.tema.service;
+package br.com.crescer.social.service;
 
-import br.com.crescer.aula7.service.*;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
  *
  * @author rafael.barizon
- * @param <T>
+ * @param <Entity>
  * @param <ID>
- * @param <TRep>
  */
 @Service
 public abstract interface GenericService <Entity, ID> {

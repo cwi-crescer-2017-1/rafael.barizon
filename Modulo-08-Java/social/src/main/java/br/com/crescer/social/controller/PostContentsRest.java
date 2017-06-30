@@ -1,52 +1,39 @@
-package br.com.crescer.aula7.tema.controller;
+package br.com.crescer.social.controller;
 
-import br.com.crescer.aula7.tema.entity.Cliente;
-import br.com.crescer.aula7.tema.service.ClienteService;
+import br.com.crescer.social.entity.Postcontents;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import br.com.crescer.social.service.PostContentsService;
+import java.math.BigDecimal;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author Barizon
  */
 @RestController
-@RequestMapping("/cliente")
-public class ClienteRest {
+@RequestMapping("/postcontents")
+public class PostContentsRest {
     @Autowired
-    private ClienteService clienteService; 
+    private PostContentsService postContentsService; 
     
-    @GetMapping("/{id}")
-    public Cliente findOne(@PathVariable("id") Long id) {
-        return clienteService.loadById(id);
-    }
-    
-    @GetMapping("/cpf/{cpf}")
-    public Cliente findOne(@PathVariable("cpf") String cpf) {
-        return clienteService.loadByCpf(cpf);
+    @RequestMapping(value = {"/feed/{id}"}, method = RequestMethod.GET)
+    public List<Postcontents> findPosts(@PathVariable(value = "id") BigDecimal id) {
+        return postContentsService.findAll(id);
     }
 
-    @ResponseBody
-    @GetMapping
-    public List<Cliente> findAll() {
-        return clienteService.findAll();
-    }
-    
-    @PostMapping("/save")
-    public Cliente save(@RequestBody Cliente c){
-        return clienteService.save(c);
-    }
-    
-    @PostMapping("/remove")
-    public void remove(@RequestBody Cliente c){
-        clienteService.remove(c);
-    }
+//    @PostMapping("/save")
+//    public Postcontents save(@RequestBody Postcontents c){
+//        return postContentsService.save(c);
+//    }
+//    
+//    @PostMapping("/remove")
+//    public void remove(@RequestBody Postcontents c){
+//        postContentsService.remove(c);
+//    }
     
     
     
