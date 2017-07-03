@@ -9,6 +9,7 @@ import br.com.crescer.social.controller.RelationshipRest;
 import br.com.crescer.social.repository.PostContentsRepository;
 import br.com.crescer.social.entity.Postcontents;
 import br.com.crescer.social.entity.Userprofile;
+import br.com.crescer.social.repository.UserprofileRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,6 +29,9 @@ public class PostContentsService {
 
     @Autowired
     RelationshipService relationshipService;
+
+    @Autowired
+    UserprofileRepository rep;
 
     public ArrayList<Postcontents> findAllFriendsPost(BigDecimal id_user) {
         ArrayList<Postcontents> posts = new ArrayList<>();
@@ -65,6 +69,28 @@ public class PostContentsService {
 
     public void remove(BigDecimal id) {
         postContentsRepository.delete(id.longValue());
+    }
+
+//    public void update(BigDecimal id) {
+//        Postcontents post = postContentsRepository.findOne(id);
+//        post.setNumberOfLikes();
+//        postContentsRepository.save(post);
+//    }
+
+    public void setLikes(BigDecimal id, BigDecimal idUser) {
+        Postcontents post = postContentsRepository.findById(id);
+        Userprofile up = rep.findOneByIdUser(idUser);
+        
+        post.addLike(up);
+        postContentsRepository.save(post);
+    }
+
+    public void setLikes(Postcontents post) {
+//        Userprofile up = rep.findOneByIdUser(post.getUserProfile().getIdUser());
+//        Postcontents p = postContentsRepository.findById(post.getId());
+//        p.addLike(up);
+System.out.println("aaa");
+        postContentsRepository.save(post);
     }
 
 }

@@ -41,6 +41,26 @@ Social.config(function ($routeProvider) {
         }
       }
     })
+    .when('/profiles', {
+      controller: 'ProfileController',
+      templateUrl: 'profiles.html',
+      resolve: {
+        // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+        autenticado: function (authService) {
+          return authService.isAutenticadoPromise();
+        }
+      }
+    })
+    .when('/request', {
+      controller: 'RequestController',
+      templateUrl: 'request.html',
+      resolve: {
+        // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+        autenticado: function (authService) {
+          return authService.isAutenticadoPromise();
+        }
+      }
+    })
     .otherwise({
       redirectTo: '/login'
     });

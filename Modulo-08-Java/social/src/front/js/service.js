@@ -24,6 +24,15 @@ Social.factory('social', function($http) {
   function getUserprofileById(idUser) {
     return $http.get(urlBase + 'userprofile/' + idUser);
   }
+  function getRelationshipPostContents(idUser){
+    return $http.get(urlBase + 'postcontents/feed/' + idUser);
+  }
+  function postGG(post){
+    return $http.post(urlBase + 'postcontents/gg',post);
+  }
+  function addRelationship(relationship){
+    return $http.post(urlBase + 'relationship/relationshipRequest',relationship);
+  }
 
   return {
       getByUsername:getByUsername,
@@ -32,6 +41,9 @@ postContentWithUser:postContentWithUser,
        signInSocial:signInSocial,
       signInProfile:signInProfile,
      getUsersByName:getUsersByName,
- getUserprofileById:getUserprofileById
+ getUserprofileById:getUserprofileById,
+ getRelationshipPostContents:getRelationshipPostContents,
+             postGG:postGG,
+    addRelationship:addRelationship
   };
 });

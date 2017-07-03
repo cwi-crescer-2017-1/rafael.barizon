@@ -45,4 +45,11 @@ public class PostContentsRest {
         postContentsService.remove(id);
     }
 
+    
+    @PostMapping("/gg")
+    public void gg(@RequestBody Postcontents post){
+        post.setNumberOfLikes();
+        postContentsService.setLikes(post);
+        //
+    }
 }

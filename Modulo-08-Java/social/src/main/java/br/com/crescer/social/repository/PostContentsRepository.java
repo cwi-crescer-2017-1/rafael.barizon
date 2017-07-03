@@ -24,4 +24,6 @@ public interface PostContentsRepository extends CrudRepository<Postcontents, Lon
 //    public List<Postcontents> findAll();
 
     public ArrayList<Postcontents>  findByUserProfile_idUserOrderByPublishDateDesc(BigDecimal id);
+
+    public Postcontents findById(BigDecimal id);
 }

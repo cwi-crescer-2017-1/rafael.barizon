@@ -8,6 +8,7 @@ package br.com.crescer.social.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -42,6 +45,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Postcontents.findByPublishDate", query = "SELECT p FROM Postcontents p WHERE p.publishDate = :publishDate")})
 public class Postcontents implements Serializable, Comparable<Postcontents> {
 
+    @JoinTable(name = "CONTENTLIKE", joinColumns = {
+        @JoinColumn(name = "ID_CONTENT", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")})
+    @ManyToMany
+    private Set<Userprofile> contentLikes;
+
     private static final String SQ_NAME = "SEQ_POSTCONTENT";
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -66,14 +75,10 @@ public class Postcontents implements Serializable, Comparable<Postcontents> {
     @Column(name = "PUBLISH_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date publishDate;
-//    @JoinTable(name = "CONTENTLIKE", joinColumns = {
-//        @JoinColumn(name = "ID_CONTENT", referencedColumnName = "ID")}, inverseJoinColumns = {
-//        @JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER")})
-//    @ManyToMany
-//    private Set<Userprofile> userprofileSet;
+
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID_USER", foreignKey = @ForeignKey(name = "FK_ID_USER"))
     @ManyToOne(optional = false)
-        private Userprofile userProfile;
+    private Userprofile userProfile;
 
     public Postcontents() {
     }
@@ -109,8 +114,8 @@ public class Postcontents implements Serializable, Comparable<Postcontents> {
         return numberOfLikes;
     }
 
-    public void setNumberOfLikes(long numberOfLikes) {
-        this.numberOfLikes = numberOfLikes;
+    public void setNumberOfLikes() {
+        this.numberOfLikes = getContentLikes().size();
     }
 
     public Date getPublishDate() {
@@ -121,14 +126,6 @@ public class Postcontents implements Serializable, Comparable<Postcontents> {
         this.publishDate = publishDate;
     }
 
-//    @XmlTransient
-//    public Set<Userprofile> getUserprofileSet() {
-//        return userprofileSet;
-//    }
-//
-//    public void setUserprofileSet(Set<Userprofile> userprofileSet) {
-//        this.userprofileSet = userprofileSet;
-//    }
     public Userprofile getUserProfile() {
         return userProfile;
     }
@@ -166,4 +163,25 @@ public class Postcontents implements Serializable, Comparable<Postcontents> {
     public int compareTo(Postcontents o) {
         return this.publishDate.compareTo(o.getPublishDate());
     }
+
+    public Set<Userprofile> getContentLikes() {
+        return contentLikes;
+    }
+
+    public void addLike(Userprofile up) {
+        this.contentLikes.add(up);
+        setNumberOfLikes();
+    }
+    
+    public void setContentLikesRemove(Userprofile up){
+        this.contentLikes.remove(up);
+        setNumberOfLikes();
+    }
+
+    public void setContentLikes(Set<Userprofile> contentLikes) {
+        this.contentLikes = contentLikes;
+        setNumberOfLikes();
+    }
+    
+    
 }

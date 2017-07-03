@@ -1,0 +1,18 @@
+<div class="nav" ng-include="'navbar.html'"><br></div>
+<hr>
+
+<div class="row">
+  <div class="col-md-12" ng-repeat="profile in usuarios">
+    <ul class="list-group">
+        <li class="list-group-item">Name: {{profile.name}}</li>
+        <li class="list-group-item">Gender:{{profile.gender === 1 ?  'Male' : profile.gender === 2? 'Female' : 'Not informed'}}</li>
+        <li class="list-group-item">Birthday: {{profile.birthday| date:'dd/MM/yyyy'}}</li>
+        <li class="list-group-item">
+<button type="button"><a href="#!/profile/{{profile.idUser}}">Go To Profile</a></button>
+        </li>
+        <li class="list-group-item">
+          <button type="button" ng-click="add(profile)">Add</button>
+        </li>
+    </ul>
+  </div>
+</div>

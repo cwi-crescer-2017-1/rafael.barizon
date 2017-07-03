@@ -43,6 +43,12 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Userprofile.findByIdUser", query = "SELECT u FROM Userprofile u WHERE u.idUser = :idUser")})
 public class Userprofile implements Serializable {
 
+//    @ManyToMany(mappedBy = "contentLikes")
+//    private Set<Postcontents> postcontentLikes;
+//    
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUser")
+//    private Set<Postcontents> postcontentLikes1;
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -192,5 +198,21 @@ public class Userprofile implements Serializable {
     public String toString() {
         return "br.com.crescer.social.entity.Userprofile[ idUser=" + idUser + " ]";
     }
+
+//    public Set<Postcontents> getPostcontentLikes() {
+//        return postcontentLikes;
+//    }
+//
+//    public void sePpostcontentLikes(Set<Postcontents> postcontentsSet) {
+//        this.postcontentLikes = postcontentsSet;
+//    }
+//
+//    public Set<Postcontents> getPostcontentLikes1() {
+//        return postcontentLikes1;
+//    }
+//
+//    public void setPostcontentLikes1(Set<Postcontents> postcontentsSet1) {
+//        this.postcontentLikes1 = postcontentsSet1;
+//    }
     
 }
