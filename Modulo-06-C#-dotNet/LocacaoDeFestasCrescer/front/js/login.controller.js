@@ -1,5 +1,6 @@
-angular.module('festaCrescer').controller('LoginController2', function ($scope, authService, $rootScope) {
+angular.module('festaCrescer').controller('LoginController2', function ($scope, authService, $rootScope,$location) {
 $scope.controller="LoginController2";
+
   $scope.login = function (usuario) {
 
     authService.login(usuario)

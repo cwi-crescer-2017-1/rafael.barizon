@@ -22,4 +22,6 @@ public interface PostContentsRepository extends CrudRepository<Postcontents, Lon
 //    @Override
 //    @Query("select p from Pessoa p where p.nome ...")
 //    public List<Postcontents> findAll();
+
+    public ArrayList<Postcontents>  findByUserProfile_idUserOrderByPublishDateDesc(BigDecimal id);
 }

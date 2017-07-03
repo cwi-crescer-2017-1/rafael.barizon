@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import br.com.crescer.social.service.PostContentsService;
 import java.math.BigDecimal;
+import java.util.Date;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class PostContentsRest {
 
     @RequestMapping(value = {"/feed/{id}"}, method = RequestMethod.GET)
     public List<Postcontents> findPosts(@PathVariable(value = "id") BigDecimal id) {
-        return postContentsService.findAll(id);
+        return postContentsService.findAllFriendsPost(id);
     }
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
@@ -35,6 +36,7 @@ public class PostContentsRest {
 
     @PostMapping("/save")
     public void save(@RequestBody Postcontents c) {
+        c.setPublishDate(new Date());
         postContentsService.save(c);
     }
 

@@ -5,8 +5,11 @@
  */
 package br.com.crescer.social.service;
 
+import br.com.crescer.social.repository.UserprofileRepository;
+import br.com.crescer.social.entity.Userprofile;
 import br.com.crescer.social.repository.UsersocialRepository;
 import br.com.crescer.social.entity.Usersocial;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +24,20 @@ public class UsersocialService {
     @Autowired
     private UsersocialRepository usersocialRepository; 
     
-    public void save(Usersocial u) {
+    
+    public BigDecimal save(Usersocial u) {
+        //Usersocial u =  up.getUsersocial();
+        u.validate();
+        return usersocialRepository.save(u).getId();
+//        up.setIdUser(u.getId());
+//        System.out.println(u.getId()+ " -- saber qual id");
+//        up.setUsersocial(u);
+//        System.out.println(up.toString());
+//        userprofileRepository.save(up);
+    }
+    
+    public void update(Usersocial u) {
+        u.validate();
         usersocialRepository.save(u);
     }
   

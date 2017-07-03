@@ -1,0 +1,30 @@
+<div class="nav" ng-include="'navbar.html'"><br></div>
+
+<div class="pagina">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <form class="" ng-submit="postContent(post)">
+          <label for="textarea">Share your thoughts!</label>
+          <div class="row">
+            <div class="col-md-11">
+              <textarea class="form-control" id="textarea" rows="3" ng-model="post.content"></textarea>
+            </div>
+            <div class="col-md-1">
+              <button type="submit">Share</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-12" ng-repeat="post in postContents | orderby: post.publishDate">
+
+      <div class="postCont">
+        <h2>{{post.userProfile.name}}</h2>
+        <p>{{post.content}}</p>
+        <button ng-click="gg(post, $rootScope.userProfile)">+GG</button>
+        <h5>{{post.numberOfLikes+":GG - "}}{{post.publishDate}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@
  */
 package br.com.crescer.social.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Set;
@@ -66,6 +67,7 @@ public class Userprofile implements Serializable {
     
 //    @ManyToMany(mappedBy = "userprofileSet")
 //    private Set<Postcontents> postcontentsSet;
+    @JsonIgnore
     @JoinColumn(name = "ID_USER", referencedColumnName = "ID",foreignKey = @ForeignKey(name = "FK_USERSOCIAL"), insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usersocial usersocial;

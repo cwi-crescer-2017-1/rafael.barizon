@@ -1,0 +1,25 @@
+<div class="nav" ng-include="'navbar.html'"><br></div>
+<hr>
+<div class="profileContent">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+          <li class="list-group-item">Name: {{$root.usuario.name}}</li>
+          <li class="list-group-item">Gender:{{$root.usuario.gender === 1 ?  'Male' : $root.usuario.gender === 2? 'Female' : 'Not informed'}}</li>
+          <li class="list-group-item">Birthday: {{$root.usuario.birthday| date:'dd/MM/yyyy'}}</li>
+      </ul>
+    </div>
+    <hr>
+<h2>Posts</h2>
+<hr>
+    <div class="col-md-12" ng-repeat="post in userPosts">
+      <div class="postCont">
+        <h4>{{post.userProfile.name}}</h4>
+        <div class="content">
+          <p>{{post.content}}</p>
+        </div>
+        <h5>{{post.numberOfLikes+": GG - "}} {{post.publishDate | date:'dd/MM/yyyy'}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

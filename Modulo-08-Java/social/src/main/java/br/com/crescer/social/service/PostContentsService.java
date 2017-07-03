@@ -29,7 +29,7 @@ public class PostContentsService {
     @Autowired
     RelationshipService relationshipService;
 
-    public ArrayList<Postcontents> findAll(BigDecimal id_user) {
+    public ArrayList<Postcontents> findAllFriendsPost(BigDecimal id_user) {
         ArrayList<Postcontents> posts = new ArrayList<>();
         relationshipService
                 .getAll(id_user)
@@ -38,10 +38,10 @@ public class PostContentsService {
                     ArrayList<Postcontents> p;
                     p = postContentsRepository.findByUserProfile_idUser(BigDecimal.valueOf(r.getRelationshipPK().getIdUserRelationship().doubleValue()));
                     p.forEach(po -> {
-                        Postcontents content = new Postcontents(po.getId(), po.getContent(), po.getNumberOfLikes(), po.getPublishDate());
-                        Userprofile up = new Userprofile(po.getUserProfile().getIdUser(), null, 0, po.getUserProfile().getName());
-                        content.setUserProfile(up);
-                        posts.add(content);
+//                        Postcontents content = new Postcontents(po.getId(), po.getContent(), po.getNumberOfLikes(), po.getPublishDate());
+//                        Userprofile up = new Userprofile(po.getUserProfile().getIdUser(), null, 0, po.getUserProfile().getName());
+//                        content.setUserProfile(up);
+                        posts.add(po);
                     });
                 });
         Collections.sort(posts);
@@ -50,7 +50,7 @@ public class PostContentsService {
 
     public ArrayList<Postcontents> findAllForId(BigDecimal id) {
         ArrayList<Postcontents> p = new ArrayList<>();
-        postContentsRepository.findByUserProfile_idUser(id).forEach(po -> {
+        postContentsRepository.findByUserProfile_idUserOrderByPublishDateDesc(id).forEach(po -> {
             Postcontents content = new Postcontents(po.getId(), po.getContent(), po.getNumberOfLikes(), po.getPublishDate());
             Userprofile up = new Userprofile(po.getUserProfile().getIdUser(), null, 0, po.getUserProfile().getName());
             content.setUserProfile(up);
