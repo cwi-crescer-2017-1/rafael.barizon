@@ -10,13 +10,11 @@
           <thead>
                <tr>
                  <th>Name</th>
-                 <th>Status</th>
                </tr>
              </thead>
              <tbody>
                <tr ng-repeat="f in friends | limitTo:10">
                  <td>{{f.name}}</td>
-                 <td>{{f.status}}</td>
                </tr>
             </tbody>
         </table>
@@ -61,15 +59,17 @@
       <div class="">
         <div class="col-md-12 name">
           <h4>
+            <img ng-src="images/anonymous.png" alt="">
             <a href="#!/profile/{{post.userprofile.idUser}}">{{post.userProfile.name}}</a>
-            </h4>
+          </h4>
         </div>
         <div class="col-md-12 content">
           <p>{{post.content}}</p>
         </div>
         <div class="col-md-2">
-          <label for="">{{"GGs "+post.numberOfLikes}}</label>
           <button class="btn" ng-click="gg(post)">+GG</button>
+          <label for="">{{"GGs "+post.numberOfLikes}}</label>
+
         </div>
         <div class="col-md-2 col-md-offset-8">
           <h5>{{post.publishDate | date:'dd/MM/yyyy'}}</h5>

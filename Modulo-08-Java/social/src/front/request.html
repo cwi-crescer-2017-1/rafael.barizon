@@ -5,10 +5,17 @@
   <h3>Friends</h3>
   <div class="col-md-3" ng-repeat="profile in friends">
     <ul class="list-group">
-        <li class="list-group-item">Name: {{profile.name}}</li>
-        <li class="list-group-item">Gender:{{profile.gender === 1 ?  'Male' : profile.gender === 2? 'Female' : 'Not informed'}}</li>
-        <li class="list-group-item">Birthday: {{profile.birthday| date:'dd/MM/yyyy'}}</li>
-        <li class="list-group-item">Status: {{profile.status}}</li>
+        <li class="list-group-item">
+          <img ng-src="images/anonymous.png" alt="">
+          Name: {{profile.name}}
+        </li>
+        <li class="list-group-item" style="padding-left: 50px;">
+          Gender:{{profile.gender === 1 ?  'Male' : profile.gender === 2? 'Female' : 'Not informed'}}
+        </li>
+        <li class="list-group-item" style="padding-left: 50px;">
+          Birthday: {{profile.birthday| date:'dd/MM/yyyy'}}
+        </li>
+        <!-- <li class="list-group-item">Status: {{profile.status}}</li> -->
         <li class="list-group-item">
           <button type="button" class="btn" ng-click="unfriend(profile)">Unfriend</button>
         </li>
@@ -19,7 +26,10 @@
   <h3>Pending Requests</h3>
   <div class="col-md-3" ng-repeat="profile in pending">
     <ul class="list-group">
-        <li class="list-group-item">Name: {{profile.name}}</li>
+        <li class="list-group-item">
+          <img ng-src="images/anonymous.png" alt="">
+          Name: {{profile.name}}
+        </li>
         <li class="list-group-item">Gender:{{profile.gender === 1 ?  'Male' : profile.gender === 2? 'Female' : 'Not informed'}}</li>
         <li class="list-group-item">Birthday: {{profile.birthday| date:'dd/MM/yyyy'}}</li>
         <li class="list-group-item">Status: {{profile.status}}</li>

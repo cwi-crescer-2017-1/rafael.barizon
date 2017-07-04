@@ -2,25 +2,25 @@
     <form name="signInForm" ng-submit="signIn(userprofile)" novalidate>
         <br>
         <legend>Sign In</legend>
-        <div class="signIn nome"><label>Name</label></div>
+        <div class="signIn nome"><label>* Name</label></div>
         <input class="form-control" type="text" placeholder="Rafael Barizon" autofocus  ng-model="userprofile.name" required >
 
-        <div class="signIn username"><label>E-mail</label></div>
+        <div class="signIn username"><label>* E-mail</label></div>
         <input class="form-control" type="email" placeholder="rafael.barizon@cwi.com.br" ng-model="userprofile.usersocial.username" required>
 
-        <div class="signIn senha"><label>Password</label></div>
+        <div class="signIn senha"><label>* Password</label></div>
         <input class="form-control" type="password" placeholder="password"  ng-model="userprofile.usersocial.password" required>
 
-        <div class="signIn"><label>Birthday</label></div>
+        <div class="signIn"><label>* Birthday</label></div>
         <input class="form-control" type="date" ng-model="userprofile.birthday" required>
 
-        <div class="signIn" > <label> sexo </label></div>
+        <div class="signIn" > <label> * Gender </label></div>
         <select class="form-control" ng-model="userprofile.gender">
             <option ng-value="0"> Not Informed</option>
             <option ng-value="1"> MALE</option>
             <option ng-value="2"> FEMALE </option>
         </select>
+        <div class="signIn" > <br><button class="btn" type="submit" >Sign in</button></div>
 
-        <button type="submit" >Sign in</button>
     </form>
 </div>

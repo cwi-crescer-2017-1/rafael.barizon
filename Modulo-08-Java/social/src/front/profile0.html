@@ -2,24 +2,78 @@
 <hr>
 <div class="profileContent">
   <div class="row">
+
     <div class="col-md-12">
+      <div class="col-md-2">
+        <img ng-src="images/anonymous.png" style="width: 100%;">
+      </div>
+      <div class="col-md-10">
       <ul class="list-group">
-          <li class="list-group-item">Name: {{userProfile.name}}</li>
-          <li class="list-group-item">Gender:{{userProfile.gender === 1 ?  'Male' : userProfile.gender === 2? 'Female' : 'Not informed'}}</li>
-          <li class="list-group-item">Birthday: {{userProfile.birthday| date:'dd/MM/yyyy'}}</li>
+        <li class="list-group-item">Name: {{userProfile.name}}</li>
+        <li class="list-group-item">Gender:{{userProfile.gender === 1 ?  'Male' : userProfile.gender === 2? 'Female' : 'Not informed'}}</li>
+        <li class="list-group-item">Birthday: {{userProfile.birthday| date:'dd/MM/yyyy'}}</li>
+        <li class="list-group-item">
+          <button type="button" ng-click="add(userProfile)">Add</button>
+        </li>
       </ul>
+      </div>
     </div>
     <hr>
+
+<div class="col-md-12">
+  <div class="col-md-3">
+    <div class="table-responsive">
+      <table class="table">
+    <h4><strong>Friends</strong></h4>
+        <thead>
+             <tr>
+               <th></th>
+               <th>Name</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr ng-repeat="f in profile0.friends | limitTo:10" ng-click="goToProfile(f.idUser)">
+               <td><img ng-src="images/anonymous.png" alt=""></td>
+               <td>{{f.name}}</td>
+
+             </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-9">
 <h2>Posts</h2>
 <hr>
-    <div class="col-md-12" ng-repeat="post in userPosts">
-      <div class="postCont">
-        <h4>{{post.userProfile.name}}</h4>
+    <div class="col-md-12 postCont" ng-repeat="post in userPosts">
+      <div class="">
+        <div class="col-md-12 name">
+          <h4>
+            <img ng-src="images/anonymous.png" alt="">
+            <a href="#!/profile/{{post.userprofile.idUser}}">{{post.userProfile.name}}</a>
+          </h4>
+        </div>
+        <div class="col-md-12 content">
+          <p>{{post.content}}</p>
+        </div>
+        <div class="col-md-2">
+          <!-- <button class="btn" ng-click="gg(post)">+GG</button> -->
+          <label for="">{{"GGs "+post.numberOfLikes}}</label>
+
+        </div>
+        <div class="col-md-2 col-md-offset-8">
+          <h5>{{post.publishDate | date:'dd/MM/yyyy'}}</h5>
+        </div>
+        <!-- <h4>{{post.userProfile.name}}</h4>
         <div class="content">
           <p>{{post.content}}</p>
         </div>
-        <h5>{{post.numberOfLikes+": GG - "}} {{post.publishDate | date:'dd/MM/yyyy'}}</h5>
+        <h5>{{post.numberOfLikes+": GG - "}} {{post.publishDate | date:'dd/MM/yyyy'}}</h5> -->
       </div>
     </div>
+  </div>
+</div>
+  </div>
+
+
   </div>
 </div>
