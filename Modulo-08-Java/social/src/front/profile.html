@@ -5,8 +5,10 @@
     <div class="col-md-12">
       <ul class="list-group">
           <li class="list-group-item">Name: {{$root.usuario.name}}</li>
-          <li class="list-group-item">Gender:{{$root.usuario.gender === 1 ?  'Male' : $root.usuario.gender === 2? 'Female' : 'Not informed'}}</li>
+          <li class="list-group-item">Gender:{{$root.usuario.gender === 1 ?  'Male' :
+            $root.usuario.gender === 2? 'Female' : 'Not informed'}}</li>
           <li class="list-group-item">Birthday: {{$root.usuario.birthday| date:'dd/MM/yyyy'}}</li>
+          <li class="list-group-item"><button class="btn" type="button"><a href="#!/edit">Edit</a></button></li>
       </ul>
     </div>
     <hr>

@@ -48,4 +48,12 @@ public class UserprofileService {
         return userprofileRepository.findOneByIdUser(us.getId());
     }
 
+    public void update(Userprofile up) {
+        Userprofile user = userprofileRepository.findOneByIdUser(up.getIdUser());
+        user.setBirthday(up.getBirthday());
+        user.setGender(up.getGender());
+        user.setName(up.getName());
+        userprofileRepository.save(user);
+    }
+
 }

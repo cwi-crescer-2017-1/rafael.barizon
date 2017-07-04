@@ -35,18 +35,11 @@ public class RelationshipRest {
         relationshipService.update(us);
     }
     
-//    @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
-//    public ArrayList<Long> findAll(@PathVariable(value = "id") long id) {
-//        BigDecimal idUser = new BigDecimal(id);
-//        ArrayList<Long> l = new ArrayList<>();
-//
-//        relationshipService.getAll(idUser).stream()
-//                .forEach((rel) -> {
-//                    l.add(rel.getRelationshipPK()
-//                            .getIdUserRelationship()
-//                            .longValue());
-//                });
-//        return l;
-//    }
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
+    public ArrayList<Relationship> findAll(@PathVariable(value = "id") BigDecimal idUser) {
+        System.out.println("he.loo");
+        
+        return relationshipService.getAllRelationshipsForUser(idUser);
+    }
 
 }

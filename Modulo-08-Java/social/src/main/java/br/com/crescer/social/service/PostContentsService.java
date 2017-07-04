@@ -33,7 +33,7 @@ public class PostContentsService {
     @Autowired
     UserprofileRepository rep;
 
-    public ArrayList<Postcontents> findAllFriendsPost(BigDecimal id_user) {
+    public ArrayList<Postcontents> findAllFeedPosts(BigDecimal id_user) {
         ArrayList<Postcontents> posts = new ArrayList<>();
         relationshipService
                 .getAll(id_user)
@@ -42,12 +42,15 @@ public class PostContentsService {
                     ArrayList<Postcontents> p;
                     p = postContentsRepository.findByUserProfile_idUser(BigDecimal.valueOf(r.getRelationshipPK().getIdUserRelationship().doubleValue()));
                     p.forEach(po -> {
-//                        Postcontents content = new Postcontents(po.getId(), po.getContent(), po.getNumberOfLikes(), po.getPublishDate());
-//                        Userprofile up = new Userprofile(po.getUserProfile().getIdUser(), null, 0, po.getUserProfile().getName());
-//                        content.setUserProfile(up);
                         posts.add(po);
                     });
                 });
+        postContentsRepository.findByUserProfile_idUser(id_user)
+                .stream()
+                .forEach((post) -> {
+                    posts.add(post);
+                });
+                
         Collections.sort(posts);
         return posts;
     }

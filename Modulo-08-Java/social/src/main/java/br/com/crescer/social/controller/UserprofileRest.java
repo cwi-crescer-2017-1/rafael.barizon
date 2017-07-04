@@ -50,12 +50,12 @@ public class UserprofileRest {
        return userprofileService.findByName(name);
     }
     
-//    @PostMapping("/update")
-//    public void save(@RequestBody Userprofile up){
-//        Userprofile user = new Userprofile(up.getId(), up.getPassword(), up.getUsername());
-//        user.validate();
-//        userprofileService.update(user);
-//    }
+    @PostMapping("/update")
+    public void save(@RequestBody Userprofile up){
+        //Userprofile user = new Userprofile(up.getId(), up.getPassword(), up.getUsername());
+        //user.validate();
+        userprofileService.update(up);
+    }
     
     @PostMapping("/remove")
     public void remove(@RequestBody Userprofile up){

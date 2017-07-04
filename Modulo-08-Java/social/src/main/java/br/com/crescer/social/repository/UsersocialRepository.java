@@ -6,6 +6,7 @@
 package br.com.crescer.social.repository;
 
 import br.com.crescer.social.entity.Usersocial;
+import java.math.BigDecimal;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -15,4 +16,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface UsersocialRepository extends CrudRepository<Usersocial, Long>{
 
     public Usersocial findOneByUsername(String username);
+    public Usersocial findOneById(BigDecimal id);
 }

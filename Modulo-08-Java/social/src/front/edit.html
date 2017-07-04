@@ -1,0 +1,28 @@
+<div class="nav" ng-include="'navbar.html'"><br></div>
+<div class="profileContent">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+          <li class="list-group-item">
+            <label for="">Name:</label>
+            <input class="form-control" type="text" ng-value="user.name" ng-model="newUser.name" placeholder="">
+          </li>
+          <li class="list-group-item">
+            <label for="">Gender:</label>
+            <select class="form-control" name="" ng-value="user.gender" ng-model="newUser.gender" >
+              <option value="0">Not Informed</option>
+              <option value="1">MALE</option>
+              <option value="2">FEMALE</option>
+            </select>
+          </li>
+          <li class="list-group-item">
+            <label for="">Birthday:</label>
+            <input class="form-control" type="date" ng-value="user.birthday" ng-model="newUser.birthday" >
+          </li>
+          <li class="list-group-item"><button class="btn" type="button" ng-click="updateUser()">Edit</button>
+              <button class="btn" type="button"><a href="#!/changePassword">Change Password</a></button>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>

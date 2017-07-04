@@ -26,7 +26,7 @@ public class PostContentsRest {
 
     @RequestMapping(value = {"/feed/{id}"}, method = RequestMethod.GET)
     public List<Postcontents> findPosts(@PathVariable(value = "id") BigDecimal id) {
-        return postContentsService.findAllFriendsPost(id);
+        return postContentsService.findAllFeedPosts(id);
     }
 
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
@@ -45,11 +45,9 @@ public class PostContentsRest {
         postContentsService.remove(id);
     }
 
-    
     @PostMapping("/gg")
     public void gg(@RequestBody Postcontents post){
         post.setNumberOfLikes();
         postContentsService.setLikes(post);
-        //
     }
 }

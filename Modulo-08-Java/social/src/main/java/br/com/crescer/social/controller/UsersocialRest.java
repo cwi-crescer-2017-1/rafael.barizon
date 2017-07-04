@@ -49,7 +49,7 @@ public class UsersocialRest {
     @PostMapping("/update")
     public void save(@RequestBody Usersocial us){
         Usersocial user = new Usersocial(us.getId(), us.getPassword(), us.getUsername());
-        user.validate();
+        //user.validate();
         usersocialService.update(user);
     }
     

@@ -38,7 +38,10 @@ public class UsersocialService {
     
     public void update(Usersocial u) {
         u.validate();
-        usersocialRepository.save(u);
+        Usersocial us;
+        us = usersocialRepository.findOneById(u.getId());
+        us.setPassword(u.getPassword());
+        usersocialRepository.save(us);
     }
   
     public Usersocial findByUsername(String username) {

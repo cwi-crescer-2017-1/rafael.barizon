@@ -21,9 +21,29 @@ Social.config(function ($routeProvider) {
         }
       }
     })
+    .when('/changePassword', {
+      controller: 'RequestController',
+      templateUrl: 'changePassword.html',
+      resolve: {
+        // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+        autenticado: function (authService) {
+          return authService.isAutenticadoPromise();
+        }
+      }
+    })
     .when('/profile', {
       controller: 'ProfileController',
       templateUrl: 'profile.html',
+      resolve: {
+        // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
+        autenticado: function (authService) {
+          return authService.isAutenticadoPromise();
+        }
+      }
+    })
+    .when('/edit', {
+      controller: 'ProfileController',
+      templateUrl: 'edit.html',
       resolve: {
         // define que para acessar esta página deve ser um usuário autenticado (mas não restringe o tipo de permissão)
         autenticado: function (authService) {

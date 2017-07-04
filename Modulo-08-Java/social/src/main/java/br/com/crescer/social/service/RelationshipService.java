@@ -10,7 +10,6 @@ import br.com.crescer.social.entity.RelationshipPK;
 import br.com.crescer.social.entity.RelationshipStatus;
 import br.com.crescer.social.repository.RelationshipRepository;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,11 @@ public class RelationshipService {
     
     public ArrayList<Relationship> getAll(BigDecimal id_user) {
         return (ArrayList<Relationship>)relationshipRepository.findByUserprofile1_idUserAndRelationshipStatus(id_user, RelationshipStatus.accepted);
+    }
+    
+    public ArrayList<Relationship> getAllRelationshipsForUser(BigDecimal id_user) {
+        ArrayList<Relationship> a =  relationshipRepository.findByUserprofile1_idUserAndRelationshipStatusNotLike(id_user,RelationshipStatus.declined);
+        return a;
     }
 
     public void save(Relationship us) {
